@@ -1,17 +1,53 @@
 package com.tinygrip;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends FragmentActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        showFragment(Fragments.PROFILE);
+
+
+        findViewById(R.id.btn_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               showFragment(Fragments.PROFILE);
+            }
+        });
+        findViewById(R.id.btn_discovery).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(Fragments.DISCOVER);
+            }
+        });
+        findViewById(R.id.btn_map).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(Fragments.MAP);
+            }
+        });
+        findViewById(R.id.btn_offline).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(Fragments.OFFLINE);
+            }
+        });
+        findViewById(R.id.btn_settings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(Fragments.SETTINGS);
+            }
+        });
     }
 
     @Override
@@ -35,4 +71,14 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void showFragment(Fragments fragment){
+       Fragment fragmentByTag = getSupportFragmentManager().findFragmentByTag(fragment.toString());
+        if(fragmentByTag == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, FragmentsFactory.getFragment(fragment), fragment.toString()).commit();
+        } else {
+            Log.d(TAG, "This fragment is already on top");
+        }
+    }
+
 }
