@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.tinygrip.ui.gallery.view.GalleryView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gallery_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/gallery_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:ignore="UnusedAttribute"
+        />
+
+    <com.tinygrip.ui.misc.BetterViewAnimator
+        android:id="@+id/gallery_animator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out"
+        >
+
+        <ProgressBar
+            android:id="@+id/gallery_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/gallery_error_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/error_happended_text"
+            />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/gallery_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/gallery_grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                />
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </com.tinygrip.ui.misc.BetterViewAnimator>
+
+</com.tinygrip.ui.gallery.view.GalleryView>

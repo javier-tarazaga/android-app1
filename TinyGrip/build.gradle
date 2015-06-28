@@ -17,3 +17,64 @@ allprojects {
         jcenter()
     }
 }
+
+ext {
+
+    // Versions
+    depAndroidBuildVersion          = '1.2.3'
+    depAndroidSupportVersion        = '22.2.0'
+    depGooglePlayServicesVersion    = '7.5.0'
+
+    // Plugins
+    depHugoPluginVersion            = '1.1.0'
+
+    // Utils
+    depOttoVersion					= '1.3.5'
+
+    // Developer Utils
+    depTimberVersion                = '2.7.1'
+    depMadgeVersion                 = '1.1.1'
+    depScalpelVersion               = '1.1.1'
+
+    // Reactive
+    depRXJavaVersion                = '1.0.8'
+    depRXAndroidVersion             = '0.24.0'
+
+    // Injection
+    depDaggerVersion                = '2.0'
+    depDaggerCompilerVersion        = '2.0'
+    depGlassfishAnnotation          = '10.0-b28'
+
+    // Networking
+    depRetrofitVersion              = '1.9.0'
+    depRetrofitMockVersion          = '1.9.0'
+    depOkHttpVersion                = '2.3.0'
+    depOkhttpUrlconnectionVersion   = '2.3.0'
+
+    // UI
+    depPicassoVersion               = '2.5.2'
+    depButterKnifeVersion           = '7.0.0'
+
+
+    // Debugging
+    depTelescopeVersion             = '1.4.0@aar'
+
+    // Testing
+    depRobolectricPluginVersion     = '1.1.0'
+    depRobolectricVersion           = '2.4'
+    depEspressoVersionVersion       = '2.0'
+    depTestingSupportLibVersion     = '0.1'
+    depJunitVersion                 = '4.12'
+    depMockitoCoreVersion           = '1.9.5'
+    depFestAndroidVersion           = '1.0.8'
+
+    // Manifest
+    propBuildToolsVersion           = '22.0.1'
+    propCompileSdkVersion           = 22
+    propTargetSdkVersion            = 22
+    propMinSdkVersion               = 14
+
+    // Publish
+    publishName                     = 'TinyGrip'
+    publishGroup                    = 'com.tinygrip'
+}
