@@ -55,6 +55,8 @@ ext {
     depPicassoVersion               = '2.5.2'
     depButterKnifeVersion           = '7.0.0'
 
+    // Wear
+    depAndroidWearSupportVersion    = '1.2.0'
 
     // Debugging
     depTelescopeVersion             = '1.4.0@aar'

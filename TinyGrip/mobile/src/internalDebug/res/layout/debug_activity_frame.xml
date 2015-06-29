@@ -19,7 +19,7 @@
           android:layout_height="match_parent"
           />
     </com.jakewharton.madge.MadgeFrameLayout>
-  <com.tinygrip.ui.misc.ScrimInsetsFrameLayout
+  <com.tinygrip.android.ui.misc.ScrimInsetsFrameLayout
       android:layout_width="290dp"
       android:layout_height="match_parent"
       android:layout_gravity="end"
@@ -34,5 +34,5 @@
         android:fitsSystemWindows="true"
         android:clipToPadding="false"
         />
-  </com.tinygrip.ui.misc.ScrimInsetsFrameLayout>
+  </com.tinygrip.android.ui.misc.ScrimInsetsFrameLayout>
 </android.support.v4.widget.DrawerLayout>

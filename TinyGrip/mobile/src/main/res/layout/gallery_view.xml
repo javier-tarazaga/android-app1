@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.tinygrip.ui.gallery.view.GalleryView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.tinygrip.android.ui.gallery.view.GalleryView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gallery_view"
@@ -19,7 +19,7 @@
         tools:ignore="UnusedAttribute"
         />
 
-    <com.tinygrip.ui.misc.BetterViewAnimator
+    <com.tinygrip.android.ui.misc.BetterViewAnimator
         android:id="@+id/gallery_animator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,6 +55,6 @@
                 android:scrollbars="vertical"
                 />
         </android.support.v4.widget.SwipeRefreshLayout>
-    </com.tinygrip.ui.misc.BetterViewAnimator>
+    </com.tinygrip.android.ui.misc.BetterViewAnimator>
 
-</com.tinygrip.ui.gallery.view.GalleryView>
+</com.tinygrip.android.ui.gallery.view.GalleryView>

@@ -27,6 +27,7 @@ def buildTime = date.format("dd.MM.yy", TimeZone.getTimeZone("UTC"))
 def buildTimeInternal = date.format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 
 android {
+
     compileSdkVersion rootProject.propCompileSdkVersion
     buildToolsVersion rootProject.propBuildToolsVersion
 
@@ -40,7 +41,7 @@ android {
         buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
         buildConfigField "String", "BUILD_TIME", "\"${buildTimeInternal}\""
 
-        testApplicationId "com.tinygrip.tests"
+        testApplicationId "com.tinygrip.android.tests"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -73,12 +74,14 @@ android {
         }
     }
 
+    publishNonDefault true
+
     productFlavors {
         internal {
-            applicationId 'com.tinygrip.internal'
+            applicationId 'com.tinygrip.android.internal'
         }
         production {
-            applicationId 'com.tinygrip'
+            applicationId 'com.tinygrip.android'
         }
     }
 
@@ -105,6 +108,7 @@ configurations {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
     wearApp project(':wear')
 
     compile 'com.google.android.gms:play-services:' + rootProject.depGooglePlayServicesVersion

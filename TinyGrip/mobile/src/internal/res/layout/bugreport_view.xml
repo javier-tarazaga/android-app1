@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.tinygrip.ui.bugreport.BugReportView
+<com.tinygrip.android.ui.bugreport.BugReportView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,4 +44,4 @@
       android:textSize="16sp"
       tools:checked="true"
       />
-</com.tinygrip.ui.bugreport.BugReportView>
+</com.tinygrip.android.ui.bugreport.BugReportView>

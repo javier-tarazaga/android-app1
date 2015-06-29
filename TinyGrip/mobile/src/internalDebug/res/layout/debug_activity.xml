@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <com.tinygrip.ui.debug.DebugView
+    <com.tinygrip.android.ui.debug.DebugView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

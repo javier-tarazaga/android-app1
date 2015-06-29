@@ -10,7 +10,7 @@
 
     <application>
         <activity
-            android:name="com.tinygrip.ui.DebugActivity"
+            android:name="com.tinygrip.android.ui.DebugActivity"
             android:label="U+2020 MVP Dev Settings"
             android:launchMode="singleTask"
             android:theme="@style/Theme.U2020.Debug"
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tinygrip.ui.debug.ProcessPhoenix"
+            android:name="com.tinygrip.android.ui.debug.ProcessPhoenix"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:process=":phoenix"
             />
