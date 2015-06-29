@@ -14,14 +14,13 @@ import com.tinygrip.ui.navigation.fragments.DiscoverFragment;
 import com.tinygrip.ui.navigation.fragments.HomeFragment;
 import com.tinygrip.ui.navigation.fragments.OfflineFragment;
 import com.tinygrip.ui.navigation.fragments.ProfileFragment;
+import com.tinygrip.ui.navigation.fragments.SettingsFragment;
 
 
 /**
  * The main navigation tab pager adapter.
  */
 public class MainTabPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 4;
-
     private int[] imageResId = {
             R.drawable.ic_action_stars,
             R.drawable.ic_action_stars,
@@ -38,7 +37,7 @@ public class MainTabPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return imageResId.length;
     }
 
     @Override
@@ -58,6 +57,7 @@ public class MainTabPagerAdapter extends FragmentPagerAdapter {
                 break;
             case 3:
                 fragment = OfflineFragment.newInstance();
+                break;
         }
 
         return fragment;

@@ -147,7 +147,7 @@ android.applicationVariants.all { variant ->
     for (output in variant.outputs) {
         def outputFile = output.outputFile
         if (outputFile != null && outputFile.name.endsWith('.apk')) {
-            def fileName = "TinyGrip-mvp-${output.name}-${buildTime}.apk"
+            def fileName = "TinyGrip-${output.name}-${buildTime}.apk"
             output.outputFile = new File(outputFile.parent, fileName)
         }
     }
