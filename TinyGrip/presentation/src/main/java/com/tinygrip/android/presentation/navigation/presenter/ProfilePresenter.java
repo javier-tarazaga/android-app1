@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tinygrip.android.presentation.presenter;
+package com.tinygrip.android.presentation.navigation.presenter;
 
 import android.support.annotation.NonNull;
 import com.tinygrip.android.domain.PreviewArea;
@@ -23,7 +23,8 @@ import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
-import com.tinygrip.android.presentation.view.HomeView;
+import com.tinygrip.android.presentation.navigation.view.HomeView;
+import com.tinygrip.android.presentation.presenter.Presenter;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -32,21 +33,21 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter {
+public class ProfilePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter {
 
-  private HomeView viewHomeView;
+  private HomeView viewProfileView;
 
   //private final UseCase getUserListUseCase;
   //private final UserModelDataMapper userModelDataMapper;
 
   @Inject
-  public HomePresenter() {
+  public ProfilePresenter() {
     //this.getUserListUseCase = getUserListUserCase;
     //this.userModelDataMapper = userModelDataMapper;
   }
 
   public void setView(@NonNull HomeView view) {
-    this.viewHomeView = view;
+    this.viewProfileView = view;
   }
 
   @Override public void resume() {}
@@ -74,25 +75,25 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
   }
 
   private void showViewLoading() {
-    this.viewHomeView.showLoading();
+    this.viewProfileView.showLoading();
   }
 
   private void hideViewLoading() {
-    this.viewHomeView.hideLoading();
+    this.viewProfileView.hideLoading();
   }
 
   private void showViewRetry() {
-    this.viewHomeView.showRetry();
+    this.viewProfileView.showRetry();
   }
 
   private void hideViewRetry() {
-    this.viewHomeView.hideRetry();
+    this.viewProfileView.hideRetry();
   }
 
   private void showErrorMessage(ErrorBundle errorBundle) {
-    String errorMessage = ErrorMessageFactory.create(this.viewHomeView.getContext(),
+    String errorMessage = ErrorMessageFactory.create(this.viewProfileView.getContext(),
         errorBundle.getException());
-    this.viewHomeView.showError(errorMessage);
+    this.viewProfileView.showError(errorMessage);
   }
 
   private void getAreaList() {
@@ -102,13 +103,13 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
   private final class UserListSubscriber extends DefaultSubscriber<List<User>> {
 
     @Override public void onCompleted() {
-      HomePresenter.this.hideViewLoading();
+      ProfilePresenter.this.hideViewLoading();
     }
 
     @Override public void onError(Throwable e) {
-      HomePresenter.this.hideViewLoading();
-      HomePresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-      HomePresenter.this.showViewRetry();
+      ProfilePresenter.this.hideViewLoading();
+      ProfilePresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+      ProfilePresenter.this.showViewRetry();
     }
 
     @Override public void onNext(List<User> users) {

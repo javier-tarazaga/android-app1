@@ -42,9 +42,9 @@ public class UserListFragment extends BaseFragment implements UserListView {
   @Inject UserListPresenter userListPresenter;
 
   @Bind(R.id.rv_users) RecyclerView rv_users;
-  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
-  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
-  @Bind(R.id.bt_retry) Button bt_retry;
+  @Bind(R.id.relative_progress) RelativeLayout rl_progress;
+  @Bind(R.id.relative_retry) RelativeLayout rl_retry;
+  @Bind(R.id.button_retry) Button bt_retry;
 
   private UsersAdapter usersAdapter;
   private UsersLayoutManager usersLayoutManager;
@@ -153,7 +153,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
     this.userListPresenter.initialize();
   }
 
-  @OnClick(R.id.bt_retry) void onButtonRetryClick() {
+  @OnClick(R.id.button_retry) void onButtonRetryClick() {
     UserListFragment.this.loadUserList();
   }
 

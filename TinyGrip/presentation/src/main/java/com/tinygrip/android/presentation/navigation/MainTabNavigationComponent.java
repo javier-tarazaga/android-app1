@@ -13,13 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tinygrip.android.presentation.internal.di.components;
+package com.tinygrip.android.presentation.navigation;
 
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
+import com.tinygrip.android.presentation.internal.di.components.ActivityComponent;
+import com.tinygrip.android.presentation.internal.di.components.ApplicationComponent;
 import com.tinygrip.android.presentation.internal.di.modules.ActivityModule;
-import com.tinygrip.android.presentation.internal.di.modules.MainTabNavigationModule;
+import com.tinygrip.android.presentation.navigation.activity.MainNavigationNavigationActivity;
+import com.tinygrip.android.presentation.navigation.fragment.DiscoverFragment;
+import com.tinygrip.android.presentation.navigation.fragment.HomeFragment;
+import com.tinygrip.android.presentation.navigation.fragment.ProfileFragment;
+import com.tinygrip.android.presentation.navigation.fragment.SettingsFragment;
 import com.tinygrip.android.presentation.presenter.MainPresenter;
-import com.tinygrip.android.presentation.view.activity.MainActivity;
 import dagger.Component;
 
 /**
@@ -29,7 +34,11 @@ import dagger.Component;
 @ActivityScope @Component(dependencies = { ApplicationComponent.class }, modules = {
     ActivityModule.class, MainTabNavigationModule.class})
 public interface MainTabNavigationComponent extends ActivityComponent {
-  void inject(MainActivity mainActivity);
+  void inject(MainNavigationNavigationActivity mainNavigationActivity);
+  void inject(HomeFragment homeFragment);
+  void inject(DiscoverFragment discoverFragment);
+  void inject(ProfileFragment homeFragment);
+  void inject(SettingsFragment settingsFragment);
 
   MainPresenter presenter();
 }

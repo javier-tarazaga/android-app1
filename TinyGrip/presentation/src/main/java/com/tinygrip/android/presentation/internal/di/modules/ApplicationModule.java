@@ -28,7 +28,7 @@ import com.tinygrip.android.domain.repository.RootRepository;
 import com.tinygrip.android.domain.repository.UserRepository;
 import com.tinygrip.android.presentation.AndroidApplication;
 import com.tinygrip.android.presentation.UIThread;
-import com.tinygrip.android.presentation.navigation.Navigator;
+import com.tinygrip.android.presentation.ApplicationRouter;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -52,8 +52,8 @@ public class ApplicationModule {
     return this.application;
   }
 
-  @Provides @Singleton Navigator provideNavigator() {
-    return new Navigator();
+  @Provides @Singleton ApplicationRouter provideNavigator() {
+    return new ApplicationRouter();
   }
 
   @Provides @Singleton ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {

@@ -67,6 +67,9 @@ dependencies {
   apt presentationDependencies.daggerCompiler
   compile presentationDependencies.dagger
   compile presentationDependencies.butterKnife
+  compile presentationDependencies.support
+  compile presentationDependencies.appCompat
+  compile presentationDependencies.supportDesign
   compile presentationDependencies.recyclerView
   compile presentationDependencies.rxJava
   compile presentationDependencies.rxAndroid

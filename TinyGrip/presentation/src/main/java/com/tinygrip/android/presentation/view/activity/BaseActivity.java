@@ -1,23 +1,22 @@
 package com.tinygrip.android.presentation.view.activity;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import com.tinygrip.android.presentation.AndroidApplication;
 import com.tinygrip.android.presentation.internal.di.components.ApplicationComponent;
 import com.tinygrip.android.presentation.internal.di.modules.ActivityModule;
-import com.tinygrip.android.presentation.navigation.Navigator;
+import com.tinygrip.android.presentation.ApplicationRouter;
 import javax.inject.Inject;
 
 /**
  * Base {@link android.app.Activity} class for every Activity in this application.
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends AppCompatActivity {
 
-  @Inject
-  Navigator navigator;
+  @Inject ApplicationRouter applicationRouter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public abstract class BaseActivity extends Activity {
    * @param fragment The fragment to be added.
    */
   protected void addFragment(int containerViewId, Fragment fragment) {
-    FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+    FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
     fragmentTransaction.add(containerViewId, fragment);
     fragmentTransaction.commit();
   }

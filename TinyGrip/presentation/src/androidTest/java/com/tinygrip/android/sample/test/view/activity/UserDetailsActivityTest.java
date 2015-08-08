@@ -64,8 +64,8 @@ public class UserDetailsActivityTest extends ActivityInstrumentationTestCase2<Us
   }
 
   public void testLoadUserHappyCaseViews() {
-    onView(withId(R.id.rl_retry)).check(matches(not(isDisplayed())));
-    onView(withId(R.id.rl_progress)).check(matches(not(isDisplayed())));
+    onView(withId(R.id.relative_retry)).check(matches(not(isDisplayed())));
+    onView(withId(R.id.relative_progress)).check(matches(not(isDisplayed())));
 
     onView(withId(R.id.tv_fullname)).check(matches(isDisplayed()));
     onView(withId(R.id.tv_email)).check(matches(isDisplayed()));

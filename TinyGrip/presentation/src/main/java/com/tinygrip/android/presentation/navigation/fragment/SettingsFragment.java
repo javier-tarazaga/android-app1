@@ -1,8 +1,9 @@
 /**
  * Copyright (C) 2014 android.org. All rights reserved.
+ *
  * @author Fernando Cejas (the android coder)
  */
-package com.tinygrip.android.presentation.view.fragment;
+package com.tinygrip.android.presentation.navigation.fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,11 +15,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.tinygrip.android.R;
-import com.tinygrip.android.presentation.internal.di.components.MainTabNavigationComponent;
-import com.tinygrip.android.presentation.internal.di.modules.MainTabNavigationModule;
-import com.tinygrip.android.presentation.presenter.HomePresenter;
-import com.tinygrip.android.presentation.view.HomeView;
+import com.tinygrip.android.presentation.navigation.MainTabNavigationComponent;
+import com.tinygrip.android.presentation.navigation.view.HomeView;
 
+import com.tinygrip.android.presentation.navigation.presenter.SettingsPresenter;
+import com.tinygrip.android.presentation.view.fragment.BaseFragment;
 import javax.inject.Inject;
 
 import butterknife.Bind;
@@ -28,36 +29,45 @@ import butterknife.OnClick;
 /**
  * Fragment that shows a map with a preview of all possible Areas
  */
-public class HomeFragment extends BaseFragment implements HomeView {
+public class SettingsFragment extends BaseFragment implements HomeView {
 
   /**
    * Interface for listening user list events.
    */
-  public interface HomeListener {
+  public interface SettingsListener {
     void onAreaClicked();
   }
 
-  @Inject HomePresenter homePresenter;
+  @Inject SettingsPresenter settingsPresenter;
 
-  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
-  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
-  @Bind(R.id.bt_retry) Button bt_retry;
+  @Bind(R.id.relative_progress) RelativeLayout rl_progress;
+  @Bind(R.id.relative_retry) RelativeLayout rl_retry;
+  @Bind(R.id.button_retry) Button bt_retry;
 
-  private HomeListener homeListener;
+  private SettingsListener settingsListener;
 
-  public HomeFragment() { super(); }
+  public SettingsFragment() {
+    super();
+  }
+
+  public static SettingsFragment newInstance() {
+    SettingsFragment homeFragment = new SettingsFragment();
+    Bundle args = new Bundle();
+    homeFragment.setArguments(args);
+    return homeFragment;
+  }
 
   @Override public void onAttach(Activity activity) {
     super.onAttach(activity);
-    if (activity instanceof HomeListener) {
-      this.homeListener = (HomeListener) activity;
+    if (activity instanceof SettingsListener) {
+      this.settingsListener = (SettingsListener) activity;
     }
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
-    View fragmentView = inflater.inflate(R.layout.fragment_home, container, true);
+    View fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
     ButterKnife.bind(this, fragmentView);
     setupUI();
 
@@ -72,17 +82,17 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
   @Override public void onResume() {
     super.onResume();
-    this.homePresenter.resume();
+    this.settingsPresenter.resume();
   }
 
   @Override public void onPause() {
     super.onPause();
-    this.homePresenter.pause();
+    this.settingsPresenter.pause();
   }
 
   @Override public void onDestroy() {
     super.onDestroy();
-    this.homePresenter.destroy();
+    this.settingsPresenter.destroy();
   }
 
   @Override public void onDestroyView() {
@@ -91,8 +101,8 @@ public class HomeFragment extends BaseFragment implements HomeView {
   }
 
   private void initialize() {
-    //this.getComponent(MainTabNavigationComponent.class).inject(this);
-    this.homePresenter.setView(this);
+    this.getComponent(MainTabNavigationComponent.class).inject(this);
+    this.settingsPresenter.setView(this);
   }
 
   private void setupUI() {
@@ -115,13 +125,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
     this.rl_retry.setVisibility(View.GONE);
   }
 
-  @Override
-  public void renderMap() {
+  @Override public void renderMap() {
 
   }
 
-  @Override
-  public void renderMapFilters() {
+  @Override public void renderMapFilters() {
 
   }
 
@@ -137,10 +145,10 @@ public class HomeFragment extends BaseFragment implements HomeView {
    * Loads all users.
    */
   private void loadUserList() {
-    this.homePresenter.initialize();
+    //this.settingsPresenter.initialize();
   }
 
-  @OnClick(R.id.bt_retry) void onButtonRetryClick() {
-    HomeFragment.this.loadUserList();
+  @OnClick(R.id.button_retry) void onButtonRetryClick() {
+    SettingsFragment.this.loadUserList();
   }
 }

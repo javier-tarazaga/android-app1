@@ -1,7 +1,10 @@
-package com.tinygrip.android.presentation.view.activity;
+package com.tinygrip.android.presentation.navigation.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -11,27 +14,35 @@ import butterknife.OnClick;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.internal.di.HasComponent;
 import com.tinygrip.android.presentation.internal.di.components.ActivityComponent;
-import com.tinygrip.android.presentation.internal.di.components.DaggerMainTabNavigationComponent;
-import com.tinygrip.android.presentation.internal.di.components.MainTabNavigationComponent;
-import com.tinygrip.android.presentation.internal.di.modules.MainTabNavigationModule;
+import com.tinygrip.android.presentation.navigation.DaggerMainTabNavigationComponent;
+import com.tinygrip.android.presentation.navigation.MainTabNavigationComponent;
+import com.tinygrip.android.presentation.navigation.MainTabNavigationModule;
+import com.tinygrip.android.presentation.navigation.adapter.MainTabNavigationAdapter;
+import com.tinygrip.android.presentation.navigation.fragment.HomeFragment;
+import com.tinygrip.android.presentation.navigation.view.MainNavigationView;
 import com.tinygrip.android.presentation.presenter.MainPresenter;
-import com.tinygrip.android.presentation.view.MainView;
-import com.tinygrip.android.presentation.view.fragment.UserListFragment;
+import com.tinygrip.android.presentation.view.activity.BaseActivity;
+import com.tinygrip.android.presentation.view.fragment.UserDetailsFragment;
 import javax.inject.Inject;
 
 /**
  * Main application screen. This is the app entry point.
  */
-public class MainActivity extends BaseActivity implements MainView,
+public class MainNavigationNavigationActivity extends BaseActivity implements MainNavigationView,
     HasComponent<ActivityComponent> {
 
   @Inject MainPresenter mainPresenter;
 
-  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
-  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
-  @Bind(R.id.bt_retry) Button bt_retry;
+  @Bind(R.id.toolbar_main_nav_tabs) Toolbar toolbarMain;
+  @Bind(R.id.tablayout_main_nav_tabs) TabLayout tabLayout;
+  @Bind(R.id.viewpager_main_nav_tabs) ViewPager viewPager;
+  @Bind(R.id.relative_progress) RelativeLayout relativeProgress;
+  @Bind(R.id.relative_retry) RelativeLayout relativeRetry;
+  @Bind(R.id.button_retry) Button buttonRetry;
 
   private MainTabNavigationComponent mainTabNavigationComponent;
+
+  private MainTabNavigationAdapter tabsAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +52,7 @@ public class MainActivity extends BaseActivity implements MainView,
 
     this.initializeInjector();
     this.initialize();
+    this.setupUI();
     this.loadRoot();
   }
 
@@ -58,24 +70,32 @@ public class MainActivity extends BaseActivity implements MainView,
     this.mainPresenter.setView(this);
   }
 
+  private void setupUI() {
+    this.toolbarMain.inflateMenu(R.menu.menu_main_activity);
+
+    this.tabsAdapter = new MainTabNavigationAdapter(getSupportFragmentManager(), this);
+    this.viewPager.setAdapter(tabsAdapter);
+    this.tabLayout.setupWithViewPager(viewPager);
+  }
+
   @Override public ActivityComponent getComponent() {
     return mainTabNavigationComponent;
   }
 
   @Override public void showLoading() {
-    this.rl_progress.setVisibility(View.VISIBLE);
+    this.relativeProgress.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoading() {
-    this.rl_progress.setVisibility(View.GONE);
+    this.relativeProgress.setVisibility(View.GONE);
   }
 
   @Override public void showRetry() {
-    this.rl_retry.setVisibility(View.VISIBLE);
+    this.relativeRetry.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideRetry() {
-    this.rl_retry.setVisibility(View.GONE);
+    this.relativeRetry.setVisibility(View.GONE);
   }
 
   @Override public void showError(String message) {
@@ -83,7 +103,7 @@ public class MainActivity extends BaseActivity implements MainView,
   }
 
   @Override public Context getContext() {
-    return MainActivity.this;
+    return MainNavigationNavigationActivity.this;
   }
 
   /**
@@ -93,8 +113,8 @@ public class MainActivity extends BaseActivity implements MainView,
     this.mainPresenter.initialize();
   }
 
-  @OnClick(R.id.bt_retry) void onButtonRetryClick() {
-    MainActivity.this.loadRoot();
+  @OnClick(R.id.button_retry) void onButtonRetryClick() {
+    MainNavigationNavigationActivity.this.loadRoot();
   }
 
   @Override public void renderRootLoadedSuccessful() {

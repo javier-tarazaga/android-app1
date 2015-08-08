@@ -39,9 +39,9 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
   @Bind(R.id.tv_email) TextView tv_email;
   @Bind(R.id.tv_followers) TextView tv_followers;
   @Bind(R.id.tv_description) TextView tv_description;
-  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
-  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
-  @Bind(R.id.bt_retry) Button bt_retry;
+  @Bind(R.id.relative_progress) RelativeLayout rl_progress;
+  @Bind(R.id.relative_retry) RelativeLayout rl_retry;
+  @Bind(R.id.button_retry) Button bt_retry;
 
   public UserDetailsFragment() { super(); }
 
@@ -141,7 +141,7 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     }
   }
 
-  @OnClick(R.id.bt_retry)
+  @OnClick(R.id.button_retry)
   void onButtonRetryClick() {
     UserDetailsFragment.this.loadUserDetails();
   }

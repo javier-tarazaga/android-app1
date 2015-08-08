@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tinygrip.android.presentation.navigation;
+package com.tinygrip.android.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,10 +26,10 @@ import javax.inject.Singleton;
  * Class used to navigate through the application.
  */
 @Singleton
-public class Navigator {
+public class ApplicationRouter {
 
   @Inject
-  public void Navigator() {
+  public void ApplicationRouter() {
     //empty
   }
 

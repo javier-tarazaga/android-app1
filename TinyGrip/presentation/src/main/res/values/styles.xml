@@ -1,10 +1,14 @@
 <resources>
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+  <style name="TinyGrip.TabLayout" parent="Widget.Design.TabLayout">
+    <item name="tabTextAppearance">@style/TinyGrip.TabLayout.TextAppearance</item>
   </style>
 
-  <style name="AppTheme.ProgressBar">
+  <style name="TinyGrip.TabLayout.TextAppearance" parent="TextAppearance.Design.Tab">
+    <item name="textAllCaps">false</item>
+  </style>
+
+  <style name="Theme.TinyGrip.ProgressBar">
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_centerInParent">true</item>
@@ -12,7 +16,7 @@
     <item name="android:visibility">visible</item>
   </style>
 
-  <style name="AppTheme.Button">
+  <style name="Theme.TinyGrip.Button">
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_centerVertical">true</item>
@@ -20,7 +24,7 @@
     <item name="android:layout_gravity">center</item>
   </style>
 
-  <style name="AppTheme.TextViewHeader">
+  <style name="Theme.TinyGrip.TextViewHeader">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_marginBottom">@dimen/header_margin</item>
@@ -30,7 +34,7 @@
     <item name="android:background">@android:color/background_light</item>
   </style>
 
-  <style name="AppTheme.TextViewTitle">
+  <style name="Theme.TinyGrip.TextViewTitle">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_marginTop">@dimen/header_margin</item>

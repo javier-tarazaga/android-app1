@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="None"/>
+
+    <!-- Base application theme. -->
+    <style name="Theme.TinyGrip" parent="Theme.TinyGrip.Base">
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Theme.TinyGrip.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!--<item name="colorControlActivated">@color/accent</item>-->
+        <!--<item name="colorControlHighlight">@color/primary</item>-->
+        <!--<item name="colorControlNormal">@color/primary_light</item>-->
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <!--<item name="navigationBarColor">@color/primary_dark</item>-->
+        <!--<item name="android:colorForeground">@color/icons</item>-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@color/content_background</item>
+    </style>
+
+</resources>

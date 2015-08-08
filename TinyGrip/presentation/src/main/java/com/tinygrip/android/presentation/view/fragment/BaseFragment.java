@@ -4,8 +4,8 @@
  */
 package com.tinygrip.android.presentation.view.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.widget.Toast;
 import com.tinygrip.android.presentation.internal.di.HasComponent;
 

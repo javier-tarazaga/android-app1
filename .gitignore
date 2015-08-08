@@ -27,3 +27,4 @@ proguard/
 *.log
 *.iml
 TinyGrip/.idea
+TinyGrip/presentation/mirror

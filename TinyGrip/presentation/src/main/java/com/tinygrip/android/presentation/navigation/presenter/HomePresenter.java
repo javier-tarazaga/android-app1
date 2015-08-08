@@ -13,38 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tinygrip.android.presentation.presenter;
+package com.tinygrip.android.presentation.navigation.presenter;
 
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.Root;
+import com.tinygrip.android.domain.PreviewArea;
+import com.tinygrip.android.domain.User;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
-import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
-import com.tinygrip.android.presentation.navigation.view.MainNavigationView;
+import com.tinygrip.android.presentation.presenter.Presenter;
+import com.tinygrip.android.presentation.navigation.view.HomeView;
+import java.util.List;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * {@link Presenter} that controls communication between views and models of the presentation
  * layer.
  */
 @ActivityScope
-public class MainPresenter extends DefaultSubscriber<Root> implements Presenter {
+public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter {
 
-  private MainNavigationView viewMainNavigationView;
+  private HomeView viewHomeView;
 
-  private final UseCase getRootUseCase;
+  //private final UseCase getUserListUseCase;
+  //private final UserModelDataMapper userModelDataMapper;
 
   @Inject
-  public MainPresenter(@Named("root") UseCase getRootUseCase) {
-    this.getRootUseCase = getRootUseCase;
+  public HomePresenter() {
+    //this.getUserListUseCase = getUserListUserCase;
+    //this.userModelDataMapper = userModelDataMapper;
   }
 
-  public void setView(@NonNull MainNavigationView view) {
-    this.viewMainNavigationView = view;
+  public void setView(@NonNull HomeView view) {
+    this.viewHomeView = view;
   }
 
   @Override public void resume() {}
@@ -52,70 +55,64 @@ public class MainPresenter extends DefaultSubscriber<Root> implements Presenter 
   @Override public void pause() {}
 
   @Override public void destroy() {
-    this.getRootUseCase.unsubscribe();
+    //this.getUserListUseCase.unsubscribe();
   }
 
   /**
-   * Initializes the presenter by start retrieving the root
+   * Initializes the presenter by start retrieving the user list.
    */
   public void initialize() {
-    this.loadRoot();
+    this.loadUserList();
   }
 
   /**
-   * Loads Root.
+   * Loads all users.
    */
-  private void loadRoot() {
+  private void loadUserList() {
     this.hideViewRetry();
     this.showViewLoading();
-    this.getRoot();
+    this.getAreaList();
   }
 
   private void showViewLoading() {
-    this.viewMainNavigationView.showLoading();
+    this.viewHomeView.showLoading();
   }
 
   private void hideViewLoading() {
-    this.viewMainNavigationView.hideLoading();
+    this.viewHomeView.hideLoading();
   }
 
   private void showViewRetry() {
-    this.viewMainNavigationView.showRetry();
+    this.viewHomeView.showRetry();
   }
 
   private void hideViewRetry() {
-    this.viewMainNavigationView.hideRetry();
+    this.viewHomeView.hideRetry();
   }
 
   private void showErrorMessage(ErrorBundle errorBundle) {
-    String errorMessage = ErrorMessageFactory.create(this.viewMainNavigationView.getContext(),
+    String errorMessage = ErrorMessageFactory.create(this.viewHomeView.getContext(),
         errorBundle.getException());
-    this.viewMainNavigationView.showError(errorMessage);
+    this.viewHomeView.showError(errorMessage);
   }
 
-  private void showRootLoadedInView() {
-    this.viewMainNavigationView.renderRootLoadedSuccessful();
+  private void getAreaList() {
+    //this.getUserListUseCase.execute(new UserListSubscriber());
   }
 
-
-  private void getRoot() {
-    this.getRootUseCase.execute(new RootSubscriber());
-  }
-
-  private final class RootSubscriber extends DefaultSubscriber<Root> {
+  private final class UserListSubscriber extends DefaultSubscriber<List<User>> {
 
     @Override public void onCompleted() {
-      MainPresenter.this.hideViewLoading();
+      HomePresenter.this.hideViewLoading();
     }
 
     @Override public void onError(Throwable e) {
-      MainPresenter.this.hideViewLoading();
-      MainPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-      MainPresenter.this.showViewRetry();
+      HomePresenter.this.hideViewLoading();
+      HomePresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+      HomePresenter.this.showViewRetry();
     }
 
-    @Override public void onNext(Root root) {
-      MainPresenter.this.showRootLoadedInView();
+    @Override public void onNext(List<User> users) {
     }
   }
 }

@@ -13,7 +13,7 @@ ext {
     androidCompileSdkVersion = 21
 
     // Versions
-    androidSupportVersion = '22.2.0'
+    androidSupportVersion = '22.2.1'
     googlePlayServicesVersion = '7.5.0'
 
     // Plugins
@@ -39,6 +39,7 @@ ext {
     okhttpUrlconnectionVersion = '2.3.0'
 
     // UI
+    supportDesignVersion = '22.2.1'
     recyclerViewVersion = '21.0.3'
     picassoVersion = '2.5.2'
     butterKnifeVersion = '7.0.1'
@@ -66,7 +67,10 @@ ext {
       daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
       dagger:             "com.google.dagger:dagger:${daggerVersion}",
       butterKnife:        "com.jakewharton:butterknife:${butterKnifeVersion}",
+      support:            "com.android.support:support-v4:${androidSupportVersion}",
+      appCompat:          "com.android.support:appcompat-v7:${androidSupportVersion}",
       recyclerView:       "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+      supportDesign:      "com.android.support:design:${supportDesignVersion}",
       rxJava:             "io.reactivex:rxjava:${rxJavaVersion}",
       rxAndroid:          "io.reactivex:rxandroid:${rxAndroidVersion}",
       javaxAnnotation:    "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
