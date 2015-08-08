@@ -1,1 +1,3 @@
-include ':mobile', ':wear'
+include ':domain', 'presentation'
+include ':data'
+
