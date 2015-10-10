@@ -23,7 +23,7 @@ import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
-import com.tinygrip.android.presentation.navigation.view.MainNavigationView;
+import com.tinygrip.android.presentation.view.navigation.view.MainNavigationView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

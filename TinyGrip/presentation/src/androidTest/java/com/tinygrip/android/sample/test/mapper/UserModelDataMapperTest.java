@@ -15,7 +15,7 @@
  */
 package com.tinygrip.android.sample.test.mapper;
 
-import com.tinygrip.android.presentation.mapper.UserModelDataMapper;
+import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 import com.tinygrip.android.presentation.model.UserModel;
 import java.util.ArrayList;
 import java.util.Collection;

@@ -53,6 +53,8 @@ android {
   buildTypes {
     debug {
       signingConfig signingConfigs.debug
+      applicationIdSuffix ".debug"
+      versionNameSuffix ".debug"
     }
   }
 }
@@ -67,6 +69,7 @@ dependencies {
   apt presentationDependencies.daggerCompiler
   compile presentationDependencies.dagger
   compile presentationDependencies.butterKnife
+  compile presentationDependencies.googleMaps
   compile presentationDependencies.support
   compile presentationDependencies.appCompat
   compile presentationDependencies.supportDesign

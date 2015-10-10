@@ -23,9 +23,9 @@ import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
-import com.tinygrip.android.presentation.mapper.UserModelDataMapper;
+import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 import com.tinygrip.android.presentation.model.UserModel;
-import com.tinygrip.android.presentation.view.UserDetailsView;
+import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

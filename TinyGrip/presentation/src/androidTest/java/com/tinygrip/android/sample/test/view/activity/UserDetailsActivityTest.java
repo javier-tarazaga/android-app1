@@ -19,7 +19,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import com.tinygrip.android.R;
-import com.tinygrip.android.presentation.view.activity.UserDetailsActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

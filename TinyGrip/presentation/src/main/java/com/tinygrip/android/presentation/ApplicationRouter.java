@@ -17,8 +17,10 @@ package com.tinygrip.android.presentation;
 
 import android.content.Context;
 import android.content.Intent;
-import com.tinygrip.android.presentation.view.activity.UserDetailsActivity;
-import com.tinygrip.android.presentation.view.activity.UserListActivity;
+import com.tinygrip.android.presentation.view.area.activity.AreaActivity;
+import com.tinygrip.android.presentation.view.area.activity.NewAreaActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserListActivity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -34,10 +36,35 @@ public class ApplicationRouter {
   }
 
   /**
-   * Goes to the user list screen.
+   * Goes to the new area screen
    *
    * @param context A Context needed to open the destiny activity.
    */
+  public void navigateToNewArea(Context context) {
+    if (context != null) {
+      Intent intentToLaunch = NewAreaActivity.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+  /**
+   * Goes to the area screen
+   *
+   * @param context A Context needed to open the destiny activity.
+   */
+  public void navigateToArea(Context context) {
+    if (context != null) {
+      Intent intentToLaunch = AreaActivity.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+
+    /**
+     * Goes to the user list screen.
+     *
+     * @param context A Context needed to open the destiny activity.
+     */
   public void navigateToUserList(Context context) {
     if (context != null) {
       Intent intentToLaunch = UserListActivity.getCallingIntent(context);

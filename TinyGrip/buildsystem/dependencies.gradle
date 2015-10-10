@@ -67,6 +67,7 @@ ext {
       daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
       dagger:             "com.google.dagger:dagger:${daggerVersion}",
       butterKnife:        "com.jakewharton:butterknife:${butterKnifeVersion}",
+      googleMaps:         "com.google.android.gms:play-services-maps:${googlePlayServicesVersion}",
       support:            "com.android.support:support-v4:${androidSupportVersion}",
       appCompat:          "com.android.support:appcompat-v7:${androidSupportVersion}",
       recyclerView:       "com.android.support:recyclerview-v7:${recyclerViewVersion}",

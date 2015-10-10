@@ -6,22 +6,16 @@
     android:orientation="vertical"
     tools:context=".MainNavigationNavigationActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_main_nav_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        tools:ignore="UnusedAttribute" />
+    <include
+        android:id="@+id/toolbar_main_nav"
+        layout="@layout/view_toolbar"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout_main_nav_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="4dp"
-        android:layout_below="@id/toolbar_main_nav_tabs"
+        android:layout_below="@id/toolbar_main_nav"
         android:background="?attr/colorPrimary"
         style="@style/TinyGrip.TabLayout"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
