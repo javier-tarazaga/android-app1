@@ -1,26 +1,12 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.tinygrip.android.data.repository.datasource;
 
 import com.tinygrip.android.data.ApplicationTestCase;
-import com.tinygrip.android.data.cache.UserCache;
+import com.tinygrip.android.data.cache.user.UserCache;
 import com.tinygrip.android.data.entity.UserEntity;
-import com.tinygrip.android.data.net.RestApi;
-import com.tinygrip.android.data.repository.datasource.CloudUserDataStore;
+import com.tinygrip.android.data.api.RootRestApi;
 
+import com.tinygrip.android.data.repository.datasource.user.CloudUserDataStore;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -36,29 +22,29 @@ public class CloudUserDataStoreTest extends ApplicationTestCase {
 
   private CloudUserDataStore cloudUserDataStore;
 
-  @Mock private RestApi mockRestApi;
+  @Mock private RootRestApi mockRootRestApi;
   @Mock private UserCache mockUserCache;
 
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    cloudUserDataStore = new CloudUserDataStore(mockRestApi, mockUserCache);
+    cloudUserDataStore = new CloudUserDataStore(mockRootRestApi, mockUserCache);
   }
 
   @Test
   public void testGetUserEntityListFromApi() {
     cloudUserDataStore.userEntityList();
-    verify(mockRestApi).userEntityList();
+    verify(mockRootRestApi).userEntityList();
   }
 
   @Test
   public void testGetUserEntityDetailsFromApi() {
     UserEntity fakeUserEntity = new UserEntity();
     Observable<UserEntity> fakeObservable = Observable.just(fakeUserEntity);
-    given(mockRestApi.userEntityById(FAKE_USER_ID)).willReturn(fakeObservable);
+    given(mockRootRestApi.userEntityById(FAKE_USER_ID)).willReturn(fakeObservable);
 
     cloudUserDataStore.userEntityDetails(FAKE_USER_ID);
 
-    verify(mockRestApi).userEntityById(FAKE_USER_ID);
+    verify(mockRootRestApi).userEntityById(FAKE_USER_ID);
   }
 }

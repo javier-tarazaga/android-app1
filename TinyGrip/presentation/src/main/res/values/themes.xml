@@ -10,8 +10,8 @@
     <!-- Base application theme. -->
     <style name="Theme.TinyGrip.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorAccent">@color/accent</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
         <!--<item name="colorControlActivated">@color/accent</item>-->
         <!--<item name="colorControlHighlight">@color/primary</item>-->
         <!--<item name="colorControlNormal">@color/primary_light</item>-->

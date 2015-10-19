@@ -13,8 +13,8 @@ public class ApiConfig {
   /** Socket timeout */
   public static final int READ_TIMEOUT = 120;
 
-  public static final String HOST_PROD = "http://demo8125797.mockable.io";
-  public static final String HOST_MOCK = "http://demo8125797.mockable.io";
+  public static final String HOST_PROD = "http://tinygrip.mockable.io";
+  public static final String HOST_MOCK = "http://tinygrip.mockable.io";
 
   public static final String BASE = "/v1/api";
 }

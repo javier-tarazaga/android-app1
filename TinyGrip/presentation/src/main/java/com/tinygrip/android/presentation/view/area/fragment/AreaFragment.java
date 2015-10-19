@@ -30,7 +30,7 @@ public class AreaFragment extends BaseFragment implements AreaView {
 
   @Inject AreaPresenter areaPresenter;
 
-  @Bind(R.id.toolbar_area) Toolbar toolbar;
+  @Bind(R.id.tb_area) Toolbar toolbar;
 
   private AreaListener areaListener;
 

@@ -2,65 +2,70 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tinygrip.android">
 
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-  <uses-feature
-      android:glEsVersion="0x00020000"
-      android:required="true"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
 
-  <permission
-      android:name="com.tinygrip.android.permission.MAPS_RECEIVE"
-      android:protectionLevel="signature"/>
+    <permission
+        android:name="com.tinygrip.android.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
 
-  <uses-permission android:name="com.tinygrip.android.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.tinygrip.android.permission.MAPS_RECEIVE"/>
 
-  <application
-      android:allowBackup="true"
-      android:name=".presentation.AndroidApplication"
-      android:icon="@drawable/ic_launcher"
-      android:label="@string/app_name"
-      android:theme="@style/Theme.TinyGrip">
+    <application
+        android:allowBackup="true"
+        android:name=".presentation.AndroidApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.TinyGrip">
 
-    <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="@string/google_maps_key"/>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key"/>
 
-    <uses-library
-        android:name="com.google.android.maps"
-        android:required="false" />
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false"/>
 
-    <activity
-        android:name=".presentation.view.navigation.activity.MainNavigationNavigationActivity"
-        android:label="@string/app_name">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
+        <activity
+            android:name=".presentation.view.main.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
-    <activity
-        android:name=".presentation.view.area.activity.NewAreaActivity"
-        android:label="@string/activity_title_new_area">
-    </activity>
+        <activity
+            android:name=".presentation.view.navigation.activity.MainNavigationNavigationActivity"
+            android:label="@string/app_name">
+        </activity>
 
-    <activity
-        android:name=".presentation.view.area.activity.AreaActivity"
-        android:label="@string/activity_title_area">
-    </activity>
+        <activity
+            android:name=".presentation.view.area.activity.NewAreaActivity"
+            android:label="@string/activity_title_new_area">
+        </activity>
 
-    <activity
-        android:name=".presentation.view.user.activity.UserListActivity"
-        android:label="@string/activity_title_user_list">
-    </activity>
+        <activity
+            android:name=".presentation.view.area.activity.AreaActivity"
+            android:label="@string/activity_title_area">
+        </activity>
 
-    <activity
-        android:name=".presentation.view.user.activity.UserDetailsActivity"
-        android:label="@string/activity_title_user_details">
-    </activity>
-  </application>
+        <activity
+            android:name=".presentation.view.user.activity.UserLoginActivity"
+            android:label="@string/activity_title_user_login">
+        </activity>
+
+        <activity
+            android:name=".presentation.view.user.activity.UserDetailsActivity"
+            android:label="@string/activity_title_user_details">
+        </activity>
+    </application>
 
 </manifest>

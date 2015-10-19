@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#2C313D</color>
-    <color name="primary_dark">#282C37</color>
+    <color name="primary">#97C5C7</color>
+    <color name="primary_dark">#76b3b5</color>
     <color name="primary_light">#DCEDC8</color>
 
     <color name="secondary">#404040</color>
@@ -16,4 +16,5 @@
     <color name="icons">#212121</color>
     <color name="divider">#B6B6B6</color>
     <color name="content_background">#fffafafa</color>
+    <color name="black">#000000</color>
 </resources>

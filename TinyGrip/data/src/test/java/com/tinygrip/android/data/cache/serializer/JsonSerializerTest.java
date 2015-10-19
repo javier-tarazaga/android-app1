@@ -1,22 +1,7 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.tinygrip.android.data.cache.serializer;
 
 import com.tinygrip.android.data.ApplicationTestCase;
-import com.tinygrip.android.data.cache.serializer.JsonSerializer;
 import com.tinygrip.android.data.entity.UserEntity;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,7 +34,7 @@ public class JsonSerializerTest extends ApplicationTestCase {
     String jsonString = jsonSerializer.serialize(userEntityOne);
     UserEntity userEntityTwo = jsonSerializer.deserialize(jsonString);
 
-    assertThat(userEntityOne.getUserId(), is(userEntityTwo.getUserId()));
+    assertThat(userEntityOne.getId(), is(userEntityTwo.getId()));
     assertThat(userEntityOne.getFullname(), is(equalTo(userEntityTwo.getFullname())));
     assertThat(userEntityOne.getFollowers(), is(userEntityTwo.getFollowers()));
   }
@@ -58,7 +43,7 @@ public class JsonSerializerTest extends ApplicationTestCase {
   public void testDesearializeHappyCase() {
     UserEntity userEntity = jsonSerializer.deserialize(JSON_RESPONSE);
 
-    assertThat(userEntity.getUserId(), is(1));
+    assertThat(userEntity.getId(), is(1));
     assertThat(userEntity.getFullname(), is("Simon Hill"));
     assertThat(userEntity.getFollowers(), is(7484));
   }

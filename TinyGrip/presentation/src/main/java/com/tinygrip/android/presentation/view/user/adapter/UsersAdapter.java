@@ -51,7 +51,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
   @Override public void onBindViewHolder(UserViewHolder holder, final int position) {
     final UserModel userModel = this.usersCollection.get(position);
-    holder.textViewTitle.setText(userModel.getFullName());
+    holder.textViewTitle.setText(userModel.getFirstName());
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if (UsersAdapter.this.onItemClickListener != null) {

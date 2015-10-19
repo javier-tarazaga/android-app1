@@ -18,4 +18,9 @@ public interface UserDetailsView extends LoadDataView {
    * @param user The {@link UserModel} that will be shown.
    */
   void renderUser(UserModel user);
+
+  /**
+   * Simply go up in the stack
+   */
+  void goUp();
 }

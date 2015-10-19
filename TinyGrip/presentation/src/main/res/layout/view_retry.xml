@@ -1,12 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relative_retry"
+    android:id="@+id/rl_retry"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="gone"
     >
 
   <Button
-      android:id="@+id/button_retry"
+      android:id="@+id/btn_retry"
       style="@style/Theme.TinyGrip.Button"
       android:text="@string/btn_text_retry"
       />

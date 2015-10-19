@@ -1,36 +1,25 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.tinygrip.android.domain.repository;
 
-import java.util.List;
+import com.tinygrip.android.domain.User;
 import rx.Observable;
 
 /**
- * Interface that represents a Repository for getting {@link com.tinygrip.android.domain.User} related data.
+ * Interface that represents a Repository for getting {@link User} related data.
  */
 public interface UserRepository {
-  /**
-   * Get an {@link rx.Observable} which will emit a List of {@link com.tinygrip.android.domain.User}.
-   */
-  Observable<List<com.tinygrip.android.domain.User>> users();
 
-  /**
-   * Get an {@link rx.Observable} which will emit a {@link com.tinygrip.android.domain.User}.
-   *
-   * @param userId The user id used to retrieve user data.
-   */
-  Observable<com.tinygrip.android.domain.User> user(final int userId);
+    /**
+     * Get an {@link rx.Observable} which will emit a {@link User}.
+     *
+     * @param userName The user name used to perform the login with
+     * @param password The user password used to perform the login with.
+     */
+    Observable<User> user(final String userName, final String password);
+
+
+    /**
+     * Get an {@link rx.Observable} which will emit a {@link User}.
+     */
+    Observable<User> user();
 }

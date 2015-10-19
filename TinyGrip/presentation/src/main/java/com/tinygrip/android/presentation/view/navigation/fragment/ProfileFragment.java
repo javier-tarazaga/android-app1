@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.view.navigation.MainTabNavigationComponent;
-import com.tinygrip.android.presentation.view.navigation.view.HomeView;
 
 import com.tinygrip.android.presentation.view.navigation.presenter.ProfilePresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
@@ -41,9 +40,9 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 
   @Inject ProfilePresenter profilePresenter;
 
-  @Bind(R.id.relative_progress) RelativeLayout rl_progress;
-  @Bind(R.id.relative_retry) RelativeLayout rl_retry;
-  @Bind(R.id.button_retry) Button bt_retry;
+  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
+  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
+  @Bind(R.id.btn_retry) Button bt_retry;
 
   private ProfileListener profileListener;
 
@@ -149,7 +148,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
     //this.profilePresenter.initialize();
   }
 
-  @OnClick(R.id.button_retry) void onButtonRetryClick() {
+  @OnClick(R.id.btn_retry) void onButtonRetryClick() {
     ProfileFragment.this.loadUserList();
   }
 }

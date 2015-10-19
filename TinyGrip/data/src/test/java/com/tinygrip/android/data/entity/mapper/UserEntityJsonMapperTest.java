@@ -1,24 +1,9 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.ApplicationTestCase;
 import com.tinygrip.android.data.entity.UserEntity;
 import com.google.gson.JsonSyntaxException;
-import com.tinygrip.android.data.entity.mapper.UserEntityJsonMapper;
 
 import java.util.Collection;
 import org.junit.Before;
@@ -65,7 +50,7 @@ public class UserEntityJsonMapperTest extends ApplicationTestCase {
   public void testTransformUserEntityHappyCase() {
     UserEntity userEntity = userEntityJsonMapper.transformUserEntity(JSON_RESPONSE_USER_DETAILS);
 
-    assertThat(userEntity.getUserId(), is(1));
+    assertThat(userEntity.getId(), is(1));
     assertThat(userEntity.getFullname(), is(equalTo("Simon Hill")));
     assertThat(userEntity.getEmail(), is(equalTo("jcooper@babbleset.edu")));
   }
@@ -76,8 +61,8 @@ public class UserEntityJsonMapperTest extends ApplicationTestCase {
         userEntityJsonMapper.transformUserEntityCollection(
             JSON_RESPONSE_USER_COLLECTION);
 
-    assertThat(((UserEntity) userEntityCollection.toArray()[0]).getUserId(), is(1));
-    assertThat(((UserEntity) userEntityCollection.toArray()[1]).getUserId(), is(12));
+    assertThat(((UserEntity) userEntityCollection.toArray()[0]).getId(), is(1));
+    assertThat(((UserEntity) userEntityCollection.toArray()[1]).getId(), is(12));
     assertThat(userEntityCollection.size(), is(2));
   }
 

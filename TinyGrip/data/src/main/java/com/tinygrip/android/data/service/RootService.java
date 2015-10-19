@@ -6,14 +6,15 @@ import com.tinygrip.android.data.entity.RootEntity;
 import com.tinygrip.android.domain.PreviewArea;
 import retrofit.http.GET;
 import retrofit.http.Query;
-import rx.Observable;
 
 /**
  * Root service for retrieving the basic application data from the network
  */
 public interface RootService {
 
-  @GET(ApiConfig.BASE + "/Root") Observable<RootEntity> rootEntity(@Query("apiKey") String apiKey);
+    @GET(ApiConfig.BASE + "/Root")
+    RootEntity rootEntitySync(@Query("apiKey") String apiKey);
 
-  @GET("/{previewAreasHref}") Observable<DataPageEntity<PreviewArea>> previewAreasPageEntity();
+    @GET("/{previewAreasHref}")
+    DataPageEntity<PreviewArea> previewAreasPageEntitySync();
 }

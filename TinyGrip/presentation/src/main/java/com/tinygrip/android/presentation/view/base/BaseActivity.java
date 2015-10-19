@@ -16,81 +16,82 @@ import javax.inject.Inject;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-  @Inject protected ApplicationRouter applicationRouter;
+    @Inject
+    protected ApplicationRouter applicationRouter;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    this.getApplicationComponent().inject(this);
-  }
-
-  /**
-   * Adds a {@link Fragment} to this activity's layout.
-   *
-   * @param containerViewId The container view to where add the fragment.
-   * @param fragment The fragment to be added.
-   */
-  protected void addFragment(int containerViewId, Fragment fragment) {
-    addFragment(containerViewId, fragment, false);
-  }
-
-  /**
-   * Adds a {@link Fragment} to this activity's layout including the possibility to add it to the
-   * back stack
-   *
-   * @param containerViewId The container view to where add the fragment.
-   * @param fragment The fragment to be added.
-   */
-  protected void addFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
-    FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.add(containerViewId, fragment);
-
-    if (addToBackStack) {
-      fragmentTransaction.addToBackStack(fragment.getTag());
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getApplicationComponent().inject(this);
     }
 
-    fragmentTransaction.commit();
-  }
-
-  protected void replaceFragment(int containerViewId, Fragment newFragment, boolean addToBackStack) {
-    FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.replace(containerViewId, newFragment);
-
-    if (addToBackStack) {
-      fragmentTransaction.addToBackStack(newFragment.getTag());
+    /**
+     * Adds a {@link Fragment} to this activity's layout.
+     *
+     * @param containerViewId The container view to where add the fragment.
+     * @param fragment The fragment to be added.
+     */
+    protected void addFragment(int containerViewId, Fragment fragment) {
+        addFragment(containerViewId, fragment, false);
     }
 
-    fragmentTransaction.commit();
-  }
+    /**
+     * Adds a {@link Fragment} to this activity's layout including the possibility to add it to the
+     * back stack
+     *
+     * @param containerViewId The container view to where add the fragment.
+     * @param fragment The fragment to be added.
+     */
+    protected void addFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(containerViewId, fragment);
 
-  protected void popFragmentBackStack() {
-    getSupportFragmentManager().popBackStack();
-  }
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(fragment.getTag());
+        }
 
-  /**
-   * Get the Main Application component for dependency injection.
-   *
-   * @return {@link com.tinygrip.android.presentation.internal.di.components.ApplicationComponent}
-   */
-  protected ApplicationComponent getApplicationComponent() {
-    return ((AndroidApplication)getApplication()).getApplicationComponent();
-  }
+        fragmentTransaction.commit();
+    }
 
-  /**
-   * Get an Activity module for dependency injection.
-   *
-   * @return {@link com.tinygrip.android.presentation.internal.di.modules.ActivityModule}
-   */
-  protected ActivityModule getActivityModule() {
-    return new ActivityModule(this);
-  }
+    protected void replaceFragment(int containerViewId, Fragment newFragment, boolean addToBackStack) {
+        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(containerViewId, newFragment);
 
-  /**
-   * Shows a {@link android.widget.Toast} message.
-   *
-   * @param message An string representing a message to be shown.
-   */
-  protected void showToastMessage(String message) {
-    Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
-  }
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(newFragment.getTag());
+        }
+
+        fragmentTransaction.commit();
+    }
+
+    protected void popFragmentBackStack() {
+        getSupportFragmentManager().popBackStack();
+    }
+
+    /**
+     * Get the Main Application component for dependency injection.
+     *
+     * @return {@link com.tinygrip.android.presentation.internal.di.components.ApplicationComponent}
+     */
+    protected ApplicationComponent getApplicationComponent() {
+        return ((AndroidApplication) getApplication()).getApplicationComponent();
+    }
+
+    /**
+     * Get an Activity module for dependency injection.
+     *
+     * @return {@link com.tinygrip.android.presentation.internal.di.modules.ActivityModule}
+     */
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
+
+    /**
+     * Shows a {@link android.widget.Toast} message.
+     *
+     * @param message An string representing a message to be shown.
+     */
+    protected void showToastMessage(String message) {
+        Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
 }

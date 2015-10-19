@@ -1,18 +1,4 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.tinygrip.android.presentation;
 
 import android.content.Context;
@@ -20,7 +6,7 @@ import android.content.Intent;
 import com.tinygrip.android.presentation.view.area.activity.AreaActivity;
 import com.tinygrip.android.presentation.view.area.activity.NewAreaActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
-import com.tinygrip.android.presentation.view.user.activity.UserListActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -30,57 +16,69 @@ import javax.inject.Singleton;
 @Singleton
 public class ApplicationRouter {
 
-  @Inject
-  public void ApplicationRouter() {
-    //empty
-  }
-
-  /**
-   * Goes to the new area screen
-   *
-   * @param context A Context needed to open the destiny activity.
-   */
-  public void navigateToNewArea(Context context) {
-    if (context != null) {
-      Intent intentToLaunch = NewAreaActivity.getCallingIntent(context);
-      context.startActivity(intentToLaunch);
+    @Inject
+    public void ApplicationRouter() {
+        //empty
     }
-  }
-
-  /**
-   * Goes to the area screen
-   *
-   * @param context A Context needed to open the destiny activity.
-   */
-  public void navigateToArea(Context context) {
-    if (context != null) {
-      Intent intentToLaunch = AreaActivity.getCallingIntent(context);
-      context.startActivity(intentToLaunch);
-    }
-  }
-
 
     /**
-     * Goes to the user list screen.
+     * Goes to the login/register screen
      *
      * @param context A Context needed to open the destiny activity.
      */
-  public void navigateToUserList(Context context) {
-    if (context != null) {
-      Intent intentToLaunch = UserListActivity.getCallingIntent(context);
-      context.startActivity(intentToLaunch);
+    public void navigateToLogin(Context context) {
+        if (context != null) {
+            Intent intentToLaunch = UserLoginActivity.getCallingIntent(context);
+            context.startActivity(intentToLaunch);
+        }
     }
-  }
 
-  /**
-   * Goes to the user details screen.
-   *
-   * @param context A Context needed to open the destiny activity.
-   */
-  public void navigateToUserDetails(Context context, int userId) {
-    if (context != null) {
-      Intent intentToLaunch = UserDetailsActivity.getCallingIntent(context, userId);
-      context.startActivity(intentToLaunch);
+    /**
+     * Goes to the user details screen.
+     *
+     * @param context A Context needed to open the destiny activity.
+     */
+    public void navigateToUserDetails(Context context) {
+      if (context != null) {
+        Intent intentToLaunch = UserDetailsActivity.getCallingIntent(context);
+        context.startActivity(intentToLaunch);
+      }
     }
-  }
+
+    /**
+     * Goes to the new area screen
+     *
+     * @param context A Context needed to open the destiny activity.
+     */
+    public void navigateToNewArea(Context context) {
+        if (context != null) {
+            Intent intentToLaunch = NewAreaActivity.getCallingIntent(context);
+            context.startActivity(intentToLaunch);
+        }
+    }
+
+    /**
+     * Goes to the area screen
+     *
+     * @param context A Context needed to open the destiny activity.
+     */
+    public void navigateToArea(Context context) {
+        if (context != null) {
+            Intent intentToLaunch = AreaActivity.getCallingIntent(context);
+            context.startActivity(intentToLaunch);
+        }
+    }
+
+    //  /**
+    //   * Goes to the user list screen.
+    //   *
+    //   * @param context A Context needed to open the destiny activity.
+    //   */
+    //public void navigateToUserList(Context context) {
+    //  if (context != null) {
+    //    Intent intentToLaunch = UserListActivity.getCallingIntent(context);
+    //    context.startActivity(intentToLaunch);
+    //  }
+    //}
+    //
 }

@@ -5,54 +5,36 @@
     android:layout_height="match_parent"
     >
 
-  <com.tinygrip.android.presentation.view.component.AutoLoadImageView
-      android:id="@+id/iv_cover"
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/iv_cover_height"
-      android:background="@android:color/darker_gray"
-      />
-
-  <TextView
-      android:id="@+id/tv_fullname"
-      style="@style/Theme.TinyGrip.TextViewHeader"
-      />
-
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginLeft="@dimen/activity_horizontal_margin"
-      android:layout_marginRight="@dimen/activity_horizontal_margin">
-
-    <TextView
-        style="@style/Theme.TinyGrip.TextViewTitle"
-        android:text="@string/view_text_email"
-        />
-    <TextView
-        android:id="@+id/tv_email"
+    <com.tinygrip.android.presentation.view.component.AutoLoadImageView
+        android:id="@+id/iv_cover"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/iv_cover_height"
+        android:background="@android:color/darker_gray"
         />
 
     <TextView
-        style="@style/Theme.TinyGrip.TextViewTitle"
-        android:text="@string/view_text_followers"
-        />
-    <TextView
-        android:id="@+id/tv_followers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/tv_fullname"
+        style="@style/Theme.TinyGrip.TextViewHeader"
         />
 
-    <TextView
-        style="@style/Theme.TinyGrip.TextViewTitle"
-        android:text="@string/view_text_description"
-        />
-    <TextView
-        android:id="@+id/tv_description"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-  </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            style="@style/Theme.TinyGrip.TextViewTitle"
+            android:text="@string/view_text_email"
+            />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

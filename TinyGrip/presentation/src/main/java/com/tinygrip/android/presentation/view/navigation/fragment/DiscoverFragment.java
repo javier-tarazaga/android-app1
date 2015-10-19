@@ -40,9 +40,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverView {
 
   @Inject DiscoverPresenter discoverPresenter;
 
-  @Bind(R.id.relative_progress) RelativeLayout rl_progress;
-  @Bind(R.id.relative_retry) RelativeLayout rl_retry;
-  @Bind(R.id.button_retry) Button bt_retry;
+  @Bind(R.id.rl_progress) RelativeLayout rl_progress;
+  @Bind(R.id.rl_retry) RelativeLayout rl_retry;
+  @Bind(R.id.btn_retry) Button bt_retry;
 
   private DiscoverListener discoverListener;
 
@@ -148,7 +148,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverView {
     //this.discoverPresenter.initialize();
   }
 
-  @OnClick(R.id.button_retry) void onButtonRetryClick() {
+  @OnClick(R.id.btn_retry) void onButtonRetryClick() {
     DiscoverFragment.this.loadUserList();
   }
 }

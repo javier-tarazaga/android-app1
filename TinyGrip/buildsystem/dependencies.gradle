@@ -7,13 +7,15 @@ allprojects {
 ext {
 
     //Android
-    androidBuildToolsVersion = "21.1.2"
+    androidBuildToolsVersion = "23.0.1"
     androidMinSdkVersion = 15
-    androidTargetSdkVersion = 21
-    androidCompileSdkVersion = 21
+    androidTargetSdkVersion = 23
+    androidCompileSdkVersion = 23
 
-    // Versions
-    androidSupportVersion = '22.2.1'
+    // Google
+    androidSupportVersion = '23.1.0'
+    supportDesignVersion = '23.1.0'
+    recyclerViewVersion = '23.1.0'
     googlePlayServicesVersion = '7.5.0'
 
     // Plugins
@@ -39,8 +41,6 @@ ext {
     okhttpUrlconnectionVersion = '2.3.0'
 
     // UI
-    supportDesignVersion = '22.2.1'
-    recyclerViewVersion = '21.0.3'
     picassoVersion = '2.5.2'
     butterKnifeVersion = '7.0.1'
 

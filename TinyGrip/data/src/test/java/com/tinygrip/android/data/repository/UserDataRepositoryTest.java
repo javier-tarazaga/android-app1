@@ -1,26 +1,11 @@
-/**
- * Copyright (C) 2015 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.ApplicationTestCase;
 import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.data.entity.mapper.UserEntityDataMapper;
-import com.tinygrip.android.data.repository.UserDataRepository;
-import com.tinygrip.android.data.repository.datasource.UserDataStore;
-import com.tinygrip.android.data.repository.datasource.UserDataStoreFactory;
+import com.tinygrip.android.data.repository.datasource.user.UserDataStore;
+import com.tinygrip.android.data.repository.datasource.user.UserDataStoreFactory;
 import com.tinygrip.android.domain.User;
 import java.util.ArrayList;
 import java.util.List;

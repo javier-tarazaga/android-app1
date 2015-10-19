@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-  <include layout="@layout/view_user_details"/>
+    <android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/abl_details">
 
-  <include layout="@layout/view_progress"/>
+        <include
+            android:id="@+id/tb_user_details"
+            layout="@layout/view_app_bar"/>
 
-  <include layout="@layout/view_retry"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/view_user_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/abl_details"/>
+
+    <include layout="@layout/view_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/abl_details"/>
+
+    <include layout="@layout/view_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/abl_details"/>
 
 </RelativeLayout>

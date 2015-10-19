@@ -3,34 +3,37 @@ package com.tinygrip.android.data.entity;
 /**
  * Link Entity used in the data layer.
  */
+
 public class LinkEntity {
-  private String href;
-  private boolean templated;
 
-  public String getHref() {
-    return href;
-  }
+    private String href;
+    private boolean templated;
 
-  public void setHref(String href) {
-    this.href = href;
-  }
+    public String getHref() {
+        return href;
+    }
 
-  public boolean isTemplated() {
-    return templated;
-  }
+    public void setHref(String href) {
+        this.href = href;
+    }
 
-  public void setTemplated(boolean templated) {
-    this.templated = templated;
-  }
+    public boolean isTemplated() {
+        return templated;
+    }
 
-  @Override public String toString() {
-    StringBuilder stringBuilder = new StringBuilder();
+    public void setTemplated(boolean templated) {
+        this.templated = templated;
+    }
 
-    stringBuilder.append("***** Link Entity Details *****\n");
-    stringBuilder.append("href=" + this.getHref() + "\n");
-    stringBuilder.append("templated=" + this.isTemplated() + "\n");
-    stringBuilder.append("*******************************");
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
-    return stringBuilder.toString();
-  }
+        stringBuilder.append("***** Link Entity Details *****\n");
+        stringBuilder.append("href=" + this.getHref() + "\n");
+        stringBuilder.append("templated=" + this.isTemplated() + "\n");
+        stringBuilder.append("*******************************");
+
+        return stringBuilder.toString();
+    }
 }

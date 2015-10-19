@@ -14,12 +14,10 @@ import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
-import com.tinygrip.android.presentation.view.navigation.MainTabNavigationComponent;
+import com.tinygrip.android.presentation.view.main.MainActivityComponent;
 import com.tinygrip.android.presentation.view.navigation.presenter.HomePresenter;
 import com.tinygrip.android.presentation.view.navigation.view.HomeView;
 import javax.inject.Inject;
@@ -108,7 +106,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
   }
 
   private void initialize() {
-    this.getComponent(MainTabNavigationComponent.class).inject(this);
+    this.getComponent(MainActivityComponent.class).inject(this);
     this.homePresenter.setView(this);
   }
 

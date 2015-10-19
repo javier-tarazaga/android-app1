@@ -2,37 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainNavigationNavigationActivity">
 
-    <include
-        android:id="@+id/toolbar_main_nav"
-        layout="@layout/view_toolbar"/>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout_main_nav_tabs"
+    <android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:layout_below="@id/toolbar_main_nav"
-        android:background="?attr/colorPrimary"
-        style="@style/TinyGrip.TabLayout"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:tabMode="fixed" />
+        android:layout_height="wrap_content">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_main_nav_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tablayout_main_nav_tabs"
-        android:background="@android:color/white" />
+        <include
+            android:id="@+id/tb_main"
+            layout="@layout/view_app_bar"/>
 
-    <FrameLayout
-        android:id="@+id/fl_fragment"
+    </android.support.design.widget.AppBarLayout>
+
+
+    <fragment
+        android:name="com.tinygrip.android.presentation.view.navigation.fragment.HomeFragment"
+        android:id="@+id/fragmentHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 
     <include layout="@layout/view_progress"/>
 
