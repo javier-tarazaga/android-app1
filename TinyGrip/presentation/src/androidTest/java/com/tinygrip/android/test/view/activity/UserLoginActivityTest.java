@@ -53,13 +53,11 @@ public class UserLoginActivityTest extends ActivityInstrumentationTestCase2<User
 
         onView(withId(R.id.tv_fullname)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_email)).check(matches(isDisplayed()));
-        onView(withId(R.id.tv_description)).check(matches(isDisplayed()));
     }
 
     public void testLoadUserHappyCaseData() {
         onView(withId(R.id.tv_fullname)).check(matches(withText("John Sanchez")));
         onView(withId(R.id.tv_email)).check(matches(withText("dmedina@katz.edu")));
-        onView(withId(R.id.tv_followers)).check(matches(withText("4523")));
     }
 
     private Intent createTargetIntent() {

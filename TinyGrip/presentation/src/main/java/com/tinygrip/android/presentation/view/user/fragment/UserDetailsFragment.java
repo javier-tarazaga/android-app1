@@ -1,8 +1,4 @@
-/**
- * Copyright (C) 2014 android.org. All rights reserved.
- *
- * @author Fernando Cejas (the android coder)
- */
+
 package com.tinygrip.android.presentation.view.user.fragment;
 
 import android.content.Context;
@@ -13,19 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.bumptech.glide.Glide;
 import com.tinygrip.android.R;
-import com.tinygrip.android.presentation.view.user.UserComponent;
 import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.UserDetailsPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
+import com.tinygrip.android.presentation.view.user.UserComponent;
 import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
 import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
-import com.tinygrip.android.presentation.view.component.AutoLoadImageView;
 import javax.inject.Inject;
 
 /**
@@ -47,7 +44,10 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     Toolbar toolbar;
 
     @Bind(R.id.iv_cover)
-    AutoLoadImageView ivCover;
+    ImageView ivCover;
+
+    @Bind(R.id.iv_avatar)
+    ImageView ivAvatar;
 
     @Bind(R.id.tv_fullname)
     TextView tvFullName;
@@ -146,8 +146,10 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     @Override
     public void renderUser(UserModel user) {
         if (user != null) {
-            this.ivCover.setImageUrl(user.getCoverUrl());
-            this.ivCover.setImageUrl(user.getCoverUrl());
+
+            Glide.with(UserDetailsFragment.this).load(user.getCoverUrl()).into(this.ivCover);
+            Glide.with(UserDetailsFragment.this).load(user.getAvatarUrl()).into(this.ivAvatar);
+
             this.tvFullName.setText(user.getFirstName() + " " + user.getLastName());
             this.tvEmail.setText(user.getEmail());
         }

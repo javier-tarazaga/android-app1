@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <com.tinygrip.android.presentation.view.component.AutoLoadImageView
-        android:id="@+id/iv_cover"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/iv_cover_height"
-        android:background="@android:color/darker_gray"
-        />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/iv_cover_height"
+            android:background="@android:color/darker_gray"
+            android:scaleType="centerCrop"/>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:border_color="#EEEEEE"
+            app:border_width="4dp"
+            app:shadow="true"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/tv_fullname"
-        style="@style/Theme.TinyGrip.TextViewHeader"
-        />
+        style="@style/Theme.TinyGrip.TextViewHeader"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,14 +41,12 @@
 
         <TextView
             style="@style/Theme.TinyGrip.TextViewTitle"
-            android:text="@string/view_text_email"
-            />
+            android:text="@string/view_text_email"/>
 
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

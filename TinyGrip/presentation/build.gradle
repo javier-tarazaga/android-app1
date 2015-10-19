@@ -69,6 +69,9 @@ dependencies {
   apt presentationDependencies.daggerCompiler
   compile presentationDependencies.dagger
   compile presentationDependencies.butterKnife
+  compile presentationDependencies.glide
+  compile presentationDependencies.glideOkhttp
+  compile presentationDependencies.circularImageView
   compile presentationDependencies.googleMaps
   compile presentationDependencies.support
   compile presentationDependencies.appCompat
