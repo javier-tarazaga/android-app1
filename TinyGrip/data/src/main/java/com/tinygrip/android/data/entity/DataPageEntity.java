@@ -1,63 +1,34 @@
 
 package com.tinygrip.android.data.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Entity in the data layer representing a data page in the backend. This is a generic class for
  * any item type of items which will be returned in a page format
  */
 public class DataPageEntity<T> {
 
-  private int totalAmount;
-  private T items;
-  private LinkEntity next;
-  private LinkEntity prev;
+    @Getter @Setter private int totalAmount;
 
-  public DataPageEntity() {
-    //empty
-  }
+    @Getter @Setter private T items;
 
-  public int getTotalAmount() {
-    return totalAmount;
-  }
+    @Getter @Setter private LinkEntity next;
 
-  public void setTotalAmount(int totalAmount) {
-    this.totalAmount = totalAmount;
-  }
+    @Getter @Setter private LinkEntity prev;
 
-  public T getItems() {
-    return items;
-  }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
-  public void setItems(T items) {
-    this.items = items;
-  }
+        stringBuilder.append("***** Data Page Entity Details *****\n");
+        stringBuilder.append("total amount=" + this.getTotalAmount() + "\n");
+        stringBuilder.append("items=" + this.getItems() + "\n");
+        stringBuilder.append("next=" + this.getNext() + "\n");
+        stringBuilder.append("prev=" + this.getPrev() + "\n");
+        stringBuilder.append("*******************************");
 
-  public LinkEntity getNext() {
-    return next;
-  }
-
-  public void setNext(LinkEntity next) {
-    this.next = next;
-  }
-
-  public LinkEntity getPrev() {
-    return prev;
-  }
-
-  public void setPrev(LinkEntity prev) {
-    this.prev = prev;
-  }
-
-  @Override public String toString() {
-    StringBuilder stringBuilder = new StringBuilder();
-
-    stringBuilder.append("***** Data Page Entity Details *****\n");
-    stringBuilder.append("total amount=" + this.getTotalAmount() + "\n");
-    stringBuilder.append("items=" + this.getItems() + "\n");
-    stringBuilder.append("next=" + this.getNext() + "\n");
-    stringBuilder.append("prev=" + this.getPrev() + "\n");
-    stringBuilder.append("*******************************");
-
-    return stringBuilder.toString();
-  }
+        return stringBuilder.toString();
+    }
 }

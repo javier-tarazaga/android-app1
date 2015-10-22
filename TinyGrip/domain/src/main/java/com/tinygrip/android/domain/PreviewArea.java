@@ -1,79 +1,43 @@
 
 package com.tinygrip.android.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Class that represents a User in the domain layer.
  */
 public class PreviewArea {
 
-  private final int userId;
+    @Getter private final int userId;
 
-  public PreviewArea(int userId) {
-    this.userId = userId;
-  }
+    public PreviewArea(int userId) {
+        this.userId = userId;
+    }
 
-  private String coverUrl;
-  private String fullName;
-  private String email;
-  private String description;
-  private int followers;
+    @Getter @Setter private String coverUrl;
 
-  public int getUserId() {
-    return userId;
-  }
+    @Getter @Setter private String fullName;
 
-  public String getCoverUrl() {
-    return coverUrl;
-  }
+    @Getter @Setter private String email;
 
-  public void setCoverUrl(String coverUrl) {
-    this.coverUrl = coverUrl;
-  }
+    @Getter @Setter private String description;
 
-  public String getFullName() {
-    return fullName;
-  }
+    @Getter @Setter private int followers;
 
-  public void setFullName(String fullName) {
-    this.fullName = fullName;
-  }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
-  public String getEmail() {
-    return email;
-  }
+        stringBuilder.append("***** User Details *****\n");
+        stringBuilder.append("id=" + this.getUserId() + "\n");
+        stringBuilder.append("cover url=" + this.getCoverUrl() + "\n");
+        stringBuilder.append("fullname=" + this.getFullName() + "\n");
+        stringBuilder.append("email=" + this.getEmail() + "\n");
+        stringBuilder.append("description=" + this.getDescription() + "\n");
+        stringBuilder.append("followers=" + this.getFollowers() + "\n");
+        stringBuilder.append("*******************************");
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public int getFollowers() {
-    return followers;
-  }
-
-  public void setFollowers(int followers) {
-    this.followers = followers;
-  }
-
-  @Override public String toString() {
-    StringBuilder stringBuilder = new StringBuilder();
-
-    stringBuilder.append("***** User Details *****\n");
-    stringBuilder.append("id=" + this.getUserId() + "\n");
-    stringBuilder.append("cover url=" + this.getCoverUrl() + "\n");
-    stringBuilder.append("fullname=" + this.getFullName() + "\n");
-    stringBuilder.append("email=" + this.getEmail() + "\n");
-    stringBuilder.append("description=" + this.getDescription() + "\n");
-    stringBuilder.append("followers=" + this.getFollowers() + "\n");
-    stringBuilder.append("*******************************");
-
-    return stringBuilder.toString();
-  }
+        return stringBuilder.toString();
+    }
 }

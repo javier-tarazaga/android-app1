@@ -3,42 +3,22 @@ package com.tinygrip.android.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Root Entity used in the data layer.
  */
 public class RootEntity {
 
-    private LinkEntity previewAreas;
-    private LinkEntity areas;
-    private RootAccountEntity account;
+    @Getter @Setter private LinkEntity previewAreas;
+
+    @Getter @Setter private LinkEntity areas;
+
+    @Getter @Setter private RootAccountEntity account;
 
     public RootEntity() {
         //empty
-    }
-
-    public LinkEntity getPreviewAreas() {
-        return previewAreas;
-    }
-
-    public void setPreviewAreas(LinkEntity previewAreas) {
-        this.previewAreas = previewAreas;
-    }
-
-    public LinkEntity getAreas() {
-        return areas;
-    }
-
-    public void setAreas(LinkEntity areas) {
-        this.areas = areas;
-    }
-
-    public RootAccountEntity getAccount() {
-        return account;
-    }
-
-    public void setAccount(RootAccountEntity account) {
-        this.account = account;
     }
 
     @Override
@@ -56,9 +36,11 @@ public class RootEntity {
 
     public static class RootAccountEntity {
 
-        private LinkEntity authenticate;
-        private LinkEntity register;
-        private LinkEntity data;
+        @Getter private final LinkEntity authenticate;
+
+        @Getter private final LinkEntity register;
+
+        @Getter private final LinkEntity data;
 
         @JsonCreator
         public RootAccountEntity(@JsonProperty("Authenticate") LinkEntity authenticate,
@@ -67,18 +49,6 @@ public class RootEntity {
             this.authenticate = authenticate;
             this.register = register;
             this.data = data;
-        }
-
-        public LinkEntity getAuthenticate() {
-            return authenticate;
-        }
-
-        public LinkEntity getRegister() {
-            return register;
-        }
-
-        public LinkEntity getData() {
-            return data;
         }
 
         @Override

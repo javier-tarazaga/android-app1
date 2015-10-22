@@ -1,79 +1,43 @@
 
 package com.tinygrip.android.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Class that represents a User in the domain layer.
  */
 public class User {
 
-  private final String id;
+    @Getter private final String id;
 
-  public User(String id) {
-    this.id = id;
-  }
+    public User(String id) {
+        this.id = id;
+    }
 
-  private String coverUrl;
-  private String avatarUrl;
-  private String firstName;
-  private String lastName;
-  private String email;
+    @Getter @Setter private String coverUrl;
 
-  public String getId() {
-    return id;
-  }
+    @Getter @Setter private String avatarUrl;
 
-  public String getCoverUrl() {
-    return coverUrl;
-  }
+    @Getter @Setter private String firstName;
 
-  public void setCoverUrl(String coverUrl) {
-    this.coverUrl = coverUrl;
-  }
+    @Getter @Setter private String lastName;
 
-  public String getAvatarUrl() {
-    return avatarUrl;
-  }
+    @Getter @Setter private String email;
 
-  public void setAvatarUrl(String avatarUrl) {
-    this.avatarUrl = avatarUrl;
-  }
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
-  public String getFirstName() {
-    return firstName;
-  }
+        stringBuilder.append("***** User Details *****\n");
+        stringBuilder.append("id=" + this.getId() + "\n");
+        stringBuilder.append("avatar url=" + this.getAvatarUrl() + "\n");
+        stringBuilder.append("cover url=" + this.getCoverUrl() + "\n");
+        stringBuilder.append("first name=" + this.getFirstName() + "\n");
+        stringBuilder.append("last name=" + this.getLastName() + "\n");
+        stringBuilder.append("email=" + this.getEmail() + "\n");
+        stringBuilder.append("*******************************");
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  @Override public String toString() {
-    StringBuilder stringBuilder = new StringBuilder();
-
-    stringBuilder.append("***** User Details *****\n");
-    stringBuilder.append("id=" + this.getId() + "\n");
-    stringBuilder.append("avatar url=" + this.getAvatarUrl() + "\n");
-    stringBuilder.append("cover url=" + this.getCoverUrl() + "\n");
-    stringBuilder.append("first name=" + this.getFirstName() + "\n");
-    stringBuilder.append("last name=" + this.getLastName() + "\n");
-    stringBuilder.append("email=" + this.getEmail() + "\n");
-    stringBuilder.append("*******************************");
-
-    return stringBuilder.toString();
-  }
+        return stringBuilder.toString();
+    }
 }

@@ -6,26 +6,27 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 configurations {
-  provided
+    provided
 }
 
 sourceSets {
-  main {
-    compileClasspath += configurations.provided
-  }
+    main {
+        compileClasspath += configurations.provided
+    }
 }
 
 dependencies {
-  def domainDependencies = rootProject.ext.domainDependencies
-  def domainTestDependencies = rootProject.ext.domainTestDependencies
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-  provided domainDependencies.daggerCompiler
-  provided domainDependencies.javaxAnnotation
+    provided domainDependencies.daggerCompiler
+    provided domainDependencies.javaxAnnotation
+    provided domainDependencies.lombok
 
-  compile domainDependencies.dagger
-  compile domainDependencies.rxJava
-  compile domainDependencies.timber
+    compile domainDependencies.dagger
+    compile domainDependencies.rxJava
+    compile domainDependencies.timber
 
-  testCompile domainTestDependencies.junit
-  testCompile domainTestDependencies.mockito
+    testCompile domainTestDependencies.junit
+    testCompile domainTestDependencies.mockito
 }

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
 
 public class UserTest {
 
-  private static final int FAKE_USER_ID = 8;
+  private static final String FAKE_USER_ID = "8";
 
   private User user;
 
@@ -20,7 +20,7 @@ public class UserTest {
 
   @Test
   public void testUserConstructorHappyCase() {
-    int userId = user.getId();
+    String userId = user.getId();
 
     assertThat(userId, is(FAKE_USER_ID));
   }

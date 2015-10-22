@@ -23,7 +23,6 @@ ext {
     hugoPluginVersion = '1.1.0'
 
     // Developer Utils
-    timberVersion = '2.7.1'
     madgeVersion = '1.1.1'
     ScalpelVersion = '1.1.1'
 
@@ -48,11 +47,11 @@ ext {
     glideOkHttpIntegrationVersion = "1.3.1@aar"
     circularViewVersion = "2.0.1"
 
-
     // Debugging
     telescopeVersion = '1.4.0@aar'
 
     // Utils
+    lombokVersion = '1.16.6'
     timberVersion = '3.1.0'
     androidAnnotationsVersion = '20.0.0'
 
@@ -68,10 +67,11 @@ ext {
 
 ext {
 
-    presentationDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
-                                dagger        : "com.google.dagger:dagger:${daggerVersion}",
-                                butterKnife   : "com.jakewharton:butterknife:${butterKnifeVersion}",
-                                glide         : "com.github.bumptech.glide:glide:${glideVersion}",
+    presentationDependencies = [daggerCompiler   : "com.google.dagger:dagger-compiler:${daggerVersion}",
+                                dagger           : "com.google.dagger:dagger:${daggerVersion}",
+                                lombok           : "org.projectlombok:lombok:${lombokVersion}",
+                                butterKnife      : "com.jakewharton:butterknife:${butterKnifeVersion}",
+                                glide            : "com.github.bumptech.glide:glide:${glideVersion}",
                                 glideOkhttp      : "com.github.bumptech.glide:okhttp-integration:${glideOkHttpIntegrationVersion}",
                                 googleMaps       : "com.google.android.gms:play-services-maps:${googlePlayServicesVersion}",
                                 support          : "com.android.support:support-v4:${androidSupportVersion}",
@@ -92,6 +92,7 @@ ext {
 
     domainDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
                           dagger         : "com.google.dagger:dagger:${daggerVersion}",
+                          lombok         : "org.projectlombok:lombok:${lombokVersion}",
                           javaxAnnotation: "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
                           rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
                           timber         : "com.jakewharton.timber:timber:${timberVersion}"]
@@ -101,6 +102,7 @@ ext {
 
     dataDependencies = [daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
                         dagger            : "com.google.dagger:dagger:${daggerVersion}",
+                        lombok            : "org.projectlombok:lombok:${lombokVersion}",
                         okHttp            : "com.squareup.okhttp:okhttp:${okHttpVersion}",
                         retrofit          : "com.squareup.retrofit:retrofit:${retrofitVersion}",
                         retrofitJackson   : "com.squareup.retrofit:converter-jackson:${retrofitVersion}",

@@ -2,11 +2,7 @@
 package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.entity.LinkEntity;
-import com.tinygrip.android.data.entity.RootEntity;
-import com.tinygrip.android.data.entity.UserEntity;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.tinygrip.android.domain.Link;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -26,10 +22,10 @@ public class LinkEntityDataMapper {
    * @param linkEntity Object to be transformed.
    * @return {@link com.tinygrip.android.domain.Link} if valid {@link LinkEntity} otherwise null.
    */
-  public com.tinygrip.android.domain.Link transform(LinkEntity linkEntity) {
-    com.tinygrip.android.domain.Link link = null;
+  public Link transform(LinkEntity linkEntity) {
+    Link link = null;
     if (linkEntity != null) {
-      link = new com.tinygrip.android.domain.Link(linkEntity.getHref(), linkEntity.isTemplated());
+      link = new Link(linkEntity.getHref(), linkEntity.isTemplated());
     }
 
     return link;
