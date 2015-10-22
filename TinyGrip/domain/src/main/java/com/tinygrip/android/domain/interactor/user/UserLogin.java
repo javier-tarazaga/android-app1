@@ -40,12 +40,13 @@ public class UserLogin extends UseCase {
     /**
      * Simple case initializer in which we setup both the userName and password. This process cannot be done
      * in the @Inject due to the fact that when we init the module we still won't know this params.
-     *
-     * @param userName The user name to login with
+     *  @param userName The user name to login with
      * @param password The password to login with
      */
-    public void initialize(String userName, String password) {
+    public UserLogin initialize(String userName, String password) {
         this.userName = userName;
         this.password = password;
+
+        return this;
     }
 }

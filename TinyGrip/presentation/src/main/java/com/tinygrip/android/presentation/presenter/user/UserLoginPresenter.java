@@ -78,8 +78,9 @@ public class UserLoginPresenter implements Presenter {
      */
     public void login(String userName, String password) {
         this.showViewLoading();
-        userLoginUseCase.initialize(userName, password);
-        userLoginUseCase.execute(new UserLoginSubscriber());
+
+        userLoginUseCase.initialize(userName, password)
+                        .execute(new UserLoginSubscriber());
     }
 
     public void onUpClicked() {
