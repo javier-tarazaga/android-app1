@@ -2,14 +2,13 @@
 package com.tinygrip.android.presentation.view.user.view;
 
 import android.content.Context;
-import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.view.LoadDataView;
 
 /**
  * Interface representing a View in a model view presenter (MVP) pattern.
- * In this case is used as a view representing a user login.
+ * In this case is used as a view representing a user registration.
  */
-public interface UserLoginView extends LoadDataView {
+public interface UserRegisterView extends LoadDataView {
 
     /**
      * Simply go up in the stack
@@ -17,12 +16,12 @@ public interface UserLoginView extends LoadDataView {
     void goUp();
 
     /**
-     * Render the login
+     * Render the user registration
      */
-    void loginSuccessful(UserModel userModel);
+    void showRegisterSuccessful();
 
     /**
-     * Get a {@link android.content.Context}.
+     * Get a {@link Context}.
      */
     Context getContext();
 }

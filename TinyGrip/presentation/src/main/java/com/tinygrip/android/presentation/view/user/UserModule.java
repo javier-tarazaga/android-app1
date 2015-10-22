@@ -4,8 +4,9 @@ package com.tinygrip.android.presentation.view.user;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
-import com.tinygrip.android.domain.interactor.UserDetails;
-import com.tinygrip.android.domain.interactor.UserLogin;
+import com.tinygrip.android.domain.interactor.user.UserDetails;
+import com.tinygrip.android.domain.interactor.user.UserLogin;
+import com.tinygrip.android.domain.interactor.user.UserRegister;
 import com.tinygrip.android.domain.repository.UserRepository;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import dagger.Module;
@@ -36,5 +37,14 @@ public class UserModule {
                                     ThreadExecutor threadExecutor,
                                     PostExecutionThread postExecutionThread) {
         return new UserLogin(userRepository, threadExecutor, postExecutionThread);
+    }
+
+    @Provides
+    @ActivityScope
+    @Named("userRegister")
+    UserRegister provideUserRegister(UserRepository userRepository,
+                                ThreadExecutor threadExecutor,
+                                PostExecutionThread postExecutionThread) {
+        return new UserRegister(userRepository, threadExecutor, postExecutionThread);
     }
 }

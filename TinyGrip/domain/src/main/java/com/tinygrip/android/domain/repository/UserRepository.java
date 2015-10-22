@@ -22,4 +22,14 @@ public interface UserRepository {
      * Get an {@link rx.Observable} which will emit a {@link User}.
      */
     Observable<User> user();
+
+    /**
+     * Get an {@link rx.Observable} which will emit a {@link User}.
+     *
+     * @param email The user email address to associate with the account
+     * @param password The user password to associate with the account
+     * @param confirmPassword The confirmation password (which we assume has to be the same as the password) in orer to
+     * make sure the user does not mis-spell their password while typing it the first time.
+     */
+    Observable<User> registerUser(final String email, final String password, final String confirmPassword);
 }

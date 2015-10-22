@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.domain.interactor;
+package com.tinygrip.android.domain.interactor.user;
 
 import com.tinygrip.android.domain.User;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
@@ -9,10 +9,10 @@ import javax.inject.Inject;
 import rx.Observable;
 
 /**
- * This class is an implementation of {@link UseCase} that represents a use case for
+ * This class is an implementation of {@link com.tinygrip.android.domain.interactor.UseCase} that represents a use case for
  * retrieving data for the {@link User}
  */
-public class UserDetails extends UseCase {
+public class UserDetails extends com.tinygrip.android.domain.interactor.UseCase {
 
     private final UserRepository userRepository;
 

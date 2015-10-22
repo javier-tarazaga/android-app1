@@ -15,58 +15,59 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.tinygrip.android.R;
-import com.tinygrip.android.presentation.model.UserModel;
-import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
+import com.tinygrip.android.presentation.presenter.user.UserRegisterPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
-import com.tinygrip.android.presentation.view.user.view.UserLoginView;
+import com.tinygrip.android.presentation.view.user.activity.UserRegisterActivity;
+import com.tinygrip.android.presentation.view.user.view.UserRegisterView;
 import javax.inject.Inject;
 
 /**
- * Fragment that shows a login screen.
+ * Fragment that shows a register screen.
  */
-public class UserLoginFragment extends BaseFragment implements UserLoginView {
+public class UserRegisterFragment extends BaseFragment implements UserRegisterView {
 
     private ProgressDialog loadingDialog;
 
     /**
-     * Interface for listening User Login Fragment events
+     * Interface for listening User Register Fragment events
      */
-    public interface UserLoginListener {
+    public interface UserRegisterListener {
         void onUpClicked();
-        void onRegisterLinkClicked();
-        void onLoginSuccessful(UserModel userModel);
+        void onRegisterSuccessful();
     }
 
     @Inject
-    UserLoginPresenter userLoginPresenter;
+    UserRegisterPresenter userRegisterPresenter;
 
     @Bind(R.id.tb_login)
     Toolbar toolbar;
 
-    @Bind(R.id.et_username)
-    EditText editUserName;
+    @Bind(R.id.et_email)
+    EditText editEmail;
 
     @Bind(R.id.et_password)
     EditText editPassword;
 
+    @Bind(R.id.et_confirm_password)
+    EditText editConfirmPassword;
+
     @Bind(R.id.rl_progress)
     RelativeLayout rlProgress;
 
-    private UserLoginListener userLoginListener;
+    private UserRegisterListener userRegisterListener;
 
-    public UserLoginFragment() { super(); }
+    public UserRegisterFragment() { super(); }
 
-    public static UserLoginFragment newInstance() {
-        return new UserLoginFragment();
+    public static UserRegisterFragment newInstance() {
+        return new UserRegisterFragment();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof UserLoginActivity) {
-            this.userLoginListener = (UserLoginActivity) context;
+        if (context instanceof UserRegisterActivity) {
+            this.userRegisterListener = (UserRegisterActivity) context;
         }
     }
 
@@ -74,7 +75,7 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View fragmentView = inflater.inflate(R.layout.fragment_user_login, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_user_register, container, false);
         ButterKnife.bind(this, fragmentView);
 
         return fragmentView;
@@ -90,13 +91,13 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     @Override
     public void onResume() {
         super.onResume();
-        this.userLoginPresenter.resume();
+        this.userRegisterPresenter.resume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        this.userLoginPresenter.pause();
+        this.userRegisterPresenter.pause();
     }
 
     @Override
@@ -108,12 +109,12 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.userLoginPresenter.destroy();
+        this.userRegisterPresenter.destroy();
     }
 
     private void initialize() {
         this.getComponent(UserComponent.class).inject(this);
-        this.userLoginPresenter.setView(this);
+        this.userRegisterPresenter.setView(this);
     }
 
     private void setupUI() {
@@ -122,7 +123,7 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     }
 
     private void setToolbar() {
-        this.toolbar.setTitle("Login");
+        this.toolbar.setTitle("Register");
         this.toolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_action_arrow_back));
         this.toolbar.setNavigationOnClickListener(onToolbarBackClickListener);
     }
@@ -149,12 +150,12 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
 
     @Override
     public void showRetry() {
-        // Not necessary in this view
+        // Not implemented in this view
     }
 
     @Override
     public void hideRetry() {
-        // Not necessary in this view
+        // Not implemented in this view
     }
 
     @Override
@@ -164,15 +165,15 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
 
     @Override
     public void goUp() {
-        if (this.userLoginListener != null) {
-            this.userLoginListener.onUpClicked();
+        if (this.userRegisterListener != null) {
+            this.userRegisterListener.onUpClicked();
         }
     }
 
     @Override
-    public void loginSuccessful(UserModel userModel) {
-        if (this.userLoginListener != null) {
-            this.userLoginListener.onLoginSuccessful(userModel);
+    public void showRegisterSuccessful() {
+        if (this.userRegisterListener != null) {
+            this.userRegisterListener.onRegisterSuccessful();
         }
     }
 
@@ -182,35 +183,24 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     }
 
     /**
-     * Simply perform a login
+     * Simply try to register the user
      */
-    private void loginUser() {
-        this.userLoginPresenter.login(editUserName.getText().toString(), editPassword.getText().toString());
+    private void registerUser() {
+        this.userRegisterPresenter.registerUser(
+            editEmail.getText().toString(),
+            editPassword.getText().toString(),
+            editEmail.getText().toString());
     }
 
-    /**
-     * Show the registration view
-     */
-    private void registerLinkClicked() {
-        if (this.userLoginListener != null) {
-            this.userLoginListener.onRegisterLinkClicked();
-        }
-    }
-
-    @OnClick(R.id.btn_login)
-    void onButtonLoginClick() {
-        UserLoginFragment.this.loginUser();
-    }
-
-    @OnClick(R.id.tv_register_link)
-    void onRegisterClick() {
-        UserLoginFragment.this.registerLinkClicked();
+    @OnClick(R.id.btn_register)
+    void onButtonRegisterClick() {
+        UserRegisterFragment.this.registerUser();
     }
 
     private View.OnClickListener onToolbarBackClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            UserLoginFragment.this.userLoginPresenter.onUpClicked();
+            UserRegisterFragment.this.userRegisterPresenter.onUpClicked();
         }
     };
 }

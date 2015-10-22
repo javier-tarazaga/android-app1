@@ -3,8 +3,8 @@ package com.tinygrip.android.test.presenter;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
-import com.tinygrip.android.domain.interactor.UserLogin;
-import com.tinygrip.android.presentation.presenter.UserLoginPresenter;
+import com.tinygrip.android.domain.interactor.user.UserLogin;
+import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
 import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 import com.tinygrip.android.presentation.view.user.view.UserLoginView;
 import org.mockito.Mock;

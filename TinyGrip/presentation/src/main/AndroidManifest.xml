@@ -67,6 +67,11 @@
         </activity>
 
         <activity
+            android:name=".presentation.view.user.activity.UserRegisterActivity"
+            android:label="@string/activity_title_user_register">
+        </activity>
+
+        <activity
             android:name=".presentation.view.user.activity.UserDetailsActivity"
             android:label="@string/activity_title_user_details">
         </activity>

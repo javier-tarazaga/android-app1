@@ -1,15 +1,16 @@
 
-package com.tinygrip.android.presentation.presenter;
+package com.tinygrip.android.presentation.presenter.user;
 
 import android.support.annotation.NonNull;
 import com.tinygrip.android.domain.User;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
-import com.tinygrip.android.domain.interactor.UserLogin;
+import com.tinygrip.android.domain.interactor.user.UserLogin;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.model.UserModel;
+import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 import com.tinygrip.android.presentation.view.user.view.UserLoginView;
 import javax.inject.Inject;

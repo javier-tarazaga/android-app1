@@ -56,4 +56,16 @@ public class UserDataRepository implements UserRepository {
             }
         });
     }
+
+    @Override
+    public Observable<User> registerUser(String email, String password, String confirmPassword) {
+        // we always try registering the user performing a registration throw the cloud
+        final UserDataStore userDataStore = this.userDataStoreFactory.createCloudDataStore();
+        return userDataStore.userEntity().map(new Func1<UserEntity, User>() {
+            @Override
+            public User call(UserEntity userEntity) {
+                return userEntityDataMapper.transform(userEntity);
+            }
+        });
+    }
 }

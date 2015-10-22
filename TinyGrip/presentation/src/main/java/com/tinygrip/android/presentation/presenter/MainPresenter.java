@@ -10,7 +10,6 @@ import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.view.main.MainView;
-import com.tinygrip.android.presentation.view.navigation.view.MainNavigationView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

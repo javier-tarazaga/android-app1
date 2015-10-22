@@ -18,7 +18,7 @@ import butterknife.OnClick;
 import com.bumptech.glide.Glide;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.model.UserModel;
-import com.tinygrip.android.presentation.presenter.UserDetailsPresenter;
+import com.tinygrip.android.presentation.presenter.user.UserDetailsPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
 import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;

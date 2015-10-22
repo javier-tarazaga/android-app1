@@ -5,6 +5,7 @@
   <string name="activity_title_new_area">New Area</string>
   <string name="activity_title_area">Area</string>
   <string name="activity_title_user_login">User Login</string>
+  <string name="activity_title_user_register">User Register</string>
   <string name="activity_title_user_list">Users List</string>
   <string name="activity_title_user_details">User Details</string>
 

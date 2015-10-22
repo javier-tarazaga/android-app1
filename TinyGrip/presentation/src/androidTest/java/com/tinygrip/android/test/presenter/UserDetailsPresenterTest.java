@@ -18,7 +18,7 @@
 //import android.content.Context;
 //import android.test.AndroidTestCase;
 //import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
-//import com.tinygrip.android.presentation.presenter.UserDetailsPresenter;
+//import com.tinygrip.android.presentation.presenter.user.UserDetailsPresenter;
 //import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
 //import org.mockito.Mock;
 //import org.mockito.MockitoAnnotations;

@@ -3,8 +3,8 @@
     android:layout_height="match_parent">
 
     <fragment
-        android:name="com.tinygrip.android.presentation.view.user.fragment.UserLoginFragment"
-        android:id="@+id/fragment_user_login"
+        android:name="com.tinygrip.android.presentation.view.user.fragment.UserRegisterFragment"
+        android:id="@+id/fragment_user_register"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

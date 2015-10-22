@@ -1,7 +1,4 @@
-/**
- * Copyright (C) 2014 android.org. All rights reserved.
- * @author Fernando Cejas (the android coder)
- */
+
 package com.tinygrip.android.presentation.view.user.adapter;
 
 import android.content.Context;
