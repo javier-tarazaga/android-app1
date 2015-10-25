@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity implements MainView,
 
     @Override
     public void viewProfile() {
-        this.applicationRouter.navigateToLogin(this);
+        this.applicationRouter.navigateToProfile(this);
     }
 
     private Toolbar.OnMenuItemClickListener onMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {

@@ -1,12 +1,11 @@
 
-package com.tinygrip.android.data.api;
+package com.tinygrip.android.data.api.root;
 
 import android.content.Context;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
 import com.tinygrip.android.data.entity.DataPageEntity;
 import com.tinygrip.android.data.entity.RootEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
-import com.tinygrip.android.data.service.RootService;
 import com.tinygrip.android.domain.PreviewArea;
 import rx.Observable;
 import rx.Subscriber;

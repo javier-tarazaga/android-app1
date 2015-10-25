@@ -17,15 +17,18 @@ import javax.inject.Named;
 @Module
 public class MainActivityModule {
 
-  private final String apiKey;
+    private final String apiKey;
 
-  public MainActivityModule(String apiKey) {
-    this.apiKey = apiKey;
-  }
+    public MainActivityModule(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
-  @Provides @ActivityScope @Named("root") UseCase providesGetRootUserCase(
-      RootRepository rootRepository, ThreadExecutor threadExecutor,
-      PostExecutionThread postExecutionThread) {
-    return new GetRoot(this.apiKey, rootRepository, threadExecutor, postExecutionThread);
-  }
+    @Provides
+    @ActivityScope
+    @Named("root")
+    UseCase providesGetRootUserCase(
+        RootRepository rootRepository, ThreadExecutor threadExecutor,
+        PostExecutionThread postExecutionThread) {
+        return new GetRoot(this.apiKey, rootRepository, threadExecutor, postExecutionThread);
+    }
 }

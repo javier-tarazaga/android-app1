@@ -1,11 +1,10 @@
 package com.tinygrip.android.test.view.activity;
 
 import android.content.Intent;
-import android.support.test.espresso.action.TypeTextAction;
 import android.support.v4.app.Fragment;
 import android.test.ActivityInstrumentationTestCase2;
 import com.tinygrip.android.R;
-import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
@@ -19,22 +18,22 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 
-public class UserLoginActivityTest extends ActivityInstrumentationTestCase2<UserLoginActivity> {
+public class UserProfileActivityTest extends ActivityInstrumentationTestCase2<UserProfileActivity> {
 
     private static final String FAKE_USER_NAME = "fake";
     private static final String FAKE_PASSWORD = "fake";
 
-    private UserLoginActivity userLoginActivity;
+    private UserProfileActivity userProfileActivity;
 
-    public UserLoginActivityTest() {
-        super(UserLoginActivity.class);
+    public UserProfileActivityTest() {
+        super(UserProfileActivity.class);
     }
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         this.setActivityIntent(createTargetIntent());
-        this.userLoginActivity = getActivity();
+        this.userProfileActivity = getActivity();
     }
 
     @Override
@@ -43,12 +42,12 @@ public class UserLoginActivityTest extends ActivityInstrumentationTestCase2<User
     }
 
     public void testContainsUserLoginFragment() {
-        Fragment userLoginFragment = userLoginActivity.getSupportFragmentManager().findFragmentById(R.id.fragment_user_login);
+        Fragment userLoginFragment = userProfileActivity.getSupportFragmentManager().findFragmentById(R.id.fragment_user_login);
         assertThat(userLoginFragment, is(notNullValue()));
     }
 
     public void testContainsProperTitle() {
-        String actualTitle = this.userLoginActivity.getTitle().toString().trim();
+        String actualTitle = this.userProfileActivity.getTitle().toString().trim();
 
         assertThat(actualTitle, is("User Login"));
     }
@@ -70,6 +69,6 @@ public class UserLoginActivityTest extends ActivityInstrumentationTestCase2<User
     }
 
     private Intent createTargetIntent() {
-        return UserLoginActivity.getCallingIntent(getInstrumentation().getTargetContext());
+        return UserProfileActivity.getCallingIntent(getInstrumentation().getTargetContext());
     }
 }

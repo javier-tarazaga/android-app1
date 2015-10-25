@@ -5,8 +5,9 @@ import android.content.Context;
 import com.tinygrip.android.data.SessionData;
 import com.tinygrip.android.data.api.user.UserRestApi;
 import com.tinygrip.android.data.api.user.UserRestApiImpl;
-import com.tinygrip.android.data.cache.user.UserCache;
-import com.tinygrip.android.data.service.UserService;
+import com.tinygrip.android.data.cache.user.DiskUserCacheImpl;
+import com.tinygrip.android.data.cache.user.MemoryUserCacheImpl;
+import com.tinygrip.android.data.api.user.UserService;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -17,19 +18,23 @@ import javax.inject.Singleton;
 public class UserDataStoreFactory {
 
     private final Context context;
-    private final UserCache userCache;
+    private final MemoryUserCacheImpl memoryUserCache;
+    private final DiskUserCacheImpl diskUserCache;
     private final UserService userService;
     private final SessionData sessionData;
 
     @Inject
-    public UserDataStoreFactory(Context context, SessionData sessionData, UserService userService, UserCache userCache) {
-        if (context == null || sessionData == null || userCache == null || userService == null) {
+    public UserDataStoreFactory(Context context, SessionData sessionData, UserService userService,
+                                MemoryUserCacheImpl memoryUserCache, DiskUserCacheImpl diskUserCache) {
+        if (context == null || sessionData == null || userService == null || memoryUserCache == null
+            || diskUserCache == null) {
             throw new IllegalArgumentException("Constructor parameters cannot be null!!!");
         }
         this.context = context.getApplicationContext();
         this.sessionData = sessionData;
         this.userService = userService;
-        this.userCache = userCache;
+        this.memoryUserCache = memoryUserCache;
+        this.diskUserCache = diskUserCache;
     }
 
     /**
@@ -38,8 +43,10 @@ public class UserDataStoreFactory {
     public UserDataStore create() {
         UserDataStore userDataStore;
 
-        if (!this.userCache.isExpired() && this.userCache.isCached()) {
-            userDataStore = new MemoryUserDataStore(this.userCache);
+        if (!this.memoryUserCache.isExpired() && this.memoryUserCache.isCached()) {
+            userDataStore = createMemoryDataStore();
+        } else if (!this.diskUserCache.isExpired() && this.diskUserCache.isCached()) {
+            userDataStore = createDiskDataStore();
         } else {
             userDataStore = createCloudDataStore();
         }
@@ -48,11 +55,25 @@ public class UserDataStoreFactory {
     }
 
     /**
+     * Create {@link UserDataStore} to retrieve data from memory
+     */
+    public UserDataStore createMemoryDataStore() {
+        return new MemoryUserDataStore(this.memoryUserCache);
+    }
+
+    /**
+     * Create {@link UserDataStore} to retrieve data from disk
+     */
+    public UserDataStore createDiskDataStore() {
+        return new DiskUserDataStore(this.diskUserCache);
+    }
+
+    /**
      * Create {@link UserDataStore} to retrieve data from the Cloud.
      */
     public UserDataStore createCloudDataStore() {
         UserRestApi userRestApi = new UserRestApiImpl(this.context, this.sessionData, this.userService);
 
-        return new CloudUserDataStore(userRestApi, this.userCache);
+        return new CloudUserDataStore(userRestApi, this.memoryUserCache, this.diskUserCache);
     }
 }

@@ -24,6 +24,12 @@ public interface UserRepository {
     Observable<User> user();
 
     /**
+     * Get an {@link rx.Observable} which will emit a {@link Boolean} representing if the has a valid auth state
+     * or not.
+     */
+    Observable<Boolean> isValidUser();
+
+    /**
      * Get an {@link rx.Observable} which will emit a {@link User}.
      *
      * @param email The user email address to associate with the account

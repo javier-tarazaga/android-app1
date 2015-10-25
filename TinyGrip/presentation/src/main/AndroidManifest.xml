@@ -62,6 +62,11 @@
         </activity>
 
         <activity
+            android:name=".presentation.view.user.activity.UserProfileActivity"
+            android:label="@string/activity_title_user_profile">
+        </activity>
+
+        <activity
             android:name=".presentation.view.user.activity.UserLoginActivity"
             android:label="@string/activity_title_user_login">
         </activity>

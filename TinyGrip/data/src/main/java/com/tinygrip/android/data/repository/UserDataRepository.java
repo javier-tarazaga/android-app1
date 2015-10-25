@@ -3,6 +3,9 @@ package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.data.entity.mapper.UserEntityDataMapper;
+import com.tinygrip.android.data.entity.user.OAuthEntity;
+import com.tinygrip.android.data.repository.datasource.auth.OAuthDataStore;
+import com.tinygrip.android.data.repository.datasource.auth.OAuthDataStoreFactory;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStore;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStoreFactory;
 import com.tinygrip.android.domain.User;
@@ -18,6 +21,7 @@ import rx.functions.Func1;
 @Singleton
 public class UserDataRepository implements UserRepository {
 
+    private final OAuthDataStoreFactory oAuthDataStoreFactory;
     private final UserDataStoreFactory userDataStoreFactory;
     private final UserEntityDataMapper userEntityDataMapper;
 
@@ -28,22 +32,34 @@ public class UserDataRepository implements UserRepository {
      * @param userEntityDataMapper {@link UserEntityDataMapper}.
      */
     @Inject
-    public UserDataRepository(UserDataStoreFactory dataStoreFactory,
+    public UserDataRepository(OAuthDataStoreFactory oAuthDataStoreFactory,
+                              UserDataStoreFactory dataStoreFactory,
                               UserEntityDataMapper userEntityDataMapper) {
+
+        this.oAuthDataStoreFactory = oAuthDataStoreFactory;
         this.userDataStoreFactory = dataStoreFactory;
         this.userEntityDataMapper = userEntityDataMapper;
     }
 
     @Override
     public Observable<User> user(String userName, String password) {
-        // we always get the user performing a login from the cloud
-        final UserDataStore userDataStore = this.userDataStoreFactory.createCloudDataStore();
-        return userDataStore.userEntityLogin(userName, password).map(new Func1<UserEntity, User>() {
-            @Override
-            public User call(UserEntity userEntity) {
-                return userEntityDataMapper.transform(userEntity);
-            }
-        });
+
+        final OAuthDataStore oAuthDataStore = this.oAuthDataStoreFactory.create();
+        final UserDataStore userDataStore = this.userDataStoreFactory.create();
+
+        return oAuthDataStore.performAuth(userName, password)
+                             .flatMap(new Func1<OAuthEntity, Observable<UserEntity>>() {
+                                 @Override
+                                 public Observable<UserEntity> call(OAuthEntity oAuthEntity) {
+                                     return userDataStore.userEntity();
+                                 }
+                             })
+                             .map(new Func1<UserEntity, User>() {
+                                 @Override
+                                 public User call(UserEntity userEntity) {
+                                     return userEntityDataMapper.transform(userEntity);
+                                 }
+                             });
     }
 
     @Override
@@ -55,6 +71,14 @@ public class UserDataRepository implements UserRepository {
                 return userEntityDataMapper.transform(userEntity);
             }
         });
+    }
+
+    @Override
+    public Observable<Boolean> isValidUser() {
+
+        // always do this check to our current memory status for now
+        final OAuthDataStore oAuthDataStore = this.oAuthDataStoreFactory.create();
+        return oAuthDataStore.isAuthed();
     }
 
     @Override

@@ -4,7 +4,7 @@ package com.tinygrip.android.data.repository.datasource;
 import com.tinygrip.android.data.ApplicationTestCase;
 import com.tinygrip.android.data.cache.user.UserCache;
 import com.tinygrip.android.data.entity.UserEntity;
-import com.tinygrip.android.data.api.RootRestApi;
+import com.tinygrip.android.data.api.root.RootRestApi;
 
 import com.tinygrip.android.data.repository.datasource.user.CloudUserDataStore;
 import org.junit.Before;
@@ -28,7 +28,7 @@ public class CloudUserDataStoreTest extends ApplicationTestCase {
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    cloudUserDataStore = new CloudUserDataStore(mockRootRestApi, mockUserCache);
+    cloudUserDataStore = new CloudUserDataStore(mockRootRestApi, mockUserCache, this.diskUserCache);
   }
 
   @Test

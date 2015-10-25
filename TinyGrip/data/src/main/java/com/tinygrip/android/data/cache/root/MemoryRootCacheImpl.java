@@ -1,5 +1,6 @@
 package com.tinygrip.android.data.cache.root;
 
+import com.tinygrip.android.data.cache.MemoryCache;
 import com.tinygrip.android.data.cache.user.UserCache;
 import com.tinygrip.android.data.entity.RootEntity;
 import com.tinygrip.android.data.exception.RootNotFoundException;
@@ -11,6 +12,7 @@ import rx.Subscriber;
 /**
  * A super simple {@link UserCache} implementation.
  */
+@MemoryCache
 @Singleton
 public class MemoryRootCacheImpl implements RootCache {
     private RootEntity rootEntity;
@@ -41,9 +43,7 @@ public class MemoryRootCacheImpl implements RootCache {
     @Override
     public void put(RootEntity rootEntity) {
         if (rootEntity != null) {
-            if (this.rootEntity != null) {
-                this.rootEntity = rootEntity;
-            }
+            this.rootEntity = rootEntity;
         }
     }
 

@@ -3,10 +3,10 @@ package com.tinygrip.android.data.repository.datasource.root;
 
 import android.content.Context;
 import com.tinygrip.android.data.SessionData;
-import com.tinygrip.android.data.api.RootRestApi;
-import com.tinygrip.android.data.api.RootRestApiImpl;
+import com.tinygrip.android.data.api.root.RootRestApi;
+import com.tinygrip.android.data.api.root.RootRestApiImpl;
 import com.tinygrip.android.data.cache.root.RootCache;
-import com.tinygrip.android.data.service.RootService;
+import com.tinygrip.android.data.api.root.RootService;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

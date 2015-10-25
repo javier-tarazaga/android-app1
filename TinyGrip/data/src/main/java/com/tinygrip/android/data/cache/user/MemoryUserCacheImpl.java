@@ -1,7 +1,8 @@
 package com.tinygrip.android.data.cache.user;
 
+import com.tinygrip.android.data.cache.MemoryCache;
 import com.tinygrip.android.data.entity.UserEntity;
-import com.tinygrip.android.data.exception.RootNotFoundException;
+import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import rx.Observable;
@@ -10,6 +11,7 @@ import rx.Subscriber;
 /**
  * A super simple {@link UserCache} implementation.
  */
+@MemoryCache
 @Singleton
 public class MemoryUserCacheImpl implements UserCache {
     private UserEntity userEntity;
@@ -31,7 +33,7 @@ public class MemoryUserCacheImpl implements UserCache {
                     subscriber.onNext(userEntity);
                     subscriber.onCompleted();
                 } else {
-                    subscriber.onError(new RootNotFoundException());
+                    subscriber.onError(new UserNotFoundException());
                 }
             }
         });
@@ -40,9 +42,7 @@ public class MemoryUserCacheImpl implements UserCache {
     @Override
     public void put(UserEntity userEntity) {
         if (userEntity != null) {
-            if (this.userEntity != null) {
-                this.userEntity = userEntity;
-            }
+            this.userEntity = userEntity;
         }
     }
 

@@ -21,7 +21,6 @@ import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.user.UserDetailsPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
 import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
 import javax.inject.Inject;
 
@@ -81,8 +80,8 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof UserDetailsActivity) {
-            this.userDetailsListener = (UserDetailsActivity) context;
+        if (context instanceof UserDetailsListener) {
+            this.userDetailsListener = (UserDetailsListener) context;
         }
     }
 

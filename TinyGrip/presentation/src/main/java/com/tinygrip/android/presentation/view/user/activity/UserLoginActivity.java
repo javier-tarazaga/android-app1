@@ -51,7 +51,7 @@ public class UserLoginActivity extends BaseActivity implements HasComponent<User
 
     @Override
     public void onRegisterLinkClicked() {
-      this.applicationRouter.navigateToRegister(UserLoginActivity.this);
+        this.applicationRouter.navigateToRegister(UserLoginActivity.this);
     }
 
     @Override
@@ -63,3 +63,4 @@ public class UserLoginActivity extends BaseActivity implements HasComponent<User
         this.finish();
     }
 }
+

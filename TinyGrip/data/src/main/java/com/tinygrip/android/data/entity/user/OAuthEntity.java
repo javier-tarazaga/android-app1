@@ -11,7 +11,7 @@ import lombok.Setter;
  * against it in order to generate a new user Token to be used throughout the application.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserAuthEntity {
+public class OAuthEntity {
 
     @JsonProperty("access_token") @Getter @Setter private String accessToken;
 

@@ -4,9 +4,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.squareup.okhttp.OkHttpClient;
+import com.tinygrip.android.data.api.auth.OAuthService;
+import com.tinygrip.android.data.api.root.RootService;
+import com.tinygrip.android.data.api.user.UserService;
 import com.tinygrip.android.data.api.util.StringConverterModule;
-import com.tinygrip.android.data.service.RootService;
-import com.tinygrip.android.data.service.UserService;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -94,6 +95,12 @@ public class ApiModule {
     @Singleton
     RootService providesRootService(RestAdapter restAdapter) {
         return restAdapter.create(RootService.class);
+    }
+
+    @Provides
+    @Singleton
+    OAuthService providesOAuthService(@HttpsRestAdapter RestAdapter restAdapter) {
+        return restAdapter.create(OAuthService.class);
     }
 
     @Provides

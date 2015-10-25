@@ -3,7 +3,7 @@ package com.tinygrip.android.test.exception;
 
 import android.test.AndroidTestCase;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
-import com.tinygrip.android.data.exception.UserNotFoundException;
+import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 

@@ -1,14 +1,13 @@
 
 package com.tinygrip.android.data.repository.datasource.user;
 
-import com.tinygrip.android.data.api.RootRestApi;
 import com.tinygrip.android.data.api.user.UserRestApi;
+import com.tinygrip.android.data.cache.DiskCache;
+import com.tinygrip.android.data.cache.MemoryCache;
 import com.tinygrip.android.data.cache.user.UserCache;
 import com.tinygrip.android.data.entity.UserEntity;
-import com.tinygrip.android.data.entity.user.UserAuthEntity;
 import rx.Observable;
 import rx.functions.Action1;
-import rx.functions.Func1;
 
 /**
  * {@link UserDataStore} implementation based on connections to the api (Cloud).
@@ -16,13 +15,15 @@ import rx.functions.Func1;
 public class CloudUserDataStore implements UserDataStore {
 
     private final UserRestApi userRestApi;
-    private final UserCache userCache;
+    private final UserCache memoryUserCache;
+    private final UserCache diskUserCache;
 
     private final Action1<UserEntity> saveToCacheAction = new Action1<UserEntity>() {
         @Override
         public void call(UserEntity userEntity) {
             if (userEntity != null) {
-                CloudUserDataStore.this.userCache.put(userEntity);
+                CloudUserDataStore.this.memoryUserCache.put(userEntity);
+                CloudUserDataStore.this.diskUserCache.put(userEntity);
             }
         }
     };
@@ -30,24 +31,14 @@ public class CloudUserDataStore implements UserDataStore {
     /**
      * Construct a {@link UserDataStore} based on connections to the api (Cloud).
      *
-     * @param userRestApi The {@link RootRestApi} implementation to use.
-     * @param userCache A {@link UserCache} to cache data retrieved from the api.
+     * @param userRestApi The {@link UserRestApi} implementation to use.
+     * @param memoryUserCache A {@link UserCache} to cache data retrieved from the api based on memory
+     * @param diskUserCache A {@link UserCache} to cache data retrieved from the api based on disk
      */
-    public CloudUserDataStore(UserRestApi userRestApi, UserCache userCache) {
+    public CloudUserDataStore(UserRestApi userRestApi, @MemoryCache UserCache memoryUserCache, @DiskCache UserCache diskUserCache) {
         this.userRestApi = userRestApi;
-        this.userCache = userCache;
-    }
-
-    @Override
-    public Observable<UserEntity> userEntityLogin(String userName, String password) {
-        return this.userRestApi.userAuthEntity(userName, password)
-                               .flatMap(new Func1<UserAuthEntity, Observable<UserEntity>>() {
-                                   @Override
-                                   public Observable<UserEntity> call(UserAuthEntity userAuthEntity) {
-                                       return CloudUserDataStore.this.userRestApi.userEntity();
-                                   }
-                               })
-                               .doOnNext(saveToCacheAction);
+        this.memoryUserCache = memoryUserCache;
+        this.diskUserCache = diskUserCache;
     }
 
     @Override

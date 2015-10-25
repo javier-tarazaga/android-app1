@@ -5,6 +5,7 @@ import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 import com.tinygrip.android.data.api.ApiConfig;
 import com.tinygrip.android.data.api.ApiModule;
+import com.tinygrip.android.data.cache.CacheModule;
 import dagger.Module;
 import dagger.Provides;
 import java.io.File;
@@ -22,7 +23,11 @@ import javax.net.ssl.X509TrustManager;
 /**
  * A module to wrap the Data related items it to the graph.
  */
-@Module(includes = ApiModule.class)
+@Module(
+    includes = {
+        ApiModule.class,
+        CacheModule.class
+    })
 public class DataModule {
 
     static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB

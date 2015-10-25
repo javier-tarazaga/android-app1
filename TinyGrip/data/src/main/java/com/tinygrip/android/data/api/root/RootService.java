@@ -1,4 +1,4 @@
-package com.tinygrip.android.data.service;
+package com.tinygrip.android.data.api.root;
 
 import com.tinygrip.android.data.api.ApiConfig;
 import com.tinygrip.android.data.entity.DataPageEntity;

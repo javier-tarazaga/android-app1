@@ -19,7 +19,7 @@ import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
 import com.tinygrip.android.presentation.view.user.view.UserLoginView;
 import javax.inject.Inject;
 
@@ -65,8 +65,8 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof UserLoginActivity) {
-            this.userLoginListener = (UserLoginActivity) context;
+        if (context instanceof UserLoginListener) {
+            this.userLoginListener = (UserLoginListener) context;
         }
     }
 

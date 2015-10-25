@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.data.cache.user;
+package com.tinygrip.android.data.cache.auth;
 
 import android.content.Context;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -7,12 +7,14 @@ import com.tinygrip.android.data.cache.DiskCache;
 import com.tinygrip.android.data.cache.FileManager;
 import com.tinygrip.android.data.cache.serializer.JacksonJsonSerializer;
 import com.tinygrip.android.data.cache.serializer.JsonSerializer;
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.cache.user.UserCache;
+import com.tinygrip.android.data.entity.user.OAuthEntity;
 import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import java.io.File;
 import java.io.IOException;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import rx.Observable;
 import rx.Subscriber;
@@ -20,17 +22,13 @@ import rx.Subscriber;
 /**
  * {@link UserCache} implementation.
  */
-@DiskCache
 @Singleton
-public class DiskUserCacheImpl implements UserCache {
+@Named("diskOAuthCache")
+public class DiskOAuthCacheImpl implements OAuthCache {
 
-    private static final String USER_KEY_IDE = "com.tinygrip.android.USER_KEY_ID";
+    private static final String OATH_KEY_ID = "com.tinygrip.android.OATH_KEY_ID";
 
-    private static final String SETTINGS_FILE_NAME = "com.tinygrip.android.SETTINGS";
-    private static final String SETTINGS_KEY_LAST_CACHE_UPDATE = "last_cache_update";
-
-    private static final String DEFAULT_FILE_NAME = "user_";
-    private static final long EXPIRATION_TIME = 60 * 10 * 1000;
+    private static final String DEFAULT_FILE_NAME = "auth_";
 
     private final Context context;
     private final File cacheDir;
@@ -39,15 +37,15 @@ public class DiskUserCacheImpl implements UserCache {
     private final ThreadExecutor threadExecutor;
 
     /**
-     * Constructor of the class {@link DiskUserCacheImpl}.
+     * Constructor of the class {@link DiskOAuthCacheImpl}.
      *
      * @param context A
-     * @param jsonSerializer {@link JacksonJsonSerializer} for object serialization.
+     * @param jsonSerializer {@link JsonSerializer} for object serialization.
      * @param fileManager {@link FileManager} for saving serialized objects to the file system.
      */
     @Inject
-    public DiskUserCacheImpl(Context context, JsonSerializer jsonSerializer,
-                             FileManager fileManager, ThreadExecutor executor) {
+    public DiskOAuthCacheImpl(Context context, JsonSerializer jsonSerializer,
+                              FileManager fileManager, ThreadExecutor executor) {
         if (context == null || jsonSerializer == null || fileManager == null || executor == null) {
             throw new IllegalArgumentException("Invalid null parameter");
         }
@@ -59,16 +57,16 @@ public class DiskUserCacheImpl implements UserCache {
     }
 
     @Override
-    public Observable<UserEntity> get() {
-        return Observable.create(new Observable.OnSubscribe<UserEntity>() {
+    public Observable<OAuthEntity> get() {
+        return Observable.create(new Observable.OnSubscribe<OAuthEntity>() {
             @Override
-            public void call(Subscriber<? super UserEntity> subscriber) {
-                File userEntityFile = DiskUserCacheImpl.this.buildFile();
-                String fileContent = DiskUserCacheImpl.this.fileManager.readFileContent(userEntityFile);
+            public void call(Subscriber<? super OAuthEntity> subscriber) {
+                File oAuthEntityFile = DiskOAuthCacheImpl.this.buildFile();
+                String fileContent = DiskOAuthCacheImpl.this.fileManager.readFileContent(oAuthEntityFile);
                 try {
-                    UserEntity userEntity = DiskUserCacheImpl.this.serializer.deserialize(fileContent, UserEntity.class);
-                    if (userEntity != null) {
-                        subscriber.onNext(userEntity);
+                    OAuthEntity oAuthEntity = DiskOAuthCacheImpl.this.serializer.deserialize(fileContent, OAuthEntity.class);
+                    if (oAuthEntity != null) {
+                        subscriber.onNext(oAuthEntity);
                         subscriber.onCompleted();
                     } else {
                         subscriber.onError(new UserNotFoundException());
@@ -77,25 +75,22 @@ public class DiskUserCacheImpl implements UserCache {
                     e.printStackTrace();
                     subscriber.onError(new UserNotFoundException());
                 }
-
-
             }
         });
     }
 
     @Override
-    public synchronized void put(UserEntity userEntity) {
-        if (userEntity != null) {
-            File userEntityFile = this.buildFile();
+    public synchronized void put(OAuthEntity oAuthEntity) {
+        if (oAuthEntity != null) {
+            File oAuthEntityFile = this.buildFile();
 
             // Lets cache every time even if we have it already.
             try {
-                String jsonString = this.serializer.serialize(userEntity);
-                this.executeAsynchronously(new CacheWriter(this.fileManager, userEntityFile,
+                String jsonString = this.serializer.serialize(oAuthEntity);
+                this.executeAsynchronously(new CacheWriter(this.fileManager, oAuthEntityFile,
                                                            jsonString));
-                setLastCacheUpdateTimeMillis();
             } catch (JsonProcessingException e) {
-                // Silently fail
+                // Fail silently
                 e.printStackTrace();
             }
         }
@@ -109,11 +104,8 @@ public class DiskUserCacheImpl implements UserCache {
 
     @Override
     public boolean isExpired() {
-        long currentTime = System.currentTimeMillis();
-        long lastUpdateTime = this.getLastCacheUpdateTimeMillis();
-
-        boolean expired = ((currentTime - lastUpdateTime) > EXPIRATION_TIME);
-
+        boolean expired = false;
+        // TODO - Determine if the token has expired
         if (expired) {
             this.evictAll();
         }
@@ -136,26 +128,9 @@ public class DiskUserCacheImpl implements UserCache {
         fileNameBuilder.append(this.cacheDir.getPath());
         fileNameBuilder.append(File.separator);
         fileNameBuilder.append(DEFAULT_FILE_NAME);
-        fileNameBuilder.append(USER_KEY_IDE);
+        fileNameBuilder.append(OATH_KEY_ID);
 
         return new File(fileNameBuilder.toString());
-    }
-
-    /**
-     * Set in millis, the last time the cache was accessed.
-     */
-    private void setLastCacheUpdateTimeMillis() {
-        long currentMillis = System.currentTimeMillis();
-        this.fileManager.writeToPreferences(this.context, SETTINGS_FILE_NAME,
-                                            SETTINGS_KEY_LAST_CACHE_UPDATE, currentMillis);
-    }
-
-    /**
-     * Get in millis, the last time the cache was accessed.
-     */
-    private long getLastCacheUpdateTimeMillis() {
-        return this.fileManager.getFromPreferences(this.context, SETTINGS_FILE_NAME,
-                                                   SETTINGS_KEY_LAST_CACHE_UPDATE);
     }
 
     /**

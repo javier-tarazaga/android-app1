@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.data.api;
+package com.tinygrip.android.data.api.root;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
 import com.tinygrip.android.data.entity.RootEntity;

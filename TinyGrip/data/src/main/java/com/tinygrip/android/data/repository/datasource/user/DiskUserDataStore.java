@@ -22,14 +22,7 @@ public class DiskUserDataStore implements UserDataStore {
   }
 
   @Override
-  public Observable<UserEntity> userEntityLogin(String userName, String password) {
-    // Should never be possible to perform a login locally
-    throw new UnsupportedOperationException("Operation is not available!!!");
-  }
-
-  @Override
   public Observable<UserEntity> userEntity() {
-    // Should never be possible to perform a login locally
-    throw new UnsupportedOperationException("Operation is not available!!!");
+    return this.userCache.get();
   }
 }

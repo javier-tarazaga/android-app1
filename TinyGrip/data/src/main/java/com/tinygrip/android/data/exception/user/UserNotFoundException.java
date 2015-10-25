@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.data.exception;
+package com.tinygrip.android.data.exception.user;
 
 /**
  * Exception throw by the application when a User search can't return a valid result.

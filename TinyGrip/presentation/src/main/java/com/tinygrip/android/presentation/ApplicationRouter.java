@@ -7,6 +7,7 @@ import com.tinygrip.android.presentation.view.area.activity.AreaActivity;
 import com.tinygrip.android.presentation.view.area.activity.NewAreaActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
+import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserRegisterActivity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,6 +21,18 @@ public class ApplicationRouter {
     @Inject
     public void ApplicationRouter() {
         //empty
+    }
+
+    /**
+     * Goes to the login screen
+     *
+     * @param context A Context needed to open the destiny activity.
+     */
+    public void navigateToProfile(Context context) {
+        if (context != null) {
+            Intent intentToLaunch = UserProfileActivity.getCallingIntent(context);
+            context.startActivity(intentToLaunch);
+        }
     }
 
     /**

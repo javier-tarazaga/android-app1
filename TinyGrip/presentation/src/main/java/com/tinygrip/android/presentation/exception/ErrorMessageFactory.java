@@ -3,7 +3,7 @@ package com.tinygrip.android.presentation.exception;
 
 import android.content.Context;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
-import com.tinygrip.android.data.exception.UserNotFoundException;
+import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import com.tinygrip.android.R;
 
 /**
