@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import com.tinygrip.android.domain.User;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
+import com.tinygrip.android.domain.exception.user.InvalidEmailException;
+import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.user.UserLogin;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
@@ -64,6 +66,18 @@ public class UserLoginPresenter implements Presenter {
         this.userLoginView.showError(errorMessage);
     }
 
+    private void showInvalidEmail(ErrorBundle errorBundle) {
+        String errorMessage = ErrorMessageFactory.create(this.userLoginView.getContext(),
+                                                         errorBundle.getException());
+        this.userLoginView.showInvalidEmail(errorMessage);
+    }
+
+    private void showInvalidPassword(ErrorBundle errorBundle) {
+        String errorMessage = ErrorMessageFactory.create(this.userLoginView.getContext(),
+                                                         errorBundle.getException());
+        this.userLoginView.showInvalidPassword(errorMessage);
+    }
+
     private void showUserDetailsInView(User user) {
         final UserModel userModel = this.userModelDataMapper.transform(user);
         this.userLoginView.loginSuccessful(userModel);
@@ -97,7 +111,13 @@ public class UserLoginPresenter implements Presenter {
         @Override
         public void onError(Throwable e) {
             UserLoginPresenter.this.hideViewLoading();
-            UserLoginPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+            if (e instanceof InvalidEmailException) {
+                UserLoginPresenter.this.showInvalidEmail(new DefaultErrorBundle((Exception) e));
+            } else if (e instanceof InvalidLoginPasswordException) {
+                UserLoginPresenter.this.showInvalidPassword(new DefaultErrorBundle((Exception) e));
+            } else {
+                UserLoginPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+            }
         }
 
         @Override

@@ -16,6 +16,10 @@ public interface UserLoginView extends LoadDataView {
      */
     void goUp();
 
+    void showInvalidEmail(String errorMessage);
+
+    void showInvalidPassword(String errorMessage);
+
     /**
      * Render the login
      */
@@ -25,4 +29,6 @@ public interface UserLoginView extends LoadDataView {
      * Get a {@link android.content.Context}.
      */
     Context getContext();
+
+
 }

@@ -19,7 +19,6 @@ import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
 import com.tinygrip.android.presentation.view.user.view.UserLoginView;
 import javax.inject.Inject;
 
@@ -46,7 +45,7 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     Toolbar toolbar;
 
     @Bind(R.id.et_username)
-    EditText editUserName;
+    EditText editEmail;
 
     @Bind(R.id.et_password)
     EditText editPassword;
@@ -170,6 +169,16 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     }
 
     @Override
+    public void showInvalidEmail(String errorMessage) {
+        this.editEmail.setError(errorMessage);
+    }
+
+    @Override
+    public void showInvalidPassword(String errorMessage) {
+        this.editPassword.setError(errorMessage);
+    }
+
+    @Override
     public void loginSuccessful(UserModel userModel) {
         if (this.userLoginListener != null) {
             this.userLoginListener.onLoginSuccessful(userModel);
@@ -185,7 +194,7 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
      * Simply perform a login
      */
     private void loginUser() {
-        this.userLoginPresenter.login(editUserName.getText().toString(), editPassword.getText().toString());
+        this.userLoginPresenter.login(editEmail.getText().toString(), editPassword.getText().toString());
     }
 
     /**

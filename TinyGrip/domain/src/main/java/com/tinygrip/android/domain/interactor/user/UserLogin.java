@@ -1,12 +1,16 @@
 
 package com.tinygrip.android.domain.interactor.user;
 
+import com.tinygrip.android.domain.exception.user.InvalidEmailException;
+import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.domain.repository.UserRepository;
+import com.tinygrip.android.domain.util.Patterns;
 import javax.inject.Inject;
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * This class is an implementation of {@link com.tinygrip.android.domain.interactor.UseCase} that represents a use case for
@@ -17,7 +21,7 @@ public class UserLogin extends UseCase {
 
     private final UserRepository userRepository;
 
-    private String userName;
+    private String email;
     private String password;
 
     @Inject
@@ -30,23 +34,37 @@ public class UserLogin extends UseCase {
 
     @Override
     public Observable buildUseCaseObservable() {
-        if (this.userName == null || this.password == null) {
-            throw new RuntimeException("Neither userName or password can be null!");
-        }
-
-        return this.userRepository.user(this.userName, this.password);
+        return Observable.concat(validate(), this.userRepository.user(this.email, this.password));
     }
 
     /**
-     * Simple case initializer in which we setup both the userName and password. This process cannot be done
+     * Simple case initializer in which we setup both the email and password. This process cannot be done
      * in the @Inject due to the fact that when we init the module we still won't know this params.
-     *  @param userName The user name to login with
+     *  @param email The user email to login with
      * @param password The password to login with
      */
-    public UserLogin initialize(String userName, String password) {
-        this.userName = userName;
+    public UserLogin initialize(String email, String password) {
+        this.email = email;
         this.password = password;
 
         return this;
+    }
+
+    private Observable validate() {
+        if (this.email == null || this.password == null) {
+            throw new RuntimeException("Neither email or password can be null!");
+        }
+
+        return Observable.create(new Observable.OnSubscribe<Object>() {
+            @Override
+            public void call(Subscriber<? super Object> subscriber) {
+                if (UserLogin.this.email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(UserLogin.this.email).matches()) {
+                    subscriber.onError(new InvalidEmailException());
+                } else if (UserLogin.this.password.isEmpty()) {
+                    subscriber.onError(new InvalidLoginPasswordException());
+                }
+                subscriber.onCompleted();
+            }
+        });
     }
 }
