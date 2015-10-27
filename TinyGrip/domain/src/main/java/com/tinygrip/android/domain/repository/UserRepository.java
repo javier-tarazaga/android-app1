@@ -17,6 +17,12 @@ public interface UserRepository {
      */
     Observable<User> user(final String userName, final String password);
 
+    /**
+     * Get an {@link rx.Observable} which will call onComplete when the logout operation has been
+     * terminated correctly.
+     */
+    Observable<Object> userLogout();
+
 
     /**
      * Get an {@link rx.Observable} which will emit a {@link User}.

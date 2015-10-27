@@ -20,4 +20,9 @@ public interface UserDetailsView extends LoadDataView {
    * Simply go up in the stack
    */
   void goUp();
+
+  /**
+   * Notify any listeners that the logout has executed correctly
+   */
+  void notifyLogoutSuccessfully();
 }

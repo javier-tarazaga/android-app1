@@ -9,8 +9,14 @@ import android.content.Context;
  */
 public interface UserProfileView {
 
+    /**
+     * Show the user login view
+     */
     void showUserLoginView();
 
+    /**
+     * Show the user details view
+     */
     void showUserDetailsView();
 
     /**

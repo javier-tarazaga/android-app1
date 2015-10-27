@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import com.tinygrip.android.presentation.view.area.activity.AreaActivity;
 import com.tinygrip.android.presentation.view.area.activity.NewAreaActivity;
-import com.tinygrip.android.presentation.view.user.activity.UserDetailsActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserRegisterActivity;
@@ -60,18 +59,6 @@ public class ApplicationRouter {
     }
 
     /**
-     * Goes to the user details screen.
-     *
-     * @param context A Context needed to open the destiny activity.
-     */
-    public void navigateToUserDetails(Context context) {
-      if (context != null) {
-        Intent intentToLaunch = UserDetailsActivity.getCallingIntent(context);
-        context.startActivity(intentToLaunch);
-      }
-    }
-
-    /**
      * Goes to the new area screen
      *
      * @param context A Context needed to open the destiny activity.
@@ -94,17 +81,4 @@ public class ApplicationRouter {
             context.startActivity(intentToLaunch);
         }
     }
-
-    //  /**
-    //   * Goes to the user list screen.
-    //   *
-    //   * @param context A Context needed to open the destiny activity.
-    //   */
-    //public void navigateToUserList(Context context) {
-    //  if (context != null) {
-    //    Intent intentToLaunch = UserListActivity.getCallingIntent(context);
-    //    context.startActivity(intentToLaunch);
-    //  }
-    //}
-    //
 }

@@ -67,6 +67,15 @@ public class UserProfilePresenter extends DefaultSubscriber<Root> implements Pre
         this.viewUserProfile.showUserDetailsView();
     }
 
+
+    public void onLoginSuccessful() {
+        this.viewUserProfile.showUserDetailsView();
+    }
+
+    public void onLogoutSuccessful() {
+        this.viewUserProfile.showUserLoginView();
+    }
+
     private void getIfValidUser() {
         this.getUserIsAuthUseCase.execute(new IsValidUserSubscriber());
     }

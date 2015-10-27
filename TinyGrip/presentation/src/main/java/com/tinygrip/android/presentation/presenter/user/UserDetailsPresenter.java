@@ -26,12 +26,15 @@ public class UserDetailsPresenter implements Presenter {
     private UserDetailsView viewDetailsView;
 
     private final UseCase getUserDetailsUseCase;
+    private final UseCase userLogoutUseCase;
     private final UserModelDataMapper userModelDataMapper;
 
     @Inject
     public UserDetailsPresenter(@Named("userDetails") UseCase getUserDetailsUseCase,
+                                @Named("userLogout") UseCase userLogoutUseCase,
                                 UserModelDataMapper userModelDataMapper) {
         this.getUserDetailsUseCase = getUserDetailsUseCase;
+        this.userLogoutUseCase = userLogoutUseCase;
         this.userModelDataMapper = userModelDataMapper;
     }
 
@@ -93,12 +96,21 @@ public class UserDetailsPresenter implements Presenter {
         this.viewDetailsView.renderUser(userModel);
     }
 
+    private void logoutSuccessfully() {
+        this.viewDetailsView.notifyLogoutSuccessfully();
+    }
+
     private void getUserDetails() {
         this.getUserDetailsUseCase.execute(new UserDetailsSubscriber());
     }
 
     public void onUpClicked() {
         this.viewDetailsView.goUp();
+    }
+
+    public void onLogoutClicked() {
+        this.viewDetailsView.showLoading();
+        this.userLogoutUseCase.execute(new UserLogoutSubscriber());
     }
 
     private final class UserDetailsSubscriber extends DefaultSubscriber<User> {
@@ -118,6 +130,21 @@ public class UserDetailsPresenter implements Presenter {
         @Override
         public void onNext(User user) {
             UserDetailsPresenter.this.showUserDetailsInView(user);
+        }
+    }
+
+    private final class UserLogoutSubscriber extends DefaultSubscriber {
+
+        @Override
+        public void onCompleted() {
+            UserDetailsPresenter.this.hideViewLoading();
+            UserDetailsPresenter.this.logoutSuccessfully();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            UserDetailsPresenter.this.hideViewLoading();
+            UserDetailsPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
         }
     }
 }

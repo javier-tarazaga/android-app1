@@ -56,7 +56,7 @@ public class UserLoginActivity extends BaseActivity implements HasComponent<User
 
     @Override
     public void onLoginSuccessful(UserModel userModel) {
-        this.applicationRouter.navigateToUserDetails(UserLoginActivity.this);
+        this.applicationRouter.navigateToProfile(UserLoginActivity.this);
 
         // Make sure to remove this activity from the back stack so when going back from the area activity
         // we go to the main view instead

@@ -63,6 +63,14 @@ public class OAuthDataStoreFactory {
     }
 
     /**
+     * Simply remove all stored elements in any of the caches
+     */
+    public void evictAll() {
+        this.memoryOAuthCache.evictAll();
+        this.diskOAuthCache.evictAll();
+    }
+
+    /**
      * Create {@link OAuthDataStore} to retrieve data from memory
      */
     private OAuthDataStore createMemoryDataStore() {

@@ -13,6 +13,7 @@ import com.tinygrip.android.domain.repository.UserRepository;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import rx.Observable;
+import rx.Subscriber;
 import rx.functions.Func1;
 
 /**
@@ -60,6 +61,19 @@ public class UserDataRepository implements UserRepository {
                                      return userEntityDataMapper.transform(userEntity);
                                  }
                              });
+    }
+
+    @Override
+    public Observable<Object> userLogout() {
+        return Observable.create(new Observable.OnSubscribe<Object> () {
+            @Override
+            public void call(Subscriber<? super Object> subscriber) {
+                UserDataRepository.this.oAuthDataStoreFactory.evictAll();
+                UserDataRepository.this.userDataStoreFactory.evictAll();
+
+                subscriber.onCompleted();
+            }
+        });
     }
 
     @Override

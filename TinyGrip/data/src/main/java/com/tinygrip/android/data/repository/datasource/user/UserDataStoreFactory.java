@@ -55,6 +55,14 @@ public class UserDataStoreFactory {
     }
 
     /**
+     * Simply remove all stored elements in any of the caches
+     */
+    public void evictAll() {
+        this.memoryUserCache.evictAll();
+        this.diskUserCache.evictAll();
+    }
+
+    /**
      * Create {@link UserDataStore} to retrieve data from memory
      */
     public UserDataStore createMemoryDataStore() {

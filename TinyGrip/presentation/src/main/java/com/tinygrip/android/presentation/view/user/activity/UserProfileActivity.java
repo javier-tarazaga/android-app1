@@ -81,27 +81,28 @@ public class UserProfileActivity extends BaseActivity
     }
 
     @Override
+    public void logoutSuccessfully() {
+        this.userProfilePresenter.onLogoutSuccessful();
+    }
+
+    @Override
     public void onRegisterLinkClicked() {
         this.applicationRouter.navigateToRegister(UserProfileActivity.this);
     }
 
     @Override
     public void onLoginSuccessful(UserModel userModel) {
-        this.applicationRouter.navigateToUserDetails(UserProfileActivity.this);
-
-        // Make sure to remove this activity from the back stack so when going back from the area activity
-        // we go to the main view instead
-        this.finish();
+        this.userProfilePresenter.onLoginSuccessful();
     }
 
     @Override
     public void showUserLoginView() {
-        addFragment(R.id.fl_fragment_user_profile, UserLoginFragment.newInstance());
+        replaceFragment(R.id.fl_fragment_user_profile, UserLoginFragment.newInstance(), false);
     }
 
     @Override
     public void showUserDetailsView() {
-        addFragment(R.id.fl_fragment_user_profile, UserDetailsFragment.newInstance());
+        replaceFragment(R.id.fl_fragment_user_profile, UserDetailsFragment.newInstance(), false);
     }
 
     @Override

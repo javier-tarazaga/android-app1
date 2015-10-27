@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
      */
     public interface UserDetailsListener {
         void onUpClicked();
+        void logoutSuccessfully();
     }
 
     @Inject
@@ -138,8 +140,10 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
 
     private void setToolbar() {
         this.toolbar.setTitle("Account");
+        this.toolbar.inflateMenu(R.menu.menu_user_details);
         this.toolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_action_arrow_back));
         this.toolbar.setNavigationOnClickListener(onToolbarBackClickListener);
+        this.toolbar.setOnMenuItemClickListener(onMenuItemClickListener);
     }
 
     @Override
@@ -158,6 +162,13 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     public void goUp() {
         if (this.userDetailsListener != null) {
             this.userDetailsListener.onUpClicked();
+        }
+    }
+
+    @Override
+    public void notifyLogoutSuccessfully() {
+        if (this.userDetailsListener != null) {
+            this.userDetailsListener.logoutSuccessfully();
         }
     }
 
@@ -211,6 +222,19 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
         @Override
         public void onClick(View v) {
             UserDetailsFragment.this.userDetailsPresenter.onUpClicked();
+        }
+    };
+
+    private Toolbar.OnMenuItemClickListener onMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.action_logout:
+                    UserDetailsFragment.this.userDetailsPresenter.onLogoutClicked();
+                    break;
+            }
+
+            return true;
         }
     };
 }

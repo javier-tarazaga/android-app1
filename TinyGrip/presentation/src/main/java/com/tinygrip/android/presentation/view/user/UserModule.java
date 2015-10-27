@@ -7,6 +7,7 @@ import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.domain.interactor.user.UserDetails;
 import com.tinygrip.android.domain.interactor.user.UserIsAuthed;
 import com.tinygrip.android.domain.interactor.user.UserLogin;
+import com.tinygrip.android.domain.interactor.user.UserLogout;
 import com.tinygrip.android.domain.interactor.user.UserRegister;
 import com.tinygrip.android.domain.repository.UserRepository;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
@@ -26,8 +27,8 @@ public class UserModule {
     @ActivityScope
     @Named("userIsValid")
     UseCase providesUserIsAuthed(UserRepository userRepository,
-                                      ThreadExecutor threadExecutor,
-                                      PostExecutionThread postExecutionThread) {
+                                 ThreadExecutor threadExecutor,
+                                 PostExecutionThread postExecutionThread) {
         return new UserIsAuthed(userRepository, threadExecutor, postExecutionThread);
     }
 
@@ -51,10 +52,19 @@ public class UserModule {
 
     @Provides
     @ActivityScope
+    @Named("userLogout")
+    UseCase providesUserLogout(UserRepository userRepository,
+                                 ThreadExecutor threadExecutor,
+                                 PostExecutionThread postExecutionThread) {
+        return new UserLogout(userRepository, threadExecutor, postExecutionThread);
+    }
+
+    @Provides
+    @ActivityScope
     @Named("userRegister")
     UserRegister provideUserRegister(UserRepository userRepository,
-                                ThreadExecutor threadExecutor,
-                                PostExecutionThread postExecutionThread) {
+                                     ThreadExecutor threadExecutor,
+                                     PostExecutionThread postExecutionThread) {
         return new UserRegister(userRepository, threadExecutor, postExecutionThread);
     }
 }
