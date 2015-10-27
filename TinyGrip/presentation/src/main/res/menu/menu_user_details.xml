@@ -7,5 +7,5 @@
         android:orderInCategory="200"
         android:title="Log Out"
         android:icon="@drawable/ic_action_logout"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 </menu>
