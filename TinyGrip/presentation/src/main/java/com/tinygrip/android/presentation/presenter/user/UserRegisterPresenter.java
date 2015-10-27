@@ -5,6 +5,10 @@ import android.support.annotation.NonNull;
 import com.tinygrip.android.domain.User;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
+import com.tinygrip.android.domain.exception.user.InvalidEmailException;
+import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
+import com.tinygrip.android.domain.exception.user.InvalidRegisterConfirmPasswordException;
+import com.tinygrip.android.domain.exception.user.InvalidRegisterPasswordException;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.user.UserRegister;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
@@ -53,6 +57,24 @@ public class UserRegisterPresenter implements Presenter {
         this.userRegisterView.hideLoading();
     }
 
+    private void showInvalidEmail(ErrorBundle errorBundle) {
+        String errorMessage = ErrorMessageFactory.create(this.userRegisterView.getContext(),
+                                                         errorBundle.getException());
+        this.userRegisterView.showInvalidEmail(errorMessage);
+    }
+
+    private void showInvalidPassword(ErrorBundle errorBundle) {
+        String errorMessage = ErrorMessageFactory.create(this.userRegisterView.getContext(),
+                                                         errorBundle.getException());
+        this.userRegisterView.showInvalidPassword(errorMessage);
+    }
+
+    private void showInvalidConfirmPassword(ErrorBundle errorBundle) {
+        String errorMessage = ErrorMessageFactory.create(this.userRegisterView.getContext(),
+                                                         errorBundle.getException());
+        this.userRegisterView.showInvalidConfirmPassword(errorMessage);
+    }
+
     private void showErrorMessage(ErrorBundle errorBundle) {
         String errorMessage = ErrorMessageFactory.create(this.userRegisterView.getContext(),
                                                          errorBundle.getException());
@@ -90,7 +112,16 @@ public class UserRegisterPresenter implements Presenter {
         @Override
         public void onError(Throwable e) {
             UserRegisterPresenter.this.hideViewLoading();
-            UserRegisterPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+
+            if (e instanceof InvalidEmailException) {
+                UserRegisterPresenter.this.showInvalidEmail(new DefaultErrorBundle((Exception) e));
+            } else if (e instanceof InvalidRegisterPasswordException) {
+                UserRegisterPresenter.this.showInvalidPassword(new DefaultErrorBundle((Exception) e));
+            } else if (e instanceof InvalidRegisterConfirmPasswordException) {
+                UserRegisterPresenter.this.showInvalidConfirmPassword(new DefaultErrorBundle((Exception) e));
+            } else {
+                UserRegisterPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
+            }
         }
 
         @Override

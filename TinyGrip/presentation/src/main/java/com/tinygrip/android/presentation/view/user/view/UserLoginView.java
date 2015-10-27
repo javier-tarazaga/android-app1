@@ -16,8 +16,18 @@ public interface UserLoginView extends LoadDataView {
      */
     void goUp();
 
+    /**
+     * Render the invalid email error message
+     *
+     * @param errorMessage The error message to display
+     */
     void showInvalidEmail(String errorMessage);
 
+    /**
+     * Render the invalid password error message
+     *
+     * @param errorMessage The error message to display
+     */
     void showInvalidPassword(String errorMessage);
 
     /**

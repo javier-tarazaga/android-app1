@@ -30,4 +30,6 @@
   <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
   <string name="exception_message_login_invalid_email">Enter a valid email address</string>
   <string name="exception_message_login_invalid_password">The field cannot be empty</string>
+  <string name="exception_message_register_invalid_password">At least 6 alphanumeric characters with at least one uppercase</string>
+  <string name="exception_message_register_invalid_confirm_password">The passwords have to be the same</string>
 </resources>

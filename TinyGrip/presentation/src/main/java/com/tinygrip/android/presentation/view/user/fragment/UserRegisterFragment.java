@@ -171,6 +171,21 @@ public class UserRegisterFragment extends BaseFragment implements UserRegisterVi
     }
 
     @Override
+    public void showInvalidEmail(String errorMessage) {
+        this.editEmail.setError(errorMessage);
+    }
+
+    @Override
+    public void showInvalidPassword(String errorMessage) {
+        this.editPassword.setError(errorMessage);
+    }
+
+    @Override
+    public void showInvalidConfirmPassword(String errorMessage) {
+        this.editConfirmPassword.setError(errorMessage);
+    }
+
+    @Override
     public void showRegisterSuccessful() {
         if (this.userRegisterListener != null) {
             this.userRegisterListener.onRegisterSuccessful();
@@ -189,7 +204,7 @@ public class UserRegisterFragment extends BaseFragment implements UserRegisterVi
         this.userRegisterPresenter.registerUser(
             editEmail.getText().toString(),
             editPassword.getText().toString(),
-            editEmail.getText().toString());
+            editConfirmPassword.getText().toString());
     }
 
     @OnClick(R.id.btn_register)

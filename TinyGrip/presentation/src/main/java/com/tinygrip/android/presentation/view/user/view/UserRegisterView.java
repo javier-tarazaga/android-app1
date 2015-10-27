@@ -16,6 +16,27 @@ public interface UserRegisterView extends LoadDataView {
     void goUp();
 
     /**
+     * Render the invalid email error message
+     *
+     * @param errorMessage The error message to display
+     */
+    void showInvalidEmail(String errorMessage);
+
+    /**
+     * Render the invalid password error message
+     *
+     * @param errorMessage The error message to display
+     */
+    void showInvalidPassword(String errorMessage);
+
+    /**
+     * Render the confirm password error message
+     *
+     * @param errorMessage The error message to display
+     */
+    void showInvalidConfirmPassword(String errorMessage);
+
+    /**
      * Render the user registration
      */
     void showRegisterSuccessful();
@@ -24,4 +45,6 @@ public interface UserRegisterView extends LoadDataView {
      * Get a {@link Context}.
      */
     Context getContext();
+
+
 }

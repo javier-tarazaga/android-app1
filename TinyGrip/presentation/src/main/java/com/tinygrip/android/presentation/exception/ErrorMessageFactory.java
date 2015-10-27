@@ -7,6 +7,8 @@ import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import com.tinygrip.android.R;
 import com.tinygrip.android.domain.exception.user.InvalidEmailException;
 import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
+import com.tinygrip.android.domain.exception.user.InvalidRegisterConfirmPasswordException;
+import com.tinygrip.android.domain.exception.user.InvalidRegisterPasswordException;
 
 /**
  * Factory used to create error messages from an Exception as a condition.
@@ -35,6 +37,10 @@ public class ErrorMessageFactory {
       message = context.getString(R.string.exception_message_login_invalid_email);
     } else if (exception instanceof InvalidLoginPasswordException) {
       message = context.getString(R.string.exception_message_login_invalid_password);
+    } else if (exception instanceof InvalidRegisterPasswordException) {
+      message = context.getString(R.string.exception_message_register_invalid_password);
+    } else if (exception instanceof InvalidRegisterConfirmPasswordException) {
+      message = context.getString(R.string.exception_message_register_invalid_confirm_password);
     }
 
     return message;

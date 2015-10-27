@@ -34,6 +34,10 @@ public class UserLogin extends UseCase {
 
     @Override
     public Observable buildUseCaseObservable() {
+        if (this.email == null || this.password == null) {
+            throw new RuntimeException("Neither email or password can be null!");
+        }
+
         return Observable.concat(validate(), this.userRepository.user(this.email, this.password));
     }
 
@@ -51,10 +55,6 @@ public class UserLogin extends UseCase {
     }
 
     private Observable validate() {
-        if (this.email == null || this.password == null) {
-            throw new RuntimeException("Neither email or password can be null!");
-        }
-
         return Observable.create(new Observable.OnSubscribe<Object>() {
             @Override
             public void call(Subscriber<? super Object> subscriber) {
@@ -62,8 +62,9 @@ public class UserLogin extends UseCase {
                     subscriber.onError(new InvalidEmailException());
                 } else if (UserLogin.this.password.isEmpty()) {
                     subscriber.onError(new InvalidLoginPasswordException());
+                } else {
+                    subscriber.onCompleted();
                 }
-                subscriber.onCompleted();
             }
         });
     }

@@ -1,13 +1,8 @@
 package com.tinygrip.android.domain.exception.user;
 
 /**
- * Exception thrown when an password does not conform to the following rules:
- *
- * <b>RequiredLength =</b> 6
- * <b>RequireDigit =</b> true
- * <b>RequireLowercase =</b> true
- * <b>RequireUppercase =</b> true
- */
+ * Exception thrown when the password used for login is not valid
+ **/
 public class InvalidLoginPasswordException extends Exception {
 
     public InvalidLoginPasswordException() {

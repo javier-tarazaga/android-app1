@@ -2,12 +2,17 @@
 package com.tinygrip.android.domain.interactor.user;
 
 import com.tinygrip.android.domain.User;
+import com.tinygrip.android.domain.exception.user.InvalidEmailException;
+import com.tinygrip.android.domain.exception.user.InvalidRegisterConfirmPasswordException;
+import com.tinygrip.android.domain.exception.user.InvalidRegisterPasswordException;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.domain.repository.UserRepository;
+import com.tinygrip.android.domain.util.Patterns;
 import javax.inject.Inject;
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for retrieving data related to an specific
@@ -32,10 +37,10 @@ public class UserRegister extends UseCase {
     @Override
     public Observable buildUseCaseObservable() {
         if (this.email == null || this.password == null || this.confirmPassword == null) {
-            throw new RuntimeException("Neither userName or password can be null!");
+            throw new RuntimeException("Neither email, password or confirm password can be null!");
         }
 
-        return this.userRepository.registerUser(this.email, this.password, this.confirmPassword);
+        return Observable.concat(validate(), this.userRepository.registerUser(this.email, this.password, this.confirmPassword));
     }
 
     /**
@@ -50,5 +55,23 @@ public class UserRegister extends UseCase {
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    private Observable validate() {
+        return Observable.create(new Observable.OnSubscribe<Object>() {
+            @Override
+            public void call(Subscriber<? super Object> subscriber) {
+                if (UserRegister.this.email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(UserRegister.this.email).matches()) {
+                    subscriber.onError(new InvalidEmailException());
+                } else if (UserRegister.this.password.isEmpty()
+                    || UserRegister.this.password.length() < 6) {
+                    subscriber.onError(new InvalidRegisterPasswordException());
+                } else if (!UserRegister.this.password.equals(UserRegister.this.confirmPassword)) {
+                    subscriber.onError(new InvalidRegisterConfirmPasswordException());
+                } else {
+                    subscriber.onCompleted();
+                }
+            }
+        });
     }
 }
