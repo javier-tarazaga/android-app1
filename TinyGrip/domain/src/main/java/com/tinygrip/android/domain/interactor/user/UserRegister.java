@@ -57,6 +57,17 @@ public class UserRegister extends UseCase {
         this.confirmPassword = confirmPassword;
     }
 
+    /**
+     * Simply validate the email and password are actually correct before doing any waste of call to the backend.
+     * These are the rules applied by the backend:
+     *
+     * RequiredLength = 6
+     * RequireDigit = true - TODO - perform check
+     * AllowOnlyAlphanumericUserNames = false
+     * RequireUniqueEmail = true
+     *
+     * @return Will return true if all the fields comply with all the rules
+     */
     private Observable validate() {
         return Observable.create(new Observable.OnSubscribe<Object>() {
             @Override

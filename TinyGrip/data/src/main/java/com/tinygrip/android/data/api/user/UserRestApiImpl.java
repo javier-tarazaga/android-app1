@@ -6,6 +6,8 @@ import com.tinygrip.android.data.SessionData;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
 import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
+import com.tinygrip.android.data.exception.user.UserUnknownException;
+
 import java.net.MalformedURLException;
 import rx.Observable;
 import rx.Subscriber;
@@ -56,10 +58,10 @@ public class UserRestApiImpl implements UserRestApi {
                             subscriber.onNext(userEntity);
                             subscriber.onCompleted();
                         } else {
-                            subscriber.onError(new NetworkConnectionException());
+                            subscriber.onError(new UserUnknownException());
                         }
                     } catch (Exception e) {
-                        subscriber.onError(new NetworkConnectionException(e.getCause()));
+                        subscriber.onError(new UserUnknownException(e.getCause()));
                     }
                 } else {
                     subscriber.onError(new NetworkConnectionException());
