@@ -8,9 +8,11 @@ import com.tinygrip.android.data.api.auth.OAuthService;
 import com.tinygrip.android.data.api.root.RootService;
 import com.tinygrip.android.data.api.user.UserService;
 import com.tinygrip.android.data.api.util.StringConverterModule;
+
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Singleton;
 import retrofit.Endpoint;
 import retrofit.Endpoints;
 import retrofit.RestAdapter;
@@ -75,6 +77,7 @@ public class ApiModule {
             .setClient(client)
             .setEndpoint(Endpoints.newFixedEndpoint("http://"))
             .setConverter(new JacksonConverter(jacksonObjectMapper))
+            .setLogLevel(RestAdapter.LogLevel.FULL)
             .build();
     }
 
@@ -82,12 +85,13 @@ public class ApiModule {
     @Singleton
     @HttpsRestAdapter
     RestAdapter providesHttpsRestAdapter(ObjectMapper jacksonObjectMapper,
-                                        Client client) {
+                                         Client client) {
 
         return new RestAdapter.Builder()
             .setClient(client)
             .setEndpoint(Endpoints.newFixedEndpoint("https://"))
             .setConverter(new JacksonConverter(jacksonObjectMapper))
+            .setLogLevel(RestAdapter.LogLevel.FULL)
             .build();
     }
 
@@ -99,7 +103,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    OAuthService providesOAuthService(@HttpsRestAdapter RestAdapter restAdapter) {
+    OAuthService providesOAuthService(@HttpRestAdapter RestAdapter restAdapter) {
         return restAdapter.create(OAuthService.class);
     }
 

@@ -36,17 +36,17 @@ public class RootEntity {
 
     public static class RootAccountEntity {
 
-        @Getter private final LinkEntity authenticate;
+        @Getter private final LinkEntity login;
 
         @Getter private final LinkEntity register;
 
         @Getter private final LinkEntity data;
 
         @JsonCreator
-        public RootAccountEntity(@JsonProperty("Authenticate") LinkEntity authenticate,
+        public RootAccountEntity(@JsonProperty("Login") LinkEntity login,
                                  @JsonProperty("Register") LinkEntity register,
                                  @JsonProperty("Data") LinkEntity data) {
-            this.authenticate = authenticate;
+            this.login = login;
             this.register = register;
             this.data = data;
         }
@@ -56,7 +56,7 @@ public class RootEntity {
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.append("***** Root Account Entity Details *****\n");
-            stringBuilder.append("authenticate=" + this.getAuthenticate() + "\n");
+            stringBuilder.append("login=" + this.getLogin() + "\n");
             stringBuilder.append("register=" + this.getRegister() + "\n");
             stringBuilder.append("data=" + this.getData() + "\n");
             stringBuilder.append("*******************************");

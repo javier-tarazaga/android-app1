@@ -37,9 +37,9 @@ public class OAuthRestApiImpl implements OAuthRestApi {
     }
 
     private OAuthEntity performOAuth(String userName, String password) throws MalformedURLException {
-        String apiUrl = this.sessionData.getRoot().getAccount().getAuthenticate().getHref();
+        String apiUrl = this.sessionData.getRoot().getAccount().getLogin().getHref();
 
-        apiUrl = apiUrl.replace("https://", "");
+        apiUrl = apiUrl.replace("https://", "").replace("http://", "");
 
         return oAuthService.performAuthSync(apiUrl, "password", userName, password);
     }
