@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.tinygrip.android.BuildConfig;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
@@ -116,8 +117,18 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     }
 
     private void setupUI() {
+
+        if (BuildConfig.DEBUG) {
+            this.setupTestCredentials();
+        }
+
         this.setToolbar();
         this.setLoadingDialog();
+    }
+
+    private void setupTestCredentials() {
+        this.editEmail.setText("ostap1010@outlook.com");
+        this.editPassword.setText("QaWs1!");
     }
 
     private void setToolbar() {
