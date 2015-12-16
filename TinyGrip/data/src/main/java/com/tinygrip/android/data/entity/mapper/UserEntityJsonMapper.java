@@ -1,10 +1,10 @@
 
 package com.tinygrip.android.data.entity.mapper;
 
-import com.tinygrip.android.data.entity.UserEntity;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import java.lang.reflect.Type;
 import java.util.List;
 import javax.inject.Inject;

@@ -2,7 +2,6 @@
 package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.ApplicationTestCase;
-import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.data.entity.mapper.UserEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStore;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStoreFactory;

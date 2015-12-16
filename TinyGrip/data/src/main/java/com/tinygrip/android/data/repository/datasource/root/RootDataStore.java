@@ -2,7 +2,6 @@
 package com.tinygrip.android.data.repository.datasource.root;
 
 import com.tinygrip.android.data.entity.RootEntity;
-import com.tinygrip.android.data.entity.UserEntity;
 import rx.Observable;
 
 /**

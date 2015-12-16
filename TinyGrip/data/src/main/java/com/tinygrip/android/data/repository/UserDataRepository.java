@@ -1,9 +1,9 @@
 
 package com.tinygrip.android.data.repository;
 
-import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.data.entity.mapper.UserEntityDataMapper;
 import com.tinygrip.android.data.entity.user.OAuthEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import com.tinygrip.android.data.repository.datasource.auth.OAuthDataStore;
 import com.tinygrip.android.data.repository.datasource.auth.OAuthDataStoreFactory;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStore;
@@ -43,29 +43,35 @@ public class UserDataRepository implements UserRepository {
     }
 
     @Override
-    public Observable<User> user(String userName, String password) {
+    public Observable<User> user(final String userName, final String password) {
 
         final OAuthDataStore oAuthDataStore = this.oAuthDataStoreFactory.create();
         final UserDataStore userDataStore = this.userDataStoreFactory.create();
 
-        return oAuthDataStore.performAuth(userName, password)
-                             .flatMap(new Func1<OAuthEntity, Observable<UserEntity>>() {
-                                 @Override
-                                 public Observable<UserEntity> call(OAuthEntity oAuthEntity) {
-                                     return userDataStore.userEntity();
-                                 }
-                             })
-                             .map(new Func1<UserEntity, User>() {
-                                 @Override
-                                 public User call(UserEntity userEntity) {
-                                     return userEntityDataMapper.transform(userEntity);
-                                 }
-                             });
+        return userDataStore.userEntity()
+                     .flatMap(new Func1<UserEntity, Observable<OAuthEntity>>() {
+                         @Override
+                         public Observable<OAuthEntity> call(UserEntity userEntity) {
+                             return oAuthDataStore.performAuth(userName, password);
+                         }
+                     })
+                     .flatMap(new Func1<OAuthEntity, Observable<UserEntity>>() {
+                         @Override
+                         public Observable<UserEntity> call(OAuthEntity oAuthEntity) {
+                            return userDataStore.userEntity();
+                         }
+                     })
+                     .map(new Func1<UserEntity, User>() {
+                         @Override
+                         public User call(UserEntity userEntity) {
+                             return userEntityDataMapper.transform(userEntity);
+                         }
+                     });
     }
 
     @Override
     public Observable<Object> userLogout() {
-        return Observable.create(new Observable.OnSubscribe<Object> () {
+        return Observable.create(new Observable.OnSubscribe<Object>() {
             @Override
             public void call(Subscriber<? super Object> subscriber) {
                 UserDataRepository.this.oAuthDataStoreFactory.evictAll();

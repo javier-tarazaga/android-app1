@@ -1,7 +1,6 @@
 package com.tinygrip.android.data.cache.root;
 
 import com.tinygrip.android.data.entity.RootEntity;
-import com.tinygrip.android.data.entity.UserEntity;
 import rx.Observable;
 
 /**

@@ -2,7 +2,6 @@
 package com.tinygrip.android.data.cache.serializer;
 
 import com.tinygrip.android.data.ApplicationTestCase;
-import com.tinygrip.android.data.entity.UserEntity;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -2,7 +2,6 @@
 package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.ApplicationTestCase;
-import com.tinygrip.android.data.entity.UserEntity;
 import com.google.gson.JsonSyntaxException;
 
 import java.util.Collection;

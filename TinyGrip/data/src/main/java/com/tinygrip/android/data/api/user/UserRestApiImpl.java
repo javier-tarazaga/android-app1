@@ -4,10 +4,9 @@ package com.tinygrip.android.data.api.user;
 import android.content.Context;
 import com.tinygrip.android.data.SessionData;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
 import com.tinygrip.android.data.exception.user.UserUnknownException;
-
 import java.net.MalformedURLException;
 import rx.Observable;
 import rx.Subscriber;
@@ -38,9 +37,9 @@ public class UserRestApiImpl implements UserRestApi {
     }
 
     private UserEntity getUserDataFromApi() throws MalformedURLException {
-        String apiUrl = this.sessionData.getRoot().getAccount().getData().getHref();
+        String apiUrl = this.sessionData.getRoot().getUser().getHref();
 
-        apiUrl = apiUrl.replace("https://", "");
+        apiUrl = apiUrl.replace("https://", "").replace("http://", "");
 
         return userService.getUserDataSync(apiUrl);
     }

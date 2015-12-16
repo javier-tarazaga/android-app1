@@ -1,7 +1,7 @@
 package com.tinygrip.android.data.cache.user;
 
 import com.tinygrip.android.data.cache.MemoryCache;
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import javax.inject.Inject;
 import javax.inject.Singleton;

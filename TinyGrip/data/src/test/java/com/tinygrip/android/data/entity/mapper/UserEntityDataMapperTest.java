@@ -2,7 +2,6 @@
 package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.ApplicationTestCase;
-import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.domain.User;
 import java.util.ArrayList;
 import java.util.Collection;

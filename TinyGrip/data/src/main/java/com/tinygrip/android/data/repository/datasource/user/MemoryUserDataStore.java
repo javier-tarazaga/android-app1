@@ -2,7 +2,7 @@
 package com.tinygrip.android.data.repository.datasource.user;
 
 import com.tinygrip.android.data.cache.user.UserCache;
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import rx.Observable;
 
 /**

@@ -3,7 +3,6 @@ package com.tinygrip.android.data.repository.datasource;
 
 import com.tinygrip.android.data.ApplicationTestCase;
 import com.tinygrip.android.data.cache.user.UserCache;
-import com.tinygrip.android.data.entity.UserEntity;
 import com.tinygrip.android.data.api.root.RootRestApi;
 
 import com.tinygrip.android.data.repository.datasource.user.CloudUserDataStore;

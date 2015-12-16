@@ -5,7 +5,7 @@ import com.tinygrip.android.data.api.user.UserRestApi;
 import com.tinygrip.android.data.cache.DiskCache;
 import com.tinygrip.android.data.cache.MemoryCache;
 import com.tinygrip.android.data.cache.user.UserCache;
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import rx.Observable;
 import rx.functions.Action1;
 

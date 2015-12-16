@@ -1,6 +1,6 @@
 package com.tinygrip.android.data.api.user;
 
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import retrofit.http.GET;
 import retrofit.http.Path;
 

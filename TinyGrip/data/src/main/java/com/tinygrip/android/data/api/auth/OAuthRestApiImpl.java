@@ -5,6 +5,7 @@ import android.content.Context;
 import com.tinygrip.android.data.SessionData;
 import com.tinygrip.android.data.api.user.UserService;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
+import com.tinygrip.android.data.cache.user.UserCache;
 import com.tinygrip.android.data.entity.user.OAuthEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
 import java.net.MalformedURLException;
@@ -37,7 +38,7 @@ public class OAuthRestApiImpl implements OAuthRestApi {
     }
 
     private OAuthEntity performOAuth(String userName, String password) throws MalformedURLException {
-        String apiUrl = this.sessionData.getRoot().getAccount().getLogin().getHref();
+        String apiUrl = this.sessionData.getRoot().getUser().getLogin().getHref();
 
         apiUrl = apiUrl.replace("https://", "").replace("http://", "");
 

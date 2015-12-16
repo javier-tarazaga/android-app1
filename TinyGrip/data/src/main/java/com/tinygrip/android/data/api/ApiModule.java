@@ -109,7 +109,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    UserService providesUserService(@HttpsRestAdapter RestAdapter restAdapter) {
+    UserService providesUserService(@HttpRestAdapter RestAdapter restAdapter) {
         return restAdapter.create(UserService.class);
     }
 }

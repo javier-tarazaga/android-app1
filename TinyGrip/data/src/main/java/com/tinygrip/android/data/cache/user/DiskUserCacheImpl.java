@@ -7,7 +7,7 @@ import com.tinygrip.android.data.cache.DiskCache;
 import com.tinygrip.android.data.cache.FileManager;
 import com.tinygrip.android.data.cache.serializer.JacksonJsonSerializer;
 import com.tinygrip.android.data.cache.serializer.JsonSerializer;
-import com.tinygrip.android.data.entity.UserEntity;
+import com.tinygrip.android.data.entity.user.UserEntity;
 import com.tinygrip.android.data.exception.user.UserNotFoundException;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import java.io.File;
