@@ -3,7 +3,7 @@ package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.entity.mapper.RootEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.root.RootDataStoreFactory;
-import com.tinygrip.android.domain.PreviewArea;
+import com.tinygrip.android.domain.model.PreviewArea;
 import com.tinygrip.android.domain.repository.AreaRepository;
 import com.tinygrip.android.domain.repository.RootRepository;
 import javax.inject.Inject;

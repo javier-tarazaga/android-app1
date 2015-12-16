@@ -1,8 +1,7 @@
 
-package com.tinygrip.android.domain;
+package com.tinygrip.android.domain.model;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Class that represents a Link in the domain layer.

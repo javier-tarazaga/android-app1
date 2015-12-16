@@ -1,7 +1,7 @@
 
 package com.tinygrip.android.domain.interactor.user;
 
-import com.tinygrip.android.domain.User;
+import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;

@@ -2,7 +2,7 @@
 package com.tinygrip.android.presentation.presenter;
 
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.Root;
+import com.tinygrip.android.domain.model.Root;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;

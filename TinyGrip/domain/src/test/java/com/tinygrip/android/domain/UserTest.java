@@ -1,6 +1,7 @@
 
 package com.tinygrip.android.domain;
 
+import com.tinygrip.android.domain.model.User;
 import org.junit.Before;
 import org.junit.Test;
 

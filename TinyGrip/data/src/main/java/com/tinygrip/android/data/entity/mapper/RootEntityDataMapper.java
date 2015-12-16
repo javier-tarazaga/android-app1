@@ -2,7 +2,8 @@
 package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.entity.RootEntity;
-import com.tinygrip.android.domain.Root;
+import com.tinygrip.android.domain.model.Root;
+import com.tinygrip.android.domain.model.User;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -21,10 +22,10 @@ public class RootEntityDataMapper {
   }
 
   /**
-   * Transform a {@link RootEntity} into an {@link com.tinygrip.android.domain.User}.
+   * Transform a {@link RootEntity} into an {@link User}.
    *
    * @param rootEntity Object to be transformed.
-   * @return {@link com.tinygrip.android.domain.Root} if valid {@link RootEntity} otherwise null.
+   * @return {@link Root} if valid {@link RootEntity} otherwise null.
    */
   public Root transform(RootEntity rootEntity) {
     Root root = null;

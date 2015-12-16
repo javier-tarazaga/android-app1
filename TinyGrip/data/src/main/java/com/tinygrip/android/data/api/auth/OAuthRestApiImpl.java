@@ -3,6 +3,7 @@ package com.tinygrip.android.data.api.auth;
 
 import android.content.Context;
 import com.tinygrip.android.data.SessionData;
+import com.tinygrip.android.data.api.ApiRequestInterceptor;
 import com.tinygrip.android.data.api.user.UserService;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
 import com.tinygrip.android.data.entity.user.OAuthEntity;
@@ -19,6 +20,7 @@ public class OAuthRestApiImpl implements OAuthRestApi {
     private final Context context;
     private final OAuthService oAuthService;
     private final SessionData sessionData;
+    private final ApiRequestInterceptor apiRequestInterceptor;
 
     /**
      * Constructor of the class
@@ -26,12 +28,13 @@ public class OAuthRestApiImpl implements OAuthRestApi {
      * @param context {@link Context}.
      * @param oAuthService {@link UserService}.
      */
-    public OAuthRestApiImpl(Context context, SessionData sessionData, OAuthService oAuthService) {
+    public OAuthRestApiImpl(Context context, ApiRequestInterceptor apiRequestInterceptor, SessionData sessionData, OAuthService oAuthService) {
         if (context == null || oAuthService == null) {
             throw new IllegalArgumentException("The constructor parameters cannot be null!!!");
         }
 
         this.context = context.getApplicationContext();
+        this.apiRequestInterceptor = apiRequestInterceptor;
         this.sessionData = sessionData;
         this.oAuthService = oAuthService;
     }
@@ -54,6 +57,9 @@ public class OAuthRestApiImpl implements OAuthRestApi {
                     try {
                         OAuthEntity oAuthEntity = performOAuth(userName, password);
                         if (oAuthEntity != null) {
+
+                            OAuthRestApiImpl.this.apiRequestInterceptor.setUserAuthToken(oAuthEntity.getAccessToken());
+
                             subscriber.onNext(oAuthEntity);
                             subscriber.onCompleted();
                         } else {

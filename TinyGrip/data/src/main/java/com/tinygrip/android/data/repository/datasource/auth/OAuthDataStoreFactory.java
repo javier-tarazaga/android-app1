@@ -2,13 +2,10 @@ package com.tinygrip.android.data.repository.datasource.auth;
 
 import android.content.Context;
 import com.tinygrip.android.data.SessionData;
+import com.tinygrip.android.data.api.ApiRequestInterceptor;
 import com.tinygrip.android.data.api.auth.OAuthRestApi;
 import com.tinygrip.android.data.api.auth.OAuthRestApiImpl;
 import com.tinygrip.android.data.api.auth.OAuthService;
-import com.tinygrip.android.data.cache.DiskCache;
-import com.tinygrip.android.data.cache.MemoryCache;
-import com.tinygrip.android.data.cache.auth.DiskOAuthCacheImpl;
-import com.tinygrip.android.data.cache.auth.MemoryOAuthCacheImpl;
 import com.tinygrip.android.data.cache.auth.OAuthCache;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,6 +18,7 @@ import javax.inject.Singleton;
 public class OAuthDataStoreFactory {
 
     private final Context context;
+    private final ApiRequestInterceptor requestInterceptor;
     private final SessionData sessionData;
     private final OAuthService oAuthService;
 
@@ -29,16 +27,19 @@ public class OAuthDataStoreFactory {
 
     @Inject
     public OAuthDataStoreFactory(Context context,
+                                 ApiRequestInterceptor requestInterceptor,
                                  SessionData sessionData,
                                  OAuthService oAuthService,
                                  @Named("memoryOAuthCache") OAuthCache memoryOAuthCache,
                                  @Named("diskOAuthCache") OAuthCache diskOAuthCache) {
+
         if (context == null || sessionData == null || oAuthService == null || memoryOAuthCache == null
             || diskOAuthCache == null) {
             throw new IllegalArgumentException("Constructor parameters cannot be null!!!");
         }
 
         this.context = context;
+        this.requestInterceptor = requestInterceptor;
         this.sessionData = sessionData;
         this.oAuthService = oAuthService;
         this.memoryOAuthCache = memoryOAuthCache;
@@ -88,7 +89,7 @@ public class OAuthDataStoreFactory {
      * Create {@link OAuthDataStore} to retrieve data from the api
      */
     private OAuthDataStore createCloudDataStore() {
-        OAuthRestApi oAuthRestApi = new OAuthRestApiImpl(this.context, this.sessionData, this.oAuthService);
+        OAuthRestApi oAuthRestApi = new OAuthRestApiImpl(this.context, this.requestInterceptor, this.sessionData, this.oAuthService);
 
         return new CloudOAuthDataStore(oAuthRestApi, this.memoryOAuthCache, this.diskOAuthCache);
     }

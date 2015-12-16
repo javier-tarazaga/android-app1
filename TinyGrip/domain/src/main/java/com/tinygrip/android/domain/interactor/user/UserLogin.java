@@ -6,6 +6,7 @@ import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
+import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.domain.repository.UserRepository;
 import com.tinygrip.android.domain.util.Patterns;
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ import rx.Subscriber;
 
 /**
  * This class is an implementation of {@link com.tinygrip.android.domain.interactor.UseCase} that represents a use case for
- * retrieving data related to an specific {@link com.tinygrip.android.domain.User} performing
+ * retrieving data related to an specific {@link User} performing
  * a login.
  */
 public class UserLogin extends UseCase {

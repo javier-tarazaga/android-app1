@@ -2,11 +2,10 @@
 package com.tinygrip.android.presentation.presenter.user;
 
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.User;
+import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.exception.user.InvalidEmailException;
-import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
 import com.tinygrip.android.domain.exception.user.InvalidRegisterConfirmPasswordException;
 import com.tinygrip.android.domain.exception.user.InvalidRegisterPasswordException;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;

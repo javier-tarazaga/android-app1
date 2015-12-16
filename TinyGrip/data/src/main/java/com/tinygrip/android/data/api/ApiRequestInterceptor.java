@@ -7,15 +7,10 @@ import retrofit.RequestInterceptor;
 @Singleton
 public final class ApiRequestInterceptor implements RequestInterceptor {
 
-    private String deviceAuthToken;
     private String userAuthToken;
 
     @Inject
     public ApiRequestInterceptor() {
-    }
-
-    public void setDeviceAuthToken(String deviceAuthToken) {
-        this.deviceAuthToken = deviceAuthToken;
     }
 
     public void setUserAuthToken(String userAuthToken) {
@@ -25,10 +20,11 @@ public final class ApiRequestInterceptor implements RequestInterceptor {
     @Override
     public void intercept(RequestFacade request) {
 
-        if (deviceAuthToken != null) {
-            request.addHeader("Cookie", deviceAuthToken + (userAuthToken != null ? ";" + userAuthToken : ""));
-            request.addHeader("Accept", "application/json");
-            request.addHeader("Content-Type", "application/json");
+        if (this.userAuthToken != null) {
+            request.addHeader("Authorization", "bearer " + userAuthToken);
         }
+
+        request.addHeader("Accept", "application/json");
+        request.addHeader("Content-Type", "application/json");
     }
 }

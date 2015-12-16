@@ -1,6 +1,8 @@
 
-package com.tinygrip.android.data.entity;
+package com.tinygrip.android.data.entity.area;
 
+import com.tinygrip.android.data.entity.LinkEntity;
+import com.tinygrip.android.data.entity.LocationEntity;
 import lombok.Getter;
 import lombok.Setter;
 

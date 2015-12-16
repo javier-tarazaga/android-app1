@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.domain;
+package com.tinygrip.android.domain.model;
 
 /**
  * Class that represents a Root in the domain layer. At the moment there is no useful information

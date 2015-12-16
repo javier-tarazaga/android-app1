@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.domain;
+package com.tinygrip.android.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;

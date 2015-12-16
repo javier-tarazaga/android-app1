@@ -2,14 +2,13 @@
 package com.tinygrip.android.presentation.view.navigation.presenter;
 
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.PreviewArea;
-import com.tinygrip.android.domain.User;
+import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
-import com.tinygrip.android.presentation.view.navigation.view.HomeView;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.navigation.view.ProfileView;
 import java.util.List;

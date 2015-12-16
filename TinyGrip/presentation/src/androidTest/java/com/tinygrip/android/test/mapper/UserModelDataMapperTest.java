@@ -1,7 +1,7 @@
 
 package com.tinygrip.android.test.mapper;
 
-import com.tinygrip.android.domain.User;
+import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 import com.tinygrip.android.presentation.model.UserModel;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class UserModelDataMapperTest extends TestCase {
     }
 
     public void testTransformUser() {
-        com.tinygrip.android.domain.User user = createFakeUser();
+        User user = createFakeUser();
         UserModel userModel = userModelDataMapper.transform(user);
 
         assertThat(userModel, is(instanceOf(UserModel.class)));
@@ -39,10 +39,10 @@ public class UserModelDataMapperTest extends TestCase {
     }
 
     public void testTransformUserCollection() {
-        com.tinygrip.android.domain.User mockUserOne = mock(com.tinygrip.android.domain.User.class);
-        com.tinygrip.android.domain.User mockUserTwo = mock(com.tinygrip.android.domain.User.class);
+        User mockUserOne = mock(User.class);
+        User mockUserTwo = mock(User.class);
 
-        List<com.tinygrip.android.domain.User> userList = new ArrayList<com.tinygrip.android.domain.User>(5);
+        List<User> userList = new ArrayList<User>(5);
         userList.add(mockUserOne);
         userList.add(mockUserTwo);
 
@@ -53,7 +53,7 @@ public class UserModelDataMapperTest extends TestCase {
         assertThat(userModelList.size(), is(2));
     }
 
-    private com.tinygrip.android.domain.User createFakeUser() {
+    private User createFakeUser() {
         User user = new User(FAKE_USER_ID);
         user.setFirstName(FAKE_FIRST_NAME);
         user.setLastName(FAKE_LAST_NAME);

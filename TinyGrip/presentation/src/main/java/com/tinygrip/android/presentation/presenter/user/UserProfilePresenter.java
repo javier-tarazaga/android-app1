@@ -1,7 +1,7 @@
 package com.tinygrip.android.presentation.presenter.user;
 
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.Root;
+import com.tinygrip.android.domain.model.Root;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;

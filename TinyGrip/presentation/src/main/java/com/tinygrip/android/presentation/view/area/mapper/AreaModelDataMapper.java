@@ -1,12 +1,8 @@
 
 package com.tinygrip.android.presentation.view.area.mapper;
 
-import com.tinygrip.android.domain.User;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.model.UserModel;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import javax.inject.Inject;
 
 /**

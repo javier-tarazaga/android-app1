@@ -5,7 +5,7 @@ import com.tinygrip.android.data.entity.RootEntity;
 import com.tinygrip.android.data.entity.mapper.RootEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.root.RootDataStore;
 import com.tinygrip.android.data.repository.datasource.root.RootDataStoreFactory;
-import com.tinygrip.android.domain.Root;
+import com.tinygrip.android.domain.model.Root;
 import com.tinygrip.android.domain.repository.RootRepository;
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -57,13 +57,16 @@ public class ApiModule {
     @Provides
     @Singleton
     RestAdapter providesRestAdapter(Endpoint endpoint,
-                                    ObjectMapper jacksonObjectMapper, Client client, ApiRequestInterceptor headers) {
+                                    ObjectMapper jacksonObjectMapper,
+                                    Client client,
+                                    ApiRequestInterceptor interceptor) {
 
         return new RestAdapter.Builder()
             .setClient(client)
             .setEndpoint(endpoint)
             .setConverter(new JacksonConverter(jacksonObjectMapper))
             .setLogLevel(RestAdapter.LogLevel.FULL)
+            .setRequestInterceptor(interceptor)
             .build();
     }
 
@@ -71,13 +74,15 @@ public class ApiModule {
     @Singleton
     @HttpRestAdapter
     RestAdapter providesHttpRestAdapter(ObjectMapper jacksonObjectMapper,
-                                        Client client) {
+                                        Client client,
+                                        ApiRequestInterceptor interceptor) {
 
         return new RestAdapter.Builder()
             .setClient(client)
             .setEndpoint(Endpoints.newFixedEndpoint("http://"))
             .setConverter(new JacksonConverter(jacksonObjectMapper))
             .setLogLevel(RestAdapter.LogLevel.FULL)
+            .setRequestInterceptor(interceptor)
             .build();
     }
 
@@ -85,13 +90,15 @@ public class ApiModule {
     @Singleton
     @HttpsRestAdapter
     RestAdapter providesHttpsRestAdapter(ObjectMapper jacksonObjectMapper,
-                                         Client client) {
+                                         Client client,
+                                         ApiRequestInterceptor interceptor) {
 
         return new RestAdapter.Builder()
             .setClient(client)
             .setEndpoint(Endpoints.newFixedEndpoint("https://"))
             .setConverter(new JacksonConverter(jacksonObjectMapper))
             .setLogLevel(RestAdapter.LogLevel.FULL)
+            .setRequestInterceptor(interceptor)
             .build();
     }
 

@@ -3,10 +3,8 @@ package com.tinygrip.android.data.api.root;
 
 import android.content.Context;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
-import com.tinygrip.android.data.entity.DataPageEntity;
 import com.tinygrip.android.data.entity.RootEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
-import com.tinygrip.android.domain.PreviewArea;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -59,11 +57,6 @@ public class RootRestApiImpl implements RootRestApi {
                 }
             }
         });
-    }
-
-    @Override
-    public Observable<DataPageEntity<PreviewArea>> previewAreasEntity() {
-        return null;
     }
 }
 

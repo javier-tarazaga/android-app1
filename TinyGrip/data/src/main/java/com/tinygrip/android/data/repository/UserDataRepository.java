@@ -8,7 +8,7 @@ import com.tinygrip.android.data.repository.datasource.auth.OAuthDataStore;
 import com.tinygrip.android.data.repository.datasource.auth.OAuthDataStoreFactory;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStore;
 import com.tinygrip.android.data.repository.datasource.user.UserDataStoreFactory;
-import com.tinygrip.android.domain.User;
+import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.domain.repository.UserRepository;
 import javax.inject.Inject;
 import javax.inject.Singleton;

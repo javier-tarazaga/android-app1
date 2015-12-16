@@ -9,7 +9,7 @@ import rx.Observable;
  */
 public interface RootDataStore {
   /**
-   * Get an {@link Observable} which will emit a List of {@link UserEntity}.
+   * Get an {@link Observable} which will emit a List of {@link RootEntity}.
    */
   Observable<RootEntity> rootEntity(String apiKey);
 }
