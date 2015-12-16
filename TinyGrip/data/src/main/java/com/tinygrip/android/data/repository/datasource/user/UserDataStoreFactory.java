@@ -82,6 +82,6 @@ public class UserDataStoreFactory {
     public UserDataStore createCloudDataStore() {
         UserRestApi userRestApi = new UserRestApiImpl(this.context, this.sessionData, this.userService);
 
-        return new CloudUserDataStore(userRestApi, this.memoryUserCache, this.diskUserCache);
+        return new CloudUserDataStore(userRestApi, this.memoryUserCache, this.diskUserCache, this.sessionData);
     }
 }
