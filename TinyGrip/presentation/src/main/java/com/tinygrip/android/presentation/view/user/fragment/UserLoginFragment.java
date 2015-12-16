@@ -14,8 +14,8 @@ import android.widget.RelativeLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.tinygrip.android.BuildConfig;
 import com.tinygrip.android.R;
+import com.tinygrip.android.presentation.EnvConfig;
 import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
@@ -117,8 +117,7 @@ public class UserLoginFragment extends BaseFragment implements UserLoginView {
     }
 
     private void setupUI() {
-
-        if (BuildConfig.DEBUG) {
+        if (EnvConfig.USE_TEST_CREDS) {
             this.setupTestCredentials();
         }
 
