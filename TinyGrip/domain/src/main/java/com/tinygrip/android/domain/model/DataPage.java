@@ -9,15 +9,18 @@ import lombok.Setter;
  */
 public class DataPage<T> {
 
-    @Getter
-    @Setter
-    private int totalAmount;
+    @Getter @Setter private int totalAmount;
 
     @Getter @Setter private T items;
 
     @Getter @Setter private Link next;
 
     @Getter @Setter private Link prev;
+
+    public DataPage(int totalAmount, T items) {
+        this.totalAmount = totalAmount;
+        this.items = items;
+    }
 
     @Override
     public String toString() {

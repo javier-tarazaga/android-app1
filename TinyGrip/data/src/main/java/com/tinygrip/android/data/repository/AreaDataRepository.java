@@ -1,14 +1,19 @@
 
 package com.tinygrip.android.data.repository;
 
+import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.mapper.AreaEntityDataMapper;
 import com.tinygrip.android.data.entity.mapper.RootEntityDataMapper;
-import com.tinygrip.android.data.repository.datasource.root.RootDataStoreFactory;
+import com.tinygrip.android.data.repository.datasource.area.AreaDataStore;
+import com.tinygrip.android.data.repository.datasource.area.AreaDataStoreFactory;
+import com.tinygrip.android.domain.model.DataPage;
 import com.tinygrip.android.domain.model.PreviewArea;
 import com.tinygrip.android.domain.repository.AreaRepository;
 import com.tinygrip.android.domain.repository.RootRepository;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * {@link AreaDataRepository} for retrieving Area data.
@@ -16,25 +21,31 @@ import rx.Observable;
 @Singleton
 public class AreaDataRepository implements AreaRepository {
 
-    private final RootDataStoreFactory dataStoreFactory;
-    private final RootEntityDataMapper entityDataMapper;
+    private final AreaDataStoreFactory dataStoreFactory;
+    private final AreaEntityDataMapper entityDataMapper;
 
     /**
      * Constructs a {@link RootRepository}.
      *
      * @param dataStoreFactory A factory to construct different data source implementations.
-     * @param rootEntityDataMapper {@link RootEntityDataMapper}.
+     * @param areaEntityDataMapper {@link RootEntityDataMapper}.
      */
     @Inject
-    public AreaDataRepository(RootDataStoreFactory dataStoreFactory, RootEntityDataMapper rootEntityDataMapper) {
+    public AreaDataRepository(AreaDataStoreFactory dataStoreFactory, AreaEntityDataMapper areaEntityDataMapper) {
         this.dataStoreFactory = dataStoreFactory;
-        this.entityDataMapper = rootEntityDataMapper;
+        this.entityDataMapper = areaEntityDataMapper;
     }
 
     @SuppressWarnings("Convert2MethodRef")
     @Override
-    public Observable<PreviewArea> previewAreas() {
-        // Do not implement it for now
-        return null;
+    public Observable<DataPage<PreviewArea>> previewAreas() {
+        final AreaDataStore areaDataStore = this.dataStoreFactory.create();
+        return areaDataStore.previewAreas()
+                            .map(new Func1<DataPageEntity<PreviewArea>, DataPage<PreviewArea>>() {
+                                @Override
+                                public DataPage<PreviewArea> call(DataPageEntity<PreviewArea> previewAreas) {
+                                    return AreaDataRepository.this.entityDataMapper.transform(previewAreas);
+                                }
+                            });
     }
 }
