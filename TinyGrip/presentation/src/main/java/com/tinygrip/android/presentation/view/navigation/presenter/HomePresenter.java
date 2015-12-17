@@ -5,16 +5,20 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.tinygrip.android.domain.model.PreviewArea;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
+import com.tinygrip.android.domain.interactor.UseCase;
+import com.tinygrip.android.domain.interactor.area.GetPreviewAreas;
+import com.tinygrip.android.domain.model.DataPage;
+import com.tinygrip.android.domain.model.PreviewArea;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.navigation.view.HomeView;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * {@link Presenter} that controls communication between views and models of the presentation
@@ -26,12 +30,12 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     private GoogleMap map;
     private HomeView viewHomeView;
 
-    //private final UseCase getUserListUseCase;
+    private final UseCase getPreviewAreasUseCase;
     //private final UserModelDataMapper userModelDataMapper;
 
     @Inject
-    public HomePresenter() {
-        //this.getUserListUseCase = getUserListUserCase;
+    public HomePresenter(@Named("getPreviewAreas") GetPreviewAreas getPreviewAreasUseCase) {
+        this.getPreviewAreasUseCase = getPreviewAreasUseCase;
         //this.userModelDataMapper = userModelDataMapper;
     }
 
@@ -47,14 +51,14 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
 
     @Override
     public void destroy() {
-        //this.getUserListUseCase.unsubscribe();
+        this.getPreviewAreasUseCase.unsubscribe();
     }
 
     /**
-     * Initializes the presenter by start retrieving the user list.
+     * Initializes the presenter by start retrieving the preview areas list.
      */
     public void initialize() {
-        this.loadUserList();
+        this.loadPreviewAreas();
         this.loadMap();
     }
 
@@ -66,12 +70,12 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     }
 
     /**
-     * Loads all users.
+     * Loads all Preview areas.
      */
-    private void loadUserList() {
+    private void loadPreviewAreas() {
         this.hideViewRetry();
         this.showViewLoading();
-        this.getAreaList();
+        this.getPreviewAreaList();
     }
 
     public void onCreateNewAreaClicked() {
@@ -100,8 +104,8 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
         this.viewHomeView.showError(errorMessage);
     }
 
-    private void getAreaList() {
-        //this.getUserListUseCase.execute(new UserListSubscriber());
+    private void getPreviewAreaList() {
+        this.getPreviewAreasUseCase.execute(new GetPreviewAreasSubscriber());
     }
 
     @Override
@@ -118,7 +122,7 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
         });
     }
 
-    private final class GetPrefiewAreasSubscriber extends DefaultSubscriber<PreviewArea> {
+    private final class GetPreviewAreasSubscriber extends DefaultSubscriber<DataPage<PreviewArea>> {
 
         @Override
         public void onCompleted() {
@@ -133,8 +137,10 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
         }
 
         @Override
-        public void onNext(PreviewArea previewArea) {
-            super.onNext(previewArea);
+        public void onNext(DataPage<PreviewArea> previewAreaDataPage) {
+            super.onNext(previewAreaDataPage);
+
+
         }
     }
 }
