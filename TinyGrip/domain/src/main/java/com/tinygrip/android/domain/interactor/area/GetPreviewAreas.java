@@ -5,7 +5,7 @@ import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.domain.model.PreviewArea;
-import com.tinygrip.android.domain.repository.RootRepository;
+import com.tinygrip.android.domain.repository.AreaRepository;
 import javax.inject.Inject;
 import rx.Observable;
 
@@ -15,20 +15,18 @@ import rx.Observable;
  */
 public class GetPreviewAreas extends UseCase {
 
-    private final RootRepository rootRepository;
+    private final AreaRepository areaRepository;
 
     @Inject
-    public GetPreviewAreas(RootRepository rootRepository,
+    public GetPreviewAreas(AreaRepository areaRepository,
                            ThreadExecutor threadExecutor,
                            PostExecutionThread postExecutionThread) {
         super(threadExecutor, postExecutionThread);
-        this.rootRepository = rootRepository;
+        this.areaRepository = areaRepository;
     }
 
     @Override
     public Observable buildUseCaseObservable() {
-
-        // Should never be possible to perform a login locally
-        throw new UnsupportedOperationException("Operation is not available!!!");
+        return this.areaRepository.previewAreas();
     }
 }
