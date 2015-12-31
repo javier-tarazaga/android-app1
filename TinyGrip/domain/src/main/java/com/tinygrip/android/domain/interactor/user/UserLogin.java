@@ -8,7 +8,6 @@ import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.domain.model.User;
 import com.tinygrip.android.domain.repository.UserRepository;
-import com.tinygrip.android.domain.util.Patterns;
 import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscriber;
@@ -59,7 +58,7 @@ public class UserLogin extends UseCase {
         return Observable.create(new Observable.OnSubscribe<Object>() {
             @Override
             public void call(Subscriber<? super Object> subscriber) {
-                if (UserLogin.this.email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(UserLogin.this.email).matches()) {
+                if (UserLogin.this.email.isEmpty()) {
                     subscriber.onError(new InvalidEmailException());
                 } else if (UserLogin.this.password.isEmpty()) {
                     subscriber.onError(new InvalidLoginPasswordException());
