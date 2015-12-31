@@ -44,29 +44,22 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public Observable<User> user(final String userName, final String password) {
-
         final OAuthDataStore oAuthDataStore = this.oAuthDataStoreFactory.create();
         final UserDataStore userDataStore = this.userDataStoreFactory.create();
 
-        return userDataStore.userEntity()
-                     .flatMap(new Func1<UserEntity, Observable<OAuthEntity>>() {
-                         @Override
-                         public Observable<OAuthEntity> call(UserEntity userEntity) {
-                             return oAuthDataStore.performAuth(userName, password);
-                         }
-                     })
-                     .flatMap(new Func1<OAuthEntity, Observable<UserEntity>>() {
-                         @Override
-                         public Observable<UserEntity> call(OAuthEntity oAuthEntity) {
-                            return userDataStore.userEntity();
-                         }
-                     })
-                     .map(new Func1<UserEntity, User>() {
-                         @Override
-                         public User call(UserEntity userEntity) {
-                             return userEntityDataMapper.transform(userEntity);
-                         }
-                     });
+        return oAuthDataStore.performAuth(userName, password)
+                             .flatMap(new Func1<OAuthEntity, Observable<UserEntity>>() {
+                                 @Override
+                                 public Observable<UserEntity> call(OAuthEntity oAuthEntity) {
+                                     return userDataStore.userEntity();
+                                 }
+                             })
+                             .map(new Func1<UserEntity, User>() {
+                                 @Override
+                                 public User call(UserEntity userEntity) {
+                                     return userEntityDataMapper.transform(userEntity);
+                                 }
+                             });
     }
 
     @Override

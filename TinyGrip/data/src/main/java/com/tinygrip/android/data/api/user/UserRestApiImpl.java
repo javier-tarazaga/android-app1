@@ -37,7 +37,7 @@ public class UserRestApiImpl implements UserRestApi {
     }
 
     private UserEntity getUserDataFromApi() throws MalformedURLException {
-        String apiUrl = this.sessionData.getRoot().getUser().getHref();
+        String apiUrl = this.sessionData.getRoot().getAuth().getUser().getHref();
 
         apiUrl = apiUrl.replace("https://", "").replace("http://", "");
 

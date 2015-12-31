@@ -3,7 +3,6 @@ package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
 import com.tinygrip.android.data.entity.mapper.AreaEntityDataMapper;
-import com.tinygrip.android.data.entity.mapper.RootEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStore;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStoreFactory;
 import com.tinygrip.android.domain.model.DataPage;
@@ -28,7 +27,7 @@ public class AreaDataRepository implements AreaRepository {
      * Constructs a {@link RootRepository}.
      *
      * @param dataStoreFactory A factory to construct different data source implementations.
-     * @param areaEntityDataMapper {@link RootEntityDataMapper}.
+     * @param areaEntityDataMapper {@link AreaEntityDataMapper}.
      */
     @Inject
     public AreaDataRepository(AreaDataStoreFactory dataStoreFactory, AreaEntityDataMapper areaEntityDataMapper) {

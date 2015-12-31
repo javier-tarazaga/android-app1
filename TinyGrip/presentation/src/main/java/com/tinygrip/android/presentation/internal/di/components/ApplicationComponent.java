@@ -5,6 +5,7 @@ import android.content.Context;
 import com.tinygrip.android.data.DataModule;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
+import com.tinygrip.android.domain.repository.AreaRepository;
 import com.tinygrip.android.domain.repository.RootRepository;
 import com.tinygrip.android.domain.repository.UserRepository;
 import com.tinygrip.android.presentation.internal.di.modules.ApplicationModule;
@@ -17,20 +18,23 @@ import javax.inject.Singleton;
  * A component whose lifetime is the life of the application.
  */
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
-@Component(modules = { ApplicationModule.class, DataModule.class } )
+@Component(modules = { ApplicationModule.class, DataModule.class })
 public interface ApplicationComponent {
-  void inject(BaseActivity baseActivity);
 
-  //Exposed to sub-graphs.
-  Context context();
+    void inject(BaseActivity baseActivity);
 
-  ApplicationRouter navigator();
+    //Exposed to sub-graphs.
+    Context context();
 
-  ThreadExecutor threadExecutor();
+    ApplicationRouter navigator();
 
-  PostExecutionThread postExecutionThread();
+    ThreadExecutor threadExecutor();
 
-  UserRepository userRepository();
+    PostExecutionThread postExecutionThread();
 
-  RootRepository rootRepository();
+    UserRepository userRepository();
+
+    RootRepository rootRepository();
+
+    AreaRepository areaRepository();
 }

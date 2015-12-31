@@ -36,7 +36,7 @@ public class AreaRestApiImpl implements AreaRestApi {
         this.areaService = areaService;
     }
     private DataPageEntity<PreviewArea> getPreviewAreasFromApi() throws MalformedURLException {
-        String apiUrl = this.sessionData.getRoot().getUser().getHref();
+        String apiUrl = this.sessionData.getRoot().getPreviewAreas().getHref();
 
         return this.areaService.previewAreasPageEntitySync(apiUrl);
     }

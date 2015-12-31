@@ -8,10 +8,12 @@ import com.tinygrip.android.data.cache.root.RootCache;
 import com.tinygrip.android.data.cache.user.MemoryUserCacheImpl;
 import com.tinygrip.android.data.cache.user.UserCache;
 import com.tinygrip.android.data.executor.JobExecutor;
+import com.tinygrip.android.data.repository.AreaDataRepository;
 import com.tinygrip.android.data.repository.RootDataRepository;
 import com.tinygrip.android.data.repository.UserDataRepository;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
+import com.tinygrip.android.domain.repository.AreaRepository;
 import com.tinygrip.android.domain.repository.RootRepository;
 import com.tinygrip.android.domain.repository.UserRepository;
 import com.tinygrip.android.presentation.AndroidApplication;
@@ -85,5 +87,11 @@ public class ApplicationModule {
     @Singleton
     RootRepository provideRootRepository(RootDataRepository rootDataRepository) {
         return rootDataRepository;
+    }
+
+    @Provides
+    @Singleton
+    AreaRepository providesAreaRepository(AreaDataRepository areaRepository) {
+        return areaRepository;
     }
 }

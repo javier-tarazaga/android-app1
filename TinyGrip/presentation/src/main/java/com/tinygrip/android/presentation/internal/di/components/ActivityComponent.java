@@ -14,7 +14,7 @@ import dagger.Component;
  * {@link ActivityScope}
  */
 @ActivityScope
-@Component(dependencies = com.tinygrip.android.presentation.internal.di.components.ApplicationComponent.class, modules = ActivityModule.class)
+@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
   //Exposed to sub-graphs.
   Activity activity();

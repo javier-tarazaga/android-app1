@@ -8,18 +8,21 @@ import com.tinygrip.android.presentation.internal.di.modules.ActivityModule;
 import com.tinygrip.android.presentation.view.area.fragment.AreaFragment;
 import com.tinygrip.android.presentation.view.area.fragment.NewAreaStep1Fragment;
 import com.tinygrip.android.presentation.view.area.fragment.NewAreaStep2Fragment;
-import com.tinygrip.android.presentation.view.navigation.fragment.HomeFragment;
 import dagger.Component;
 
 /**
  * A scope {@link ActivityScope} component.
  * Injects Area specific Fragments.
  */
-@ActivityScope @Component(dependencies = { ApplicationComponent.class }, modules = {
-    ActivityModule.class, AreaModule.class
-}) public interface AreaComponent extends ActivityComponent {
-  void inject(NewAreaStep1Fragment newAreaStep1Fragment);
-  void inject(NewAreaStep2Fragment newAreaStep2Fragment);
-  void inject(AreaFragment areaFragment);
-  void inject(HomeFragment homeFragment);
+@ActivityScope
+@Component(dependencies = { ApplicationComponent.class }, modules = {
+    ActivityModule.class
+})
+public interface AreaComponent extends ActivityComponent {
+
+    void inject(NewAreaStep1Fragment newAreaStep1Fragment);
+
+    void inject(NewAreaStep2Fragment newAreaStep2Fragment);
+
+    void inject(AreaFragment areaFragment);
 }

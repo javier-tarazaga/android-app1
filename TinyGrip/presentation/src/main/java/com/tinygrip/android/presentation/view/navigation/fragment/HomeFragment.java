@@ -23,143 +23,163 @@ import javax.inject.Inject;
  */
 public class HomeFragment extends BaseFragment implements HomeView {
 
-  /**
-   * Interface for listening user events.
-   */
-  public interface HomeListener {
-    void onNewAreaClicked();
-  }
+    /**
+     * Interface for listening user events.
+     */
+    public interface HomeListener {
 
-  @Inject HomePresenter homePresenter;
-
-  @Bind(R.id.map_view) MapView mapView;
-  //@Bind(R.id.relative_retry) RelativeLayout rl_retry;
-  //@Bind(R.id.button_retry) Button bt_retry;
-
-  private HomeListener homeListener;
-
-  public HomeFragment() {
-    super();
-  }
-
-  public static HomeFragment newInstance() {
-    HomeFragment homeFragment = new HomeFragment();
-    Bundle args = new Bundle();
-    homeFragment.setArguments(args);
-    return homeFragment;
-  }
-
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    if (activity instanceof HomeListener) {
-      this.homeListener = (HomeListener) activity;
+        void onNewAreaClicked();
     }
-  }
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
+    @Inject
+    HomePresenter homePresenter;
 
-    View fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
-    ButterKnife.bind(this, fragmentView);
-    setupUI(savedInstanceState);
+    @Bind(R.id.map_view)
+    MapView mapView;
 
-    return fragmentView;
-  }
+    //@Bind(R.id.relative_retry) RelativeLayout rl_retry;
+    //@Bind(R.id.button_retry) Button bt_retry;
 
-  @Override public void onActivityCreated(Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
-    this.initialize();
-    this.loadMap();
-    this.loadUserList();
-  }
+    private HomeListener homeListener;
 
-  @Override public void onResume() {
-    super.onResume();
-    this.mapView.onResume();
-    this.homePresenter.resume();
-  }
-
-  @Override public void onPause() {
-    super.onPause();
-    this.mapView.onPause();
-    this.homePresenter.pause();
-  }
-
-  @Override public void onDestroy() {
-    super.onDestroy();
-    this.homePresenter.destroy();
-  }
-
-  @Override public void onDestroyView() {
-    super.onDestroyView();
-    this.mapView.onDestroy();
-    ButterKnife.unbind(this);
-  }
-
-  @Override public void onLowMemory() {
-    super.onLowMemory();
-    mapView.onLowMemory();
-  }
-
-  private void initialize() {
-    this.getComponent(MainActivityComponent.class).inject(this);
-    this.homePresenter.setView(this);
-  }
-
-  private void setupUI(Bundle savedInstanceState) {
-    mapView.onCreate(savedInstanceState);
-  }
-
-  @Override public void showLoading() {
-    //this.rl_progress.setVisibility(View.VISIBLE);
-  }
-
-  @Override public void hideLoading() {
-    //this.rl_progress.setVisibility(View.GONE);
-  }
-
-  @Override public void showRetry() {
-    //this.rl_retry.setVisibility(View.VISIBLE);
-  }
-
-  @Override public void hideRetry() {
-    //this.rl_retry.setVisibility(View.GONE);
-  }
-
-  @Override public void createNewArea() {
-    if (this.homeListener != null) {
-      this.homeListener.onNewAreaClicked();
+    public HomeFragment() {
+        super();
     }
-  }
 
-  @Override public void showError(String message) {
-    this.showToastMessage(message);
-  }
+    public static HomeFragment newInstance() {
+        HomeFragment homeFragment = new HomeFragment();
+        Bundle args = new Bundle();
+        homeFragment.setArguments(args);
+        return homeFragment;
+    }
 
-  @Override public Context getContext() {
-    return this.getActivity().getApplicationContext();
-  }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof HomeListener) {
+            this.homeListener = (HomeListener) activity;
+        }
+    }
 
-  @OnClick(R.id.fab_new_area) void onNewAreaClicked() {
-    this.homePresenter.onCreateNewAreaClicked();
-  }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-  /**
-   * Load Google Maps
-   */
-  private void loadMap() {
-    // Gets to GoogleMap from the MapView and does initialization stuff
-    this.mapView.getMapAsync(this.homePresenter);
-  }
+        View fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this, fragmentView);
+        setupUI(savedInstanceState);
 
-  /**
-   * Loads all users.
-   */
-  private void loadUserList() {
-    //this.homePresenter.initialize();
-  }
+        return fragmentView;
+    }
 
-  //@OnClick(R.id.button_retry) void onButtonRetryClick() {
-  //  HomeFragment.this.loadUserList();
-  //}
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        this.initialize();
+        this.loadMap();
+        this.loadUserList();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.mapView.onResume();
+        this.homePresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.mapView.onPause();
+        this.homePresenter.pause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.homePresenter.destroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.mapView.onDestroy();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    private void initialize() {
+        this.getComponent(MainActivityComponent.class).inject(this);
+        this.homePresenter.setView(this);
+    }
+
+    private void setupUI(Bundle savedInstanceState) {
+        mapView.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void showLoading() {
+        //this.rl_progress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        //this.rl_progress.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRetry() {
+        //this.rl_retry.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideRetry() {
+        //this.rl_retry.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void createNewArea() {
+        if (this.homeListener != null) {
+            this.homeListener.onNewAreaClicked();
+        }
+    }
+
+    @Override
+    public void showError(String message) {
+        this.showToastMessage(message);
+    }
+
+    @Override
+    public Context getContext() {
+        return this.getActivity().getApplicationContext();
+    }
+
+    @OnClick(R.id.fab_new_area)
+    void onNewAreaClicked() {
+        this.homePresenter.onCreateNewAreaClicked();
+    }
+
+    /**
+     * Load Google Maps
+     */
+    private void loadMap() {
+        // Gets to GoogleMap from the MapView and does initialization stuff
+        this.mapView.getMapAsync(this.homePresenter);
+    }
+
+    /**
+     * Loads all users.
+     */
+    private void loadUserList() {
+        //this.homePresenter.initialize();
+    }
+
+    //@OnClick(R.id.button_retry) void onButtonRetryClick() {
+    //  HomeFragment.this.loadUserList();
+    //}
 }

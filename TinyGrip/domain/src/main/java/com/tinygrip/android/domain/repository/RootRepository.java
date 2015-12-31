@@ -13,5 +13,5 @@ public interface RootRepository {
   /**
    * Get an {@link Observable} which will emit a {@link Root}.
    */
-  Observable<Root> root(String apiKey);
+  Observable<Void> root(String apiKey);
 }

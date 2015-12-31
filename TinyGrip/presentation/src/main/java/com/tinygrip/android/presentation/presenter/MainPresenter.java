@@ -99,14 +99,11 @@ public class MainPresenter extends DefaultSubscriber<Root> implements Presenter 
 
         @Override
         public void onError(Throwable e) {
+            super.onError(e);
+
             MainPresenter.this.hideViewLoading();
             MainPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
             MainPresenter.this.showViewRetry();
-        }
-
-        @Override
-        public void onNext(Root root) {
-            // TODO
         }
     }
 }

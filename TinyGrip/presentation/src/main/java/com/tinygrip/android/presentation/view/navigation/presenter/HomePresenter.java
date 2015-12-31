@@ -18,7 +18,6 @@ import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.navigation.view.HomeView;
 import java.util.List;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * {@link Presenter} that controls communication between views and models of the presentation
@@ -34,7 +33,7 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     //private final UserModelDataMapper userModelDataMapper;
 
     @Inject
-    public HomePresenter(@Named("getPreviewAreas") GetPreviewAreas getPreviewAreasUseCase) {
+    public HomePresenter(GetPreviewAreas getPreviewAreasUseCase) {
         this.getPreviewAreasUseCase = getPreviewAreasUseCase;
         //this.userModelDataMapper = userModelDataMapper;
     }
@@ -58,7 +57,7 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
      * Initializes the presenter by start retrieving the preview areas list.
      */
     public void initialize() {
-        this.loadPreviewAreas();
+        //this.loadPreviewAreas();
         this.loadMap();
     }
 
@@ -104,6 +103,11 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
         this.viewHomeView.showError(errorMessage);
     }
 
+    private void showPreviewAreasInMap(DataPage<PreviewArea> previewAreaDataPage) {
+
+    }
+
+
     private void getPreviewAreaList() {
         this.getPreviewAreasUseCase.execute(new GetPreviewAreasSubscriber());
     }
@@ -131,6 +135,8 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
 
         @Override
         public void onError(Throwable e) {
+            super.onError(e);
+
             HomePresenter.this.hideViewLoading();
             HomePresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
             HomePresenter.this.showViewRetry();
@@ -140,7 +146,7 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
         public void onNext(DataPage<PreviewArea> previewAreaDataPage) {
             super.onNext(previewAreaDataPage);
 
-
+            HomePresenter.this.showPreviewAreasInMap(previewAreaDataPage);
         }
     }
 }

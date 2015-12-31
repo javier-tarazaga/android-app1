@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.squareup.okhttp.OkHttpClient;
+import com.tinygrip.android.data.api.area.AreaService;
 import com.tinygrip.android.data.api.auth.OAuthService;
 import com.tinygrip.android.data.api.root.RootService;
 import com.tinygrip.android.data.api.user.UserService;
@@ -118,5 +119,12 @@ public class ApiModule {
     @Singleton
     UserService providesUserService(@HttpRestAdapter RestAdapter restAdapter) {
         return restAdapter.create(UserService.class);
+    }
+
+
+    @Provides
+    @Singleton
+    AreaService providesAreaService(@HttpRestAdapter RestAdapter restAdapter) {
+        return restAdapter.create(AreaService.class);
     }
 }
