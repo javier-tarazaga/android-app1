@@ -5,9 +5,9 @@ import android.content.Context;
 import com.tinygrip.android.data.SessionData;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
 import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
 import com.tinygrip.android.data.exception.NoNetworkConnectionException;
-import com.tinygrip.android.domain.model.PreviewArea;
 import java.net.MalformedURLException;
 import rx.Observable;
 import rx.Subscriber;
@@ -35,21 +35,23 @@ public class AreaRestApiImpl implements AreaRestApi {
         this.sessionData = sessionData;
         this.areaService = areaService;
     }
-    private DataPageEntity<PreviewArea> getPreviewAreasFromApi() throws MalformedURLException {
+    private DataPageEntity<PreviewAreaEntity> getPreviewAreasFromApi() throws MalformedURLException {
         String apiUrl = this.sessionData.getRoot().getPreviewAreas().getHref();
+
+        apiUrl = apiUrl.replace("http://", "");
 
         return this.areaService.previewAreasPageEntitySync(apiUrl);
     }
 
     @Override
-    public Observable<DataPageEntity<PreviewArea>> previewAreasEntity() {
-        return Observable.create(new Observable.OnSubscribe<DataPageEntity<PreviewArea>>() {
+    public Observable<DataPageEntity<PreviewAreaEntity>> previewAreasEntity() {
+        return Observable.create(new Observable.OnSubscribe<DataPageEntity<PreviewAreaEntity>>() {
             @Override
-            public void call(Subscriber<? super DataPageEntity<PreviewArea>> subscriber) {
+            public void call(Subscriber<? super DataPageEntity<PreviewAreaEntity>> subscriber) {
 
                 if (NetworkConnectionHelper.isThereInternetConnection(AreaRestApiImpl.this.context)) {
                     try {
-                        DataPageEntity<PreviewArea> previewAreas = getPreviewAreasFromApi();
+                        DataPageEntity<PreviewAreaEntity> previewAreas = getPreviewAreasFromApi();
                         if (previewAreas != null) {
                             subscriber.onNext(previewAreas);
                             subscriber.onCompleted();

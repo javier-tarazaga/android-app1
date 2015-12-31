@@ -76,8 +76,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         this.initialize();
-        this.loadMap();
-        this.loadUserList();
     }
 
     @Override
@@ -116,6 +114,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     private void initialize() {
         this.getComponent(MainActivityComponent.class).inject(this);
         this.homePresenter.setView(this);
+        this.homePresenter.initialize();
     }
 
     private void setupUI(Bundle savedInstanceState) {
@@ -167,19 +166,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
     /**
      * Load Google Maps
      */
-    private void loadMap() {
+    @Override
+    public void initializeMap() {
         // Gets to GoogleMap from the MapView and does initialization stuff
         this.mapView.getMapAsync(this.homePresenter);
     }
-
-    /**
-     * Loads all users.
-     */
-    private void loadUserList() {
-        //this.homePresenter.initialize();
-    }
-
-    //@OnClick(R.id.button_retry) void onButtonRetryClick() {
-    //  HomeFragment.this.loadUserList();
-    //}
 }

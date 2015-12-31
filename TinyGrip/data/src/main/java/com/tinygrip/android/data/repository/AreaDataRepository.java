@@ -2,6 +2,7 @@
 package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.data.entity.mapper.AreaEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStore;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStoreFactory;
@@ -40,9 +41,9 @@ public class AreaDataRepository implements AreaRepository {
     public Observable<DataPage<PreviewArea>> previewAreas() {
         final AreaDataStore areaDataStore = this.dataStoreFactory.create();
         return areaDataStore.previewAreas()
-                            .map(new Func1<DataPageEntity<PreviewArea>, DataPage<PreviewArea>>() {
+                            .map(new Func1<DataPageEntity<PreviewAreaEntity>, DataPage<PreviewArea>>() {
                                 @Override
-                                public DataPage<PreviewArea> call(DataPageEntity<PreviewArea> previewAreas) {
+                                public DataPage<PreviewArea> call(DataPageEntity<PreviewAreaEntity> previewAreas) {
                                     return AreaDataRepository.this.entityDataMapper.transform(previewAreas);
                                 }
                             });

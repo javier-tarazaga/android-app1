@@ -2,6 +2,7 @@
 package com.tinygrip.android.data.api.area;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.domain.model.PreviewArea;
 import rx.Observable;
 
@@ -12,5 +13,5 @@ public interface AreaRestApi {
   /**
    * Retrieves an {@link Observable} which will emit a {@link DataPageEntity<PreviewArea>}.
    */
-  Observable<DataPageEntity<PreviewArea>> previewAreasEntity();
+  Observable<DataPageEntity<PreviewAreaEntity>> previewAreasEntity();
 }

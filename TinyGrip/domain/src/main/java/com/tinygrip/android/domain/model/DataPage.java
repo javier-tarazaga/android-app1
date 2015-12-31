@@ -1,5 +1,6 @@
 package com.tinygrip.android.domain.model;
 
+import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,13 +12,13 @@ public class DataPage<T> {
 
     @Getter @Setter private int totalAmount;
 
-    @Getter @Setter private T items;
+    @Getter @Setter private Collection<T> items;
 
     @Getter @Setter private Link next;
 
     @Getter @Setter private Link prev;
 
-    public DataPage(int totalAmount, T items) {
+    public DataPage(int totalAmount, Collection<T> items) {
         this.totalAmount = totalAmount;
         this.items = items;
     }

@@ -1,41 +1,57 @@
 
 package com.tinygrip.android.domain.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * Class that represents a User in the domain layer.
  */
 public class PreviewArea {
 
-    @Getter private final int userId;
+    private final String name;
+    private float rating;
+    private Location location;
+    private Link self;
 
-    public PreviewArea(int userId) {
-        this.userId = userId;
+    public PreviewArea(String name) {
+        this.name = name;
     }
 
-    @Getter @Setter private String coverUrl;
+    public String getName() {
+        return name;
+    }
 
-    @Getter @Setter private String fullName;
+    public float getRating() {
+        return rating;
+    }
 
-    @Getter @Setter private String email;
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 
-    @Getter @Setter private String description;
+    public Location getLocation() {
+        return location;
+    }
 
-    @Getter @Setter private int followers;
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Link getSelf() {
+        return self;
+    }
+
+    public void setSelf(Link self) {
+        this.self = self;
+    }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("***** User Details *****\n");
-        stringBuilder.append("id=" + this.getUserId() + "\n");
-        stringBuilder.append("cover url=" + this.getCoverUrl() + "\n");
-        stringBuilder.append("fullname=" + this.getFullName() + "\n");
-        stringBuilder.append("email=" + this.getEmail() + "\n");
-        stringBuilder.append("description=" + this.getDescription() + "\n");
-        stringBuilder.append("followers=" + this.getFollowers() + "\n");
+        stringBuilder.append("***** Preview Area Entity Details *****\n");
+        stringBuilder.append("name=" + this.getName() + "\n");
+        stringBuilder.append("rating=" + this.getRating() + "\n");
+        stringBuilder.append("location=" + this.getLocation() + "\n");
+        stringBuilder.append("self=" + this.getSelf() + "\n");
         stringBuilder.append("*******************************");
 
         return stringBuilder.toString();

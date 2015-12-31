@@ -1,7 +1,7 @@
 package com.tinygrip.android.data.api.area;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
@@ -11,5 +11,5 @@ import retrofit.http.Path;
 public interface AreaService {
 
     @GET("/{previewAreasHref}")
-    DataPageEntity<PreviewArea> previewAreasPageEntitySync(@Path(value = "previewAreasHref", encode = false) String previewAreasHref);
+    DataPageEntity<PreviewAreaEntity> previewAreasPageEntitySync(@Path(value = "previewAreasHref", encode = false) String previewAreasHref);
 }

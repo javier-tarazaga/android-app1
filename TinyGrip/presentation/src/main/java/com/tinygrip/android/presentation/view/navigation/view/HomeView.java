@@ -12,4 +12,6 @@ public interface HomeView extends LoadDataView {
    * Start the process of creating a new Area
    */
   void createNewArea();
+
+  void initializeMap();
 }

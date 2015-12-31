@@ -1,6 +1,7 @@
 
 package com.tinygrip.android.data.entity;
 
+import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ public class DataPageEntity<T> {
 
     @Getter @Setter private int totalAmount;
 
-    @Getter @Setter private T items;
+    @Getter @Setter private Collection<T> items;
 
     @Getter @Setter private LinkEntity next;
 

@@ -57,15 +57,15 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
      * Initializes the presenter by start retrieving the preview areas list.
      */
     public void initialize() {
-        //this.loadPreviewAreas();
-        this.loadMap();
+        this.initializeMap();
+        this.loadPreviewAreas();
     }
 
     /**
      * Loads and initializes the map
      */
-    private void loadMap() {
-
+    private void initializeMap() {
+        this.viewHomeView.initializeMap();
     }
 
     /**
