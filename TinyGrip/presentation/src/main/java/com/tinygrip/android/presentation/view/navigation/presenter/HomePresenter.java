@@ -5,6 +5,8 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
@@ -104,9 +106,13 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     }
 
     private void showPreviewAreasInMap(DataPage<PreviewArea> previewAreaDataPage) {
-
+        for (PreviewArea area : previewAreaDataPage.getItems()) {
+            this.map.addMarker(new MarkerOptions()
+                                   .position(
+                                       new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
+                                   .title(area.getName()));
+        }
     }
-
 
     private void getPreviewAreaList() {
         this.getPreviewAreasUseCase.execute(new GetPreviewAreasSubscriber());

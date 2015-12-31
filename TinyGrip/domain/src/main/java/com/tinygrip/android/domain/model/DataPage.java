@@ -1,8 +1,6 @@
 package com.tinygrip.android.domain.model;
 
 import java.util.Collection;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Model in the domain layer representing a data page. This is a generic class for
@@ -10,17 +8,46 @@ import lombok.Setter;
  */
 public class DataPage<T> {
 
-    @Getter @Setter private int totalAmount;
-
-    @Getter @Setter private Collection<T> items;
-
-    @Getter @Setter private Link next;
-
-    @Getter @Setter private Link prev;
+    private int totalAmount;
+    private Collection<T> items;
+    private Link next;
+    private Link prev;
 
     public DataPage(int totalAmount, Collection<T> items) {
         this.totalAmount = totalAmount;
         this.items = items;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Collection<T> getItems() {
+        return items;
+    }
+
+    public void setItems(Collection<T> items) {
+        this.items = items;
+    }
+
+    public Link getNext() {
+        return next;
+    }
+
+    public void setNext(Link next) {
+        this.next = next;
+    }
+
+    public Link getPrev() {
+        return prev;
+    }
+
+    public void setPrev(Link prev) {
+        this.prev = prev;
     }
 
     @Override

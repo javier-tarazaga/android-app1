@@ -58,10 +58,10 @@ public class AreaEntityDataMapper {
     public PreviewArea transform(PreviewAreaEntity entity) {
         PreviewArea area = null;
         if (entity != null) {
-            area = new PreviewArea(entity.getName());
+            area = new PreviewArea(entity.getName(),
+                                   this.transform(entity.getLocation()),
+                                   this.linkEntityDataMapper.transform(entity.getSelf()));
             area.setRating(entity.getRating());
-            area.setLocation(this.transform(entity.getLocation()));
-            area.setSelf(this.linkEntityDataMapper.transform(entity.getSelf()));
         }
 
         return area;

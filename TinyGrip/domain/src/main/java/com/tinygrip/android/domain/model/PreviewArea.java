@@ -7,12 +7,15 @@ package com.tinygrip.android.domain.model;
 public class PreviewArea {
 
     private final String name;
-    private float rating;
-    private Location location;
-    private Link self;
+    private final Location location;
+    private final Link self;
 
-    public PreviewArea(String name) {
+    private float rating;
+
+    public PreviewArea(String name, Location location, Link self) {
         this.name = name;
+        this.location = location;
+        this.self = self;
     }
 
     public String getName() {
@@ -31,16 +34,8 @@ public class PreviewArea {
         return location;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
     public Link getSelf() {
         return self;
-    }
-
-    public void setSelf(Link self) {
-        this.self = self;
     }
 
     @Override
