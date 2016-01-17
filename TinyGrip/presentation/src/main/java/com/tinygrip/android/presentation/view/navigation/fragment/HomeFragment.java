@@ -1,17 +1,17 @@
 
 package com.tinygrip.android.presentation.view.navigation.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.android.gms.maps.MapView;
 import com.tinygrip.android.R;
+import com.tinygrip.android.domain.model.DataPage;
+import com.tinygrip.android.domain.model.area.PreviewArea;
+import com.tinygrip.android.presentation.view.area.map.AreaMapFragment;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.main.MainActivityComponent;
 import com.tinygrip.android.presentation.view.navigation.presenter.HomePresenter;
@@ -27,19 +27,15 @@ public class HomeFragment extends BaseFragment implements HomeView {
      * Interface for listening user events.
      */
     public interface HomeListener {
+
         void onNewAreaClicked();
     }
 
     @Inject
     HomePresenter homePresenter;
 
-    @Bind(R.id.map_view)
-    MapView mapView;
-
-    //@Bind(R.id.relative_retry) RelativeLayout rl_retry;
-    //@Bind(R.id.button_retry) Button bt_retry;
-
     private HomeListener homeListener;
+    private HomeFragment mapFragment;
 
     public HomeFragment() {
         super();
@@ -53,10 +49,10 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof HomeListener) {
-            this.homeListener = (HomeListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof HomeListener) {
+            this.homeListener = (HomeListener) context;
         }
     }
 
@@ -80,14 +76,12 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void onResume() {
         super.onResume();
-        this.mapView.onResume();
         this.homePresenter.resume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        this.mapView.onPause();
         this.homePresenter.pause();
     }
 
@@ -100,14 +94,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        this.mapView.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
     }
 
     private void initialize() {
@@ -117,7 +104,17 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     private void setupUI(Bundle savedInstanceState) {
-        mapView.onCreate(savedInstanceState);
+        this.setupMap();
+    }
+
+    private void setupMap() {
+        this.mapFragment = AreaMapFragment.newInstance();
+        this.getChildFragmentManager()
+            .beginTransaction()
+            .replace(R.id.fl_fragment_map, this.mapFragment)
+            .commit();
+
+        //this.getChildFragmentManager().executePendingTransactions();
     }
 
     @Override
@@ -148,6 +145,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
+    public void renderPreviewAreas(DataPage<PreviewArea> previewAreaDataPage) {
+        this.mapFragment.renderPreviewAreas(previewAreaDataPage);
+    }
+
+    @Override
     public void showError(String message) {
         this.showToastMessage(message);
     }
@@ -160,14 +162,5 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @OnClick(R.id.fab_new_area)
     void onNewAreaClicked() {
         this.homePresenter.onCreateNewAreaClicked();
-    }
-
-    /**
-     * Load Google Maps
-     */
-    @Override
-    public void initializeMap() {
-        // Gets to GoogleMap from the MapView and does initialization stuff
-        this.mapView.getMapAsync(this.homePresenter);
     }
 }

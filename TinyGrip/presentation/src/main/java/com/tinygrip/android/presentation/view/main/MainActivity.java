@@ -1,6 +1,7 @@
 package com.tinygrip.android.presentation.view.main;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
@@ -126,6 +127,11 @@ public class MainActivity extends BaseActivity implements MainView,
     @OnClick(R.id.btn_retry)
     void onButtonRetryClick() {
         MainActivity.this.loadRoot();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override

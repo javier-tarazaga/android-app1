@@ -1,13 +1,7 @@
 
 package com.tinygrip.android.presentation.view.navigation.presenter;
 
-import android.location.Location;
 import android.support.annotation.NonNull;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
@@ -19,7 +13,6 @@ import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.navigation.view.HomeView;
-import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -28,14 +21,11 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<HomeView>, OnMapReadyCallback {
+public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<HomeView>{
 
     private final UseCase getPreviewAreasUseCase;
 
-    private GoogleMap map;
     private HomeView viewHomeView;
-
-    private HashMap<String, PreviewArea> markers = new HashMap<>();
 
     //private final UserModelDataMapper userModelDataMapper;
 
@@ -64,15 +54,7 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
      * Initializes the presenter by start retrieving the preview areas list.
      */
     public void initialize() {
-        this.initializeMap();
         this.loadPreviewAreas();
-    }
-
-    /**
-     * Loads and initializes the map
-     */
-    private void initializeMap() {
-        this.viewHomeView.initializeMap();
     }
 
     /**
@@ -111,42 +93,11 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     }
 
     private void showPreviewAreasInMap(DataPage<PreviewArea> previewAreaDataPage) {
-        for (PreviewArea area : previewAreaDataPage.getItems()) {
-
-            if (area.getLocation() != null) {
-                MarkerOptions markerOptions = new MarkerOptions()
-                    .position(new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
-                    .title(area.getName());
-
-                this.markers.put(this.map.addMarker(markerOptions).getId(), area);
-                this.map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        PreviewArea previewArea = (PreviewArea) markers.get(marker.getId());
-
-                        return true;
-                    }
-                });
-            }
-        }
+        this.viewHomeView.renderPreviewAreas(previewAreaDataPage);
     }
 
     private void getPreviewAreaList() {
         this.getPreviewAreasUseCase.execute(new GetPreviewAreasSubscriber());
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.map = googleMap;
-        this.map.getUiSettings().setMyLocationButtonEnabled(false);
-        this.map.setMyLocationEnabled(true);
-        this.map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                //LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                //map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
-            }
-        });
     }
 
     private final class GetPreviewAreasSubscriber extends DefaultSubscriber<DataPage<PreviewArea>> {
