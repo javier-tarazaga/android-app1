@@ -1,29 +1,66 @@
 
 package com.tinygrip.android.presentation.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * Class that represents a user in the presentation layer.
  */
 public class AreaModel {
 
-    @Getter private final int userId;
+    private final int userId;
+
+    private String coverUrl;
+    private String fullName;
+    private String email;
+    private String description;
+    private int followers;
 
     public AreaModel(int userId) {
         this.userId = userId;
     }
 
-    @Getter @Setter private String coverUrl;
+    public int getUserId() {
+        return userId;
+    }
 
-    @Getter @Setter private String fullName;
+    public String getCoverUrl() {
+        return coverUrl;
+    }
 
-    @Getter @Setter private String email;
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
 
-    @Getter @Setter private String description;
+    public String getFullName() {
+        return fullName;
+    }
 
-    @Getter @Setter private int followers;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
 
     @Override
     public String toString() {

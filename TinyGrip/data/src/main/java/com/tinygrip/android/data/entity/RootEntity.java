@@ -1,20 +1,37 @@
 
 package com.tinygrip.android.data.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * Root Entity used in the data layer.
  */
 public class RootEntity {
 
-    @Getter @Setter private LinkEntity previewAreas;
-    @Getter @Setter private LinkEntity areas;
-    @Getter @Setter private AuthEntity auth;
+    private LinkEntity previewAreas;
+    private LinkEntity areas;
+    private AuthEntity auth;
 
-    public RootEntity() {
-        //empty
+    public LinkEntity getPreviewAreas() {
+        return previewAreas;
+    }
+
+    public void setPreviewAreas(LinkEntity previewAreas) {
+        this.previewAreas = previewAreas;
+    }
+
+    public LinkEntity getAreas() {
+        return areas;
+    }
+
+    public void setAreas(LinkEntity areas) {
+        this.areas = areas;
+    }
+
+    public AuthEntity getAuth() {
+        return auth;
+    }
+
+    public void setAuth(AuthEntity auth) {
+        this.auth = auth;
     }
 
     @Override
@@ -31,9 +48,33 @@ public class RootEntity {
     }
 
     public static class AuthEntity {
-        @Getter @Setter private LinkEntity user;
-        @Getter @Setter private LinkEntity token;
-        @Getter @Setter private LinkEntity register;
+        private LinkEntity user;
+        private LinkEntity token;
+        private LinkEntity register;
+
+        public LinkEntity getUser() {
+            return user;
+        }
+
+        public void setUser(LinkEntity user) {
+            this.user = user;
+        }
+
+        public LinkEntity getToken() {
+            return token;
+        }
+
+        public void setToken(LinkEntity token) {
+            this.token = token;
+        }
+
+        public LinkEntity getRegister() {
+            return register;
+        }
+
+        public void setRegister(LinkEntity register) {
+            this.register = register;
+        }
 
         @Override
         public String toString() {

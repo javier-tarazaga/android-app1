@@ -51,7 +51,6 @@ ext {
     telescopeVersion = '1.4.0@aar'
 
     // Utils
-    lombokVersion = '1.16.6'
     timberVersion = '3.1.0'
     androidAnnotationsVersion = '20.0.0'
 
@@ -69,7 +68,6 @@ ext {
 
     presentationDependencies = [daggerCompiler   : "com.google.dagger:dagger-compiler:${daggerVersion}",
                                 dagger           : "com.google.dagger:dagger:${daggerVersion}",
-                                lombok           : "org.projectlombok:lombok:${lombokVersion}",
                                 butterKnife      : "com.jakewharton:butterknife:${butterKnifeVersion}",
                                 glide            : "com.github.bumptech.glide:glide:${glideVersion}",
                                 glideOkhttp      : "com.github.bumptech.glide:okhttp-integration:${glideOkHttpIntegrationVersion}",
@@ -92,7 +90,6 @@ ext {
 
     domainDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
                           dagger         : "com.google.dagger:dagger:${daggerVersion}",
-                          lombok         : "org.projectlombok:lombok:${lombokVersion}",
                           javaxAnnotation: "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
                           rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
                           timber         : "com.jakewharton.timber:timber:${timberVersion}"]
@@ -102,7 +99,6 @@ ext {
 
     dataDependencies = [daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
                         dagger            : "com.google.dagger:dagger:${daggerVersion}",
-                        lombok            : "org.projectlombok:lombok:${lombokVersion}",
                         okHttp            : "com.squareup.okhttp:okhttp:${okHttpVersion}",
                         retrofit          : "com.squareup.retrofit:retrofit:${retrofitVersion}",
                         retrofitJackson   : "com.squareup.retrofit:converter-jackson:${retrofitVersion}",

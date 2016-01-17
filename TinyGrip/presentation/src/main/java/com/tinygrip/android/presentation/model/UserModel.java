@@ -2,30 +2,67 @@
 package com.tinygrip.android.presentation.model;
 
 import java.io.Serializable;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Class that represents a user in the presentation layer.
  */
 public class UserModel implements Serializable {
 
-  @Getter private final String id;
+  private final String id;
+
+  private String coverUrl;
+  private String avatarUrl;
+  private String firstName;
+  private String lastName;
+  private String email;
 
   public UserModel(String userId) {
     this.id = userId;
   }
 
-  @Getter @Setter private String coverUrl;
+  public String getId() {
+    return id;
+  }
 
-  @Getter @Setter private String avatarUrl;
+  public String getCoverUrl() {
+    return coverUrl;
+  }
 
-  @Getter @Setter private String firstName;
+  public void setCoverUrl(String coverUrl) {
+    this.coverUrl = coverUrl;
+  }
 
-  @Getter @Setter private String lastName;
+  public String getAvatarUrl() {
+    return avatarUrl;
+  }
 
-  @Getter @Setter private String email;
+  public void setAvatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
+  }
 
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
   @Override public String toString() {
     StringBuilder stringBuilder = new StringBuilder();

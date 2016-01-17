@@ -2,8 +2,6 @@ package com.tinygrip.android.data.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * User Auth Entity used in the data layer. This will be the object returned by the backend when performing an
@@ -13,11 +11,38 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OAuthEntity {
 
-    @JsonProperty("access_token") @Getter @Setter private String accessToken;
+    @JsonProperty("access_token")
+    private String accessToken;
 
-    @JsonProperty("expires_in") @Getter @Setter private int expiresIn;
+    @JsonProperty("expires_in")
+    private int expiresIn;
 
-    @JsonProperty("userName") @Getter @Setter private String userName;
+    @JsonProperty("userName")
+    private String userName;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public int getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(int expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     @Override
     public String toString() {

@@ -2,8 +2,6 @@
 package com.tinygrip.android.data.entity;
 
 import java.util.Collection;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Entity in the data layer representing a data page in the backend. This is a generic class for
@@ -11,13 +9,42 @@ import lombok.Setter;
  */
 public class DataPageEntity<T> {
 
-    @Getter @Setter private int totalAmount;
+    private int totalAmount;
+    private Collection<T> items;
+    private LinkEntity next;
+    private LinkEntity prev;
 
-    @Getter @Setter private Collection<T> items;
+    public int getTotalAmount() {
+        return totalAmount;
+    }
 
-    @Getter @Setter private LinkEntity next;
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
-    @Getter @Setter private LinkEntity prev;
+    public Collection<T> getItems() {
+        return items;
+    }
+
+    public void setItems(Collection<T> items) {
+        this.items = items;
+    }
+
+    public LinkEntity getNext() {
+        return next;
+    }
+
+    public void setNext(LinkEntity next) {
+        this.next = next;
+    }
+
+    public LinkEntity getPrev() {
+        return prev;
+    }
+
+    public void setPrev(LinkEntity prev) {
+        this.prev = prev;
+    }
 
     @Override
     public String toString() {

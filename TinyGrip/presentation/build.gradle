@@ -86,10 +86,8 @@ dependencies {
     compile project(':data')
 
     apt presentationDependencies.daggerCompiler
-    apt presentationDependencies.lombok
 
     provided presentationDependencies.javaxAnnotation
-    provided presentationDependencies.lombok
 
     compile presentationDependencies.dagger
     compile presentationDependencies.butterKnife

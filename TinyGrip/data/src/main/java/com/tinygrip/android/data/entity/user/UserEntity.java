@@ -3,8 +3,6 @@ package com.tinygrip.android.data.entity.user;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tinygrip.android.data.entity.LinkEntity;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Entity representing a user in the backend. Bear in mind that depending on the auth state, this entity will have
@@ -12,15 +10,83 @@ import lombok.Setter;
  */
 public class UserEntity {
 
-    @Getter private final LinkEntity login;
-    @Getter private final LinkEntity register;
+    private final LinkEntity login;
+    private final LinkEntity register;
 
-    @JsonProperty("Id") @Getter @Setter private String id;
-    @JsonProperty("CoverUrl") @Getter @Setter private String coverUrl;
-    @JsonProperty("AvatarUrl") @Getter @Setter private String avatarUrl;
-    @JsonProperty("FirstName") @Getter @Setter private String firstName;
-    @JsonProperty("LastName") @Getter @Setter private String lastName;
-    @JsonProperty("Email") @Getter @Setter private String email;
+    @JsonProperty("Id")
+    private String id;
+
+    @JsonProperty("CoverUrl")
+    private String coverUrl;
+
+
+    @JsonProperty("AvatarUrl")
+    private String avatarUrl;
+
+    @JsonProperty("FirstName")
+    private String firstName;
+
+    @JsonProperty("LastName")
+    private String lastName;
+
+    @JsonProperty("Email")
+    private String email;
+
+    public LinkEntity getLogin() {
+        return login;
+    }
+
+    public LinkEntity getRegister() {
+        return register;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @JsonCreator
     public UserEntity(@JsonProperty("Login") LinkEntity login,

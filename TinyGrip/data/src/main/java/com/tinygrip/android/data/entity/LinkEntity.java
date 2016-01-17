@@ -1,17 +1,29 @@
 package com.tinygrip.android.data.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * Link Entity used in the data layer.
  */
 
 public class LinkEntity {
 
-    @Getter @Setter private String href;
+    private String href;
+    private boolean templated;
 
-    @Getter @Setter private boolean templated;
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    public boolean isTemplated() {
+        return templated;
+    }
+
+    public void setTemplated(boolean templated) {
+        this.templated = templated;
+    }
 
     @Override
     public String toString() {

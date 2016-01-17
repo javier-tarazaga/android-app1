@@ -3,21 +3,48 @@ package com.tinygrip.android.data.entity.area;
 
 import com.tinygrip.android.data.entity.LinkEntity;
 import com.tinygrip.android.data.entity.LocationEntity;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Preview Area Entity used in the data layer.
  */
 public class PreviewAreaEntity {
 
-    @Getter @Setter private String name;
+    private String name;
+    private float rating;
+    private LocationEntity location;
+    private LinkEntity self;
 
-    @Getter @Setter private float rating;
+    public String getName() {
+        return name;
+    }
 
-    @Getter @Setter private LocationEntity location;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    @Getter @Setter private LinkEntity self;
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public LocationEntity getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationEntity location) {
+        this.location = location;
+    }
+
+    public LinkEntity getSelf() {
+        return self;
+    }
+
+    public void setSelf(LinkEntity self) {
+        this.self = self;
+    }
 
     @Override
     public String toString() {

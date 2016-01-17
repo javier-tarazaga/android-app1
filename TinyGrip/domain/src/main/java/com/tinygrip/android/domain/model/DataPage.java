@@ -8,8 +8,9 @@ import java.util.Collection;
  */
 public class DataPage<T> {
 
-    private int totalAmount;
-    private Collection<T> items;
+    private final int totalAmount;
+    private final Collection<T> items;
+
     private Link next;
     private Link prev;
 
@@ -22,16 +23,8 @@ public class DataPage<T> {
         return totalAmount;
     }
 
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
     public Collection<T> getItems() {
         return items;
-    }
-
-    public void setItems(Collection<T> items) {
-        this.items = items;
     }
 
     public Link getNext() {
