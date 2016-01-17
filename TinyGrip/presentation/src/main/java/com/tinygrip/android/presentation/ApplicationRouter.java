@@ -3,6 +3,7 @@ package com.tinygrip.android.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.view.area.AreaActivity;
 import com.tinygrip.android.presentation.view.area.newArea.NewAreaActivity;
 import com.tinygrip.android.presentation.view.user.login.UserLoginActivity;
@@ -74,10 +75,11 @@ public class ApplicationRouter {
      * Goes to the area screen
      *
      * @param context A Context needed to open the destiny activity.
+     * @param model A {@link PreviewAreaModel} from which get all the data to display the Area
      */
-    public void navigateToArea(Context context) {
+    public void navigateToArea(Context context, PreviewAreaModel model) {
         if (context != null) {
-            Intent intentToLaunch = AreaActivity.getCallingIntent(context);
+            Intent intentToLaunch = AreaActivity.getCallingIntent(context, model);
             context.startActivity(intentToLaunch);
         }
     }

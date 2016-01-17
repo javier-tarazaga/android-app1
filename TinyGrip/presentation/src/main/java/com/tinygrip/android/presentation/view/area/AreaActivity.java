@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.internal.di.HasComponent;
 import com.tinygrip.android.presentation.model.area.AreaModel;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.view.base.BaseActivity;
 
 /**
@@ -13,8 +14,15 @@ import com.tinygrip.android.presentation.view.base.BaseActivity;
  */
 public class AreaActivity extends BaseActivity implements HasComponent<AreaComponent>, AreaFragment.AreaListener {
 
-    public static Intent getCallingIntent(Context context) {
-        return new Intent(context, AreaActivity.class);
+    private static final String INTENT_EXTRA_PARAM_PREVIEW_AREA = "com.tinygrip.android.INTENT_PARAM_PREVIEW_AREA";
+
+    private PreviewAreaModel previewArea;
+
+    public static Intent getCallingIntent(Context context, PreviewAreaModel previewArea) {
+        Intent intent = new Intent(context, AreaActivity.class);
+        intent.putExtra(INTENT_EXTRA_PARAM_PREVIEW_AREA, previewArea);
+
+        return intent;
     }
 
     private AreaComponent areaComponent;
@@ -37,7 +45,9 @@ public class AreaActivity extends BaseActivity implements HasComponent<AreaCompo
      * Initializes this activity.
      */
     private void initializeActivity() {
-        addFragment(R.id.fl_fragment, AreaFragment.newInstance());
+
+        this.previewArea = (PreviewAreaModel) getIntent().getSerializableExtra(INTENT_EXTRA_PARAM_PREVIEW_AREA);
+        addFragment(R.id.fl_fragment, AreaFragment.newInstance(this.previewArea));
     }
 
     private void initializeInjector() {

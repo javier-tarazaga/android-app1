@@ -69,7 +69,8 @@ public class NewAreaActivity extends BaseActivity implements HasComponent<AreaCo
 
     @Override
     public void onSaveNewAreaClicked() {
-        this.applicationRouter.navigateToArea(this);
+        // TODO
+        //this.applicationRouter.navigateToArea(this);
 
         // Make sure to remove this activity from the back stack so when going back from the area activity
         // we go to the main view instead

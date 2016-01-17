@@ -38,7 +38,7 @@ public class GetArea extends UseCase {
         if (this.previewArea == null) {
             throw new IllegalArgumentException("init(previewAre) not called, or called with null argument.");
         }
-        
+
         return this.areaRepository.area(this.previewArea.getSelf().getHref());
     }
 }

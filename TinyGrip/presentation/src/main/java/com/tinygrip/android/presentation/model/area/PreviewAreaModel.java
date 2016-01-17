@@ -2,11 +2,12 @@ package com.tinygrip.android.presentation.model.area;
 
 import com.tinygrip.android.domain.model.Location;
 import com.tinygrip.android.domain.model.area.PreviewArea;
+import java.io.Serializable;
 
 /**
  * Class that represents an AreaPreview in the presentation layer.
  */
-public class PreviewAreaModel {
+public class PreviewAreaModel implements Serializable {
 
     private final PreviewArea previewArea;
     private final String name;
