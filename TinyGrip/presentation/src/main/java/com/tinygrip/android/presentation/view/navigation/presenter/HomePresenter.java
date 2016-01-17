@@ -113,19 +113,21 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     private void showPreviewAreasInMap(DataPage<PreviewArea> previewAreaDataPage) {
         for (PreviewArea area : previewAreaDataPage.getItems()) {
 
-            MarkerOptions markerOptions = new MarkerOptions()
-                .position(new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
-                .title(area.getName());
+            if (area.getLocation() != null) {
+                MarkerOptions markerOptions = new MarkerOptions()
+                    .position(new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
+                    .title(area.getName());
 
-            this.markers.put(this.map.addMarker(markerOptions).getId(), area);
-            this.map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker) {
-                    PreviewArea previewArea = (PreviewArea) markers.get(marker.getId());
+                this.markers.put(this.map.addMarker(markerOptions).getId(), area);
+                this.map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        PreviewArea previewArea = (PreviewArea) markers.get(marker.getId());
 
-                    return true;
-                }
-            });
+                        return true;
+                    }
+                });
+            }
         }
     }
 
