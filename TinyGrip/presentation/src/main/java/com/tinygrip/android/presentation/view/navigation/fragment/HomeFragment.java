@@ -35,7 +35,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     HomePresenter homePresenter;
 
     private HomeListener homeListener;
-    private HomeFragment mapFragment;
+    private AreaMapFragment mapFragment;
 
     public HomeFragment() {
         super();
@@ -111,10 +111,10 @@ public class HomeFragment extends BaseFragment implements HomeView {
         this.mapFragment = AreaMapFragment.newInstance();
         this.getChildFragmentManager()
             .beginTransaction()
-            .replace(R.id.fl_fragment_map, this.mapFragment)
+            .add(R.id.fl_fragment_map, this.mapFragment)
             .commit();
 
-        //this.getChildFragmentManager().executePendingTransactions();
+        this.getChildFragmentManager().executePendingTransactions();
     }
 
     @Override

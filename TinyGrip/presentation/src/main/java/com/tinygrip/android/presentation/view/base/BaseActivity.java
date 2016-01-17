@@ -53,6 +53,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Replaces a {@link Fragment} contained within this activity's layout including the possibility to add it to the
+     * back stack
+     *
+     * @param containerViewId The container view to where add the fragment.
+     * @param newFragment The new fragment to be added.
+     */
     protected void replaceFragment(int containerViewId, Fragment newFragment, boolean addToBackStack) {
         FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(containerViewId, newFragment);

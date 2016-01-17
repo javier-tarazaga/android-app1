@@ -72,9 +72,18 @@ public class MainActivity extends BaseActivity implements MainView,
     }
 
     private void setupUI() {
+        this.setupToolbarUI();
+        this.setupHomeUI();
+    }
+
+    private void setupToolbarUI() {
         this.toolbarMain.inflateMenu(R.menu.menu_main_activity);
         this.toolbarMain.setOnMenuItemClickListener(onMenuItemClickListener);
-            ViewCompat.setElevation(this.toolbarMain, R.dimen.toolbar_elevation);
+        ViewCompat.setElevation(this.toolbarMain, R.dimen.toolbar_elevation);
+    }
+
+    private void setupHomeUI() {
+        addFragment(R.id.fl_fragment, HomeFragment.newInstance());
     }
 
     @Override

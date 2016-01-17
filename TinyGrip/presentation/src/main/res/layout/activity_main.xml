@@ -17,11 +17,10 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <fragment
-        android:name="com.tinygrip.android.presentation.view.navigation.fragment.HomeFragment"
-        android:id="@+id/fragmentHome"
+    <FrameLayout
+        android:id="@+id/fl_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <include layout="@layout/view_progress"/>
 

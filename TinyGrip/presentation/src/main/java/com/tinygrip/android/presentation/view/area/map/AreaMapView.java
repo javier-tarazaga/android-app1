@@ -8,4 +8,6 @@ public interface AreaMapView {
     void initializeMap();
 
     void renderPreviewAreas(DataPage<PreviewArea> previewAreaDataPage);
+
+    void goToArea(PreviewArea previewArea);
 }

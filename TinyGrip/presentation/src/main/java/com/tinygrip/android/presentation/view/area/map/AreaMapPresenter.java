@@ -42,7 +42,7 @@ public class AreaMapPresenter implements Presenter<AreaMapView> {
     }
 
     public void onMarkerClicked(PreviewArea previewArea) {
-
+        this.mapView.goToArea(previewArea);
     }
 
     public void onMyLocationChange(Location location) {

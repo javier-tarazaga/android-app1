@@ -19,7 +19,6 @@ import com.tinygrip.android.domain.model.DataPage;
 import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.main.MainActivityComponent;
-import com.tinygrip.android.presentation.view.navigation.fragment.HomeFragment;
 import java.util.HashMap;
 import javax.inject.Inject;
 
@@ -37,11 +36,11 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
     private GoogleMap map;
     private HashMap<String, PreviewArea> markers = new HashMap<>();
 
-    public static HomeFragment newInstance() {
-        HomeFragment homeFragment = new HomeFragment();
+    public static AreaMapFragment newInstance() {
+        AreaMapFragment areaMapFragment = new AreaMapFragment();
         Bundle args = new Bundle();
-        homeFragment.setArguments(args);
-        return homeFragment;
+        areaMapFragment.setArguments(args);
+        return areaMapFragment;
     }
 
     @Override
@@ -128,6 +127,11 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
                 }
             }
         }
+    }
+
+    @Override
+    public void goToArea(PreviewArea previewArea) {
+        
     }
 
     @Override

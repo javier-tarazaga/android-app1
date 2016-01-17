@@ -14,9 +14,9 @@ ext {
     androidCompileSdkVersion = 23
 
     // Google
-    androidSupportVersion = '23.1.0'
-    supportDesignVersion = '23.1.0'
-    recyclerViewVersion = '23.1.0'
+    androidSupportVersion = '23.1.1'
+    supportDesignVersion = '23.1.1'
+    recyclerViewVersion = '23.1.1'
     googlePlayServicesVersion = '7.5.0'
 
     // Plugins
