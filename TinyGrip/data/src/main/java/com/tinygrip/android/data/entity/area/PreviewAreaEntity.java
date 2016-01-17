@@ -11,6 +11,7 @@ public class PreviewAreaEntity {
 
     private String name;
     private float rating;
+    private float ratingsCount;
     private LocationEntity location;
     private LinkEntity self;
 
@@ -28,6 +29,14 @@ public class PreviewAreaEntity {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public float getRatingsCount() {
+        return ratingsCount;
+    }
+
+    public void setRatingsCount(float ratingsCount) {
+        this.ratingsCount = ratingsCount;
     }
 
     public LocationEntity getLocation() {
@@ -53,10 +62,13 @@ public class PreviewAreaEntity {
         stringBuilder.append("***** Preview Area Entity Details *****\n");
         stringBuilder.append("name=" + this.getName() + "\n");
         stringBuilder.append("rating=" + this.getRating() + "\n");
+        stringBuilder.append("ratingsCount=" + this.getRatingsCount() + "\n");
         stringBuilder.append("location=" + this.getLocation() + "\n");
         stringBuilder.append("self=" + this.getSelf() + "\n");
         stringBuilder.append("*******************************");
 
         return stringBuilder.toString();
     }
+
+
 }
