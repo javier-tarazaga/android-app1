@@ -46,10 +46,13 @@ public class AreaFragment extends BaseFragment implements AreaView {
     private PreviewAreaModel previewArea;
 
     public static AreaFragment newInstance(PreviewAreaModel previewArea) {
+        AreaFragment areaFragment = new AreaFragment();
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(ARGUMENT_KEY_PREVIEW_AREA, previewArea);
-        return new AreaFragment();
+        areaFragment.setArguments(bundle);
+        
+        return areaFragment;
     }
 
     @Override

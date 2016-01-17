@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.tinygrip.android.R;
 import com.tinygrip.android.domain.model.DataPage;
-import com.tinygrip.android.domain.model.area.PreviewArea;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.view.area.map.AreaMapFragment;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.main.MainActivityComponent;
@@ -24,10 +24,9 @@ import javax.inject.Inject;
 public class HomeFragment extends BaseFragment implements HomeView {
 
     /**
-     * Interface for listening user events.
+     * Interface for listening home fragment events.
      */
     public interface HomeListener {
-
         void onNewAreaClicked();
     }
 
@@ -145,8 +144,8 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
-    public void renderPreviewAreas(DataPage<PreviewArea> previewAreaDataPage) {
-        this.mapFragment.renderPreviewAreas(previewAreaDataPage);
+    public void renderPreviewAreas(DataPage<PreviewAreaModel> model) {
+        this.mapFragment.renderPreviewAreas(model);
     }
 
     @Override

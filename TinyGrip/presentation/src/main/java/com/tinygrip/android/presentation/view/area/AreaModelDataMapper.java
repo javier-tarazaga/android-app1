@@ -1,58 +1,76 @@
 
 package com.tinygrip.android.presentation.view.area;
 
+import android.support.annotation.Nullable;
+import com.tinygrip.android.domain.model.DataPage;
+import com.tinygrip.android.domain.model.area.Area;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
-import com.tinygrip.android.presentation.model.UserModel;
+import com.tinygrip.android.presentation.model.area.AreaModel;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.inject.Inject;
 
 /**
- * Mapper class used to transform {@link Area} (in the domain layer) to {@link UserModel} in the
- * presentation layer.
+ * Mapper class used to transform {@link Area} and {@link PreviewArea} (in the domain layer) to {@link AreaModel} and
+ * {@link PreviewAreaModel} in the presentation layer.
  */
 @ActivityScope
 public class AreaModelDataMapper {
 
-  @Inject
-  public AreaModelDataMapper() {}
+    @Inject
+    public AreaModelDataMapper() {}
 
-  ///**
-  // * Transform a {@link User} into an {@link UserModel}.
-  // *
-  // * @param user Object to be transformed.
-  // * @return {@link UserModel}.
-  // */
-  //public UserModel transform(User user) {
-  //  if (user == null) {
-  //    throw new IllegalArgumentException("Cannot transform a null value");
-  //  }
-  //  UserModel userModel = new UserModel(user.getId());
-  //  userModel.setCoverUrl(user.getCoverUrl());
-  //  userModel.setFullName(user.getFullName());
-  //  userModel.setEmail(user.getEmail());
-  //  userModel.setDescription(user.getDescription());
-  //  userModel.setFollowers(user.getFollowers());
-  //
-  //  return userModel;
-  //}
+    /**
+     * Transform a {@link DataPage<PreviewArea>} into an {@link DataPage< PreviewAreaModel>}.
+     *
+     * @param previewAreas Object to be transformed.
+     * @return {@link DataPage<PreviewAreaModel>}.
+     */
+    @Nullable
+    public DataPage<PreviewAreaModel> transform(DataPage<PreviewArea> previewAreas) {
+        if (previewAreas == null) {
+            throw new IllegalArgumentException("Cannot transform a null value");
+        }
 
-  ///**
-  // * Transform a Collection of {@link User} into a Collection of {@link UserModel}.
-  // *
-  // * @param usersCollection Objects to be transformed.
-  // * @return List of {@link UserModel}.
-  // */
-  //public Collection<UserModel> transform(Collection<User> usersCollection) {
-  //  Collection<UserModel> userModelsCollection;
-  //
-  //  if (usersCollection != null && !usersCollection.isEmpty()) {
-  //    userModelsCollection = new ArrayList<>();
-  //    for (User user : usersCollection) {
-  //      userModelsCollection.add(transform(user));
-  //    }
-  //  } else {
-  //    userModelsCollection = Collections.emptyList();
-  //  }
-  //
-  //  return userModelsCollection;
-  //}
+        DataPage<PreviewAreaModel> previewAreasModel = null;
+        if (previewAreas.getItems() != null) {
+            previewAreasModel = new DataPage<>(previewAreas.getTotalAmount(), this.transform(previewAreas.getItems()));
+        }
+
+        return previewAreasModel;
+    }
+
+    /**
+     * Transform a Collection of {@link PreviewArea} into a Collection of {@link PreviewAreaModel}.
+     *
+     * @param previewAreaCollection Objects to be transformed.
+     * @return List of {@link PreviewAreaModel}.
+     */
+    public Collection<PreviewAreaModel> transform(Collection<PreviewArea> previewAreaCollection) {
+        Collection<PreviewAreaModel> previewAreaModelCollection = new ArrayList<>();
+
+        if (previewAreaCollection != null && !previewAreaCollection.isEmpty()) {
+            for (PreviewArea previewArea : previewAreaCollection) {
+                previewAreaModelCollection.add(this.transform(previewArea));
+            }
+        }
+
+        return previewAreaModelCollection;
+    }
+
+    @Nullable
+    public PreviewAreaModel transform(PreviewArea previewArea) {
+        PreviewAreaModel model = null;
+        if (previewArea != null) {
+            model = new PreviewAreaModel(
+                previewArea,
+                previewArea.getName(),
+                previewArea.getLocation()
+            );
+        }
+
+        return model;
+    }
 }

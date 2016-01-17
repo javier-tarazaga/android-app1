@@ -16,7 +16,9 @@ import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.internal.di.HasComponent;
 import com.tinygrip.android.presentation.internal.di.components.ActivityComponent;
 import com.tinygrip.android.presentation.internal.di.modules.ActivityModule;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.presenter.MainPresenter;
+import com.tinygrip.android.presentation.view.area.map.AreaMapFragment;
 import com.tinygrip.android.presentation.view.base.BaseActivity;
 import com.tinygrip.android.presentation.view.navigation.fragment.HomeFragment;
 import javax.inject.Inject;
@@ -25,7 +27,7 @@ import javax.inject.Inject;
  * Main application screen. This is the app entry point.
  */
 public class MainActivity extends BaseActivity implements MainView,
-    HasComponent<ActivityComponent>, HomeFragment.HomeListener {
+    HasComponent<ActivityComponent>, HomeFragment.HomeListener, AreaMapFragment.AreaMapListener {
 
     @Inject
     MainPresenter mainPresenter;
@@ -151,6 +153,11 @@ public class MainActivity extends BaseActivity implements MainView,
     @Override
     public void viewProfile() {
         this.applicationRouter.navigateToProfile(this);
+    }
+
+    @Override
+    public void goToArea(PreviewAreaModel model) {
+        this.applicationRouter.navigateToArea(this, model);
     }
 
     private Toolbar.OnMenuItemClickListener onMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {

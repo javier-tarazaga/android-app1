@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tinygrip.android.R;
 import com.tinygrip.android.domain.model.DataPage;
-import com.tinygrip.android.domain.model.area.PreviewArea;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.main.MainActivityComponent;
 import java.util.HashMap;
@@ -33,8 +33,16 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
     @Inject
     AreaMapPresenter presenter;
 
+    /**
+     * Interface for listening area map events.
+     */
+    public interface AreaMapListener {
+        void goToArea(PreviewAreaModel model);
+    }
+
+    private AreaMapListener mapListener;
     private GoogleMap map;
-    private HashMap<String, PreviewArea> markers = new HashMap<>();
+    private HashMap<String, PreviewAreaModel> markers = new HashMap<>();
 
     public static AreaMapFragment newInstance() {
         AreaMapFragment areaMapFragment = new AreaMapFragment();
@@ -46,6 +54,10 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        if (context instanceof AreaMapListener) {
+            this.mapListener = (AreaMapListener) context;
+        }
     }
 
     @Override
@@ -105,10 +117,10 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
     }
 
     @Override
-    public void renderPreviewAreas(DataPage<PreviewArea> previewAreaDataPage) {
-        if (previewAreaDataPage != null) {
+    public void renderPreviewAreas(DataPage<PreviewAreaModel> model) {
+        if (model != null) {
 
-            for (PreviewArea area : previewAreaDataPage.getItems()) {
+            for (PreviewAreaModel area : model.getItems()) {
                 if (area.getLocation() != null) {
                     MarkerOptions markerOptions = new MarkerOptions()
                         .position(new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
@@ -118,7 +130,7 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
                     this.map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-                            PreviewArea previewArea = markers.get(marker.getId());
+                            PreviewAreaModel previewArea = markers.get(marker.getId());
                             AreaMapFragment.this.presenter.onMarkerClicked(previewArea);
 
                             return true;
@@ -130,8 +142,10 @@ public class AreaMapFragment extends BaseFragment implements AreaMapView, OnMapR
     }
 
     @Override
-    public void goToArea(PreviewArea previewArea) {
-        
+    public void goToArea(PreviewAreaModel model) {
+        if (this.mapListener != null) {
+            this.mapListener.goToArea(model);
+        }
     }
 
     @Override

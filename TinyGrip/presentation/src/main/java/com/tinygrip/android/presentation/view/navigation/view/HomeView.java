@@ -1,7 +1,7 @@
 package com.tinygrip.android.presentation.view.navigation.view;
 
 import com.tinygrip.android.domain.model.DataPage;
-import com.tinygrip.android.domain.model.area.PreviewArea;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.view.LoadDataView;
 
 /**
@@ -15,5 +15,5 @@ public interface HomeView extends LoadDataView {
      */
     void createNewArea();
 
-    void renderPreviewAreas(DataPage<PreviewArea> previewAreaDataPage);
+    void renderPreviewAreas(DataPage<PreviewAreaModel> model);
 }

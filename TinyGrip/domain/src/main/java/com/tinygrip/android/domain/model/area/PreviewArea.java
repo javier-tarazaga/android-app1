@@ -3,11 +3,12 @@ package com.tinygrip.android.domain.model.area;
 
 import com.tinygrip.android.domain.model.Link;
 import com.tinygrip.android.domain.model.Location;
+import java.io.Serializable;
 
 /**
  * Class that represents a Preview Area in the domain layer.
  */
-public class PreviewArea {
+public class PreviewArea implements Serializable {
 
     private final String name;
     private final Location location;

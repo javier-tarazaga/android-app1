@@ -37,9 +37,6 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
         void logoutSuccessfully();
     }
 
-    @Inject
-    UserDetailsPresenter userDetailsPresenter;
-
     @Bind(R.id.tb_user_details)
     Toolbar toolbar;
 
@@ -63,6 +60,9 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
 
     @Bind(R.id.btn_retry)
     Button btnRetry;
+
+    @Inject
+    UserDetailsPresenter userDetailsPresenter;
 
     private UserDetailsListener userDetailsListener;
 

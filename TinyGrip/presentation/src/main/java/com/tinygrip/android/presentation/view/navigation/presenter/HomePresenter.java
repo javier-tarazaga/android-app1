@@ -11,7 +11,9 @@ import com.tinygrip.android.domain.model.DataPage;
 import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.presenter.Presenter;
+import com.tinygrip.android.presentation.view.area.AreaModelDataMapper;
 import com.tinygrip.android.presentation.view.navigation.view.HomeView;
 import java.util.List;
 import javax.inject.Inject;
@@ -24,15 +26,15 @@ import javax.inject.Inject;
 public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<HomeView>{
 
     private final UseCase getPreviewAreasUseCase;
+    private final AreaModelDataMapper areaModelDataMapper;
 
     private HomeView viewHomeView;
 
-    //private final UserModelDataMapper userModelDataMapper;
-
     @Inject
-    public HomePresenter(GetPreviewAreas getPreviewAreasUseCase) {
+    public HomePresenter(GetPreviewAreas getPreviewAreasUseCase,
+                         AreaModelDataMapper areaModelDataMapper) {
         this.getPreviewAreasUseCase = getPreviewAreasUseCase;
-        //this.userModelDataMapper = userModelDataMapper;
+        this.areaModelDataMapper = areaModelDataMapper;
     }
 
     public void setView(@NonNull HomeView view) {
@@ -93,7 +95,8 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
     }
 
     private void showPreviewAreasInMap(DataPage<PreviewArea> previewAreaDataPage) {
-        this.viewHomeView.renderPreviewAreas(previewAreaDataPage);
+        DataPage<PreviewAreaModel> models = this.areaModelDataMapper.transform(previewAreaDataPage);
+        this.viewHomeView.renderPreviewAreas(models);
     }
 
     private void getPreviewAreaList() {

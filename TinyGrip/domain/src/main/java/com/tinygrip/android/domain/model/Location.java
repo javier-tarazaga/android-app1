@@ -1,9 +1,11 @@
 package com.tinygrip.android.domain.model;
 
+import java.io.Serializable;
+
 /**
  * Location Entity used in the domain layer.
  */
-public class Location {
+public class Location implements Serializable {
 
     private final double latitude;
     private final double longitude;

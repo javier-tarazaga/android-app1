@@ -1,10 +1,12 @@
 
 package com.tinygrip.android.domain.model;
 
+import java.io.Serializable;
+
 /**
  * Class that represents a Link in the domain layer.
  */
-public class Link {
+public class Link implements Serializable {
 
     private final String href;
     private final boolean templated;

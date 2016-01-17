@@ -2,7 +2,7 @@ package com.tinygrip.android.presentation.view.area.map;
 
 import android.location.Location;
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.model.area.PreviewArea;
+import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import javax.inject.Inject;
 
@@ -41,7 +41,7 @@ public class AreaMapPresenter implements Presenter<AreaMapView> {
         this.initializeMap();
     }
 
-    public void onMarkerClicked(PreviewArea previewArea) {
+    public void onMarkerClicked(PreviewAreaModel previewArea) {
         this.mapView.goToArea(previewArea);
     }
 
