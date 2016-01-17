@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.user.adapter;
+package com.tinygrip.android.presentation.view.user.list.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.tinygrip.android.presentation.view.user.activity;
+package com.tinygrip.android.presentation.view.user.profile;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +15,7 @@ import com.tinygrip.android.presentation.view.base.BaseActivity;
 import com.tinygrip.android.presentation.view.user.DaggerUserComponent;
 import com.tinygrip.android.presentation.view.user.UserComponent;
 import com.tinygrip.android.presentation.view.user.UserModule;
-import com.tinygrip.android.presentation.view.user.fragment.UserDetailsFragment;
-import com.tinygrip.android.presentation.view.user.fragment.UserLoginFragment;
-import com.tinygrip.android.presentation.view.user.view.UserProfileView;
+import com.tinygrip.android.presentation.view.user.login.UserLoginFragment;
 import javax.inject.Inject;
 
 /**

@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.user.view;
+package com.tinygrip.android.presentation.view.user.profile;
 
 import android.content.Context;
 

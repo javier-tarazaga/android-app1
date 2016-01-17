@@ -5,10 +5,10 @@ import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.internal.di.components.ActivityComponent;
 import com.tinygrip.android.presentation.internal.di.components.ApplicationComponent;
 import com.tinygrip.android.presentation.internal.di.modules.ActivityModule;
-import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
-import com.tinygrip.android.presentation.view.user.fragment.UserDetailsFragment;
-import com.tinygrip.android.presentation.view.user.fragment.UserLoginFragment;
-import com.tinygrip.android.presentation.view.user.fragment.UserRegisterFragment;
+import com.tinygrip.android.presentation.view.user.profile.UserProfileActivity;
+import com.tinygrip.android.presentation.view.user.profile.UserDetailsFragment;
+import com.tinygrip.android.presentation.view.user.login.UserLoginFragment;
+import com.tinygrip.android.presentation.view.user.register.UserRegisterFragment;
 import dagger.Component;
 
 /**

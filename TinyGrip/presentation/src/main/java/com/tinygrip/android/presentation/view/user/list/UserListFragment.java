@@ -21,7 +21,7 @@
 //import com.tinygrip.android.presentation.model.UserModel;
 //import com.tinygrip.android.presentation.presenter.user.UserListPresenter;
 //import com.tinygrip.android.presentation.view.base.BaseFragment;
-//import com.tinygrip.android.presentation.view.user.view.UserListView;
+//import com.tinygrip.android.presentation.view.user.list.UserListView;
 //import com.tinygrip.android.presentation.view.user.adapter.UsersAdapter;
 //import com.tinygrip.android.presentation.view.user.adapter.UsersLayoutManager;
 //import java.util.ArrayList;

@@ -1,31 +1,31 @@
-package com.tinygrip.android.presentation.view.user.activity;
+package com.tinygrip.android.presentation.view.user.login;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.internal.di.HasComponent;
+import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.view.base.BaseActivity;
 import com.tinygrip.android.presentation.view.user.DaggerUserComponent;
 import com.tinygrip.android.presentation.view.user.UserComponent;
 import com.tinygrip.android.presentation.view.user.UserModule;
-import com.tinygrip.android.presentation.view.user.fragment.UserRegisterFragment;
 
 /**
- * Activity that shows a register form to the user
+ * Activity that shows a login form to the user
  */
-public class UserRegisterActivity extends BaseActivity implements HasComponent<UserComponent>,UserRegisterFragment.UserRegisterListener {
+public class UserLoginActivity extends BaseActivity implements HasComponent<UserComponent>,UserLoginFragment.UserLoginListener {
 
     private UserComponent userComponent;
 
     public static Intent getCallingIntent(Context context) {
-        return new Intent(context, UserRegisterActivity.class);
+        return new Intent(context, UserLoginActivity.class);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_register);
+        setContentView(R.layout.activity_user_login);
 
         this.initializeInjector();
     }
@@ -49,8 +49,17 @@ public class UserRegisterActivity extends BaseActivity implements HasComponent<U
     }
 
     @Override
-    public void onRegisterSuccessful() {
-        // Simply finish this activity for now and return to the login page to let the user login
+    public void onRegisterLinkClicked() {
+        this.applicationRouter.navigateToRegister(UserLoginActivity.this);
+    }
+
+    @Override
+    public void onLoginSuccessful(UserModel userModel) {
+        this.applicationRouter.navigateToProfile(UserLoginActivity.this);
+
+        // Make sure to remove this activity from the back stack so when going back from the area activity
+        // we go to the main view instead
         this.finish();
     }
 }
+

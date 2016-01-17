@@ -1,14 +1,15 @@
 
-package com.tinygrip.android.presentation.view.user.view;
+package com.tinygrip.android.presentation.view.user.login;
 
 import android.content.Context;
+import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.view.LoadDataView;
 
 /**
  * Interface representing a View in a model view presenter (MVP) pattern.
- * In this case is used as a view representing a user registration.
+ * In this case is used as a view representing a user login.
  */
-public interface UserRegisterView extends LoadDataView {
+public interface UserLoginView extends LoadDataView {
 
     /**
      * Simply go up in the stack
@@ -30,19 +31,12 @@ public interface UserRegisterView extends LoadDataView {
     void showInvalidPassword(String errorMessage);
 
     /**
-     * Render the confirm password error message
-     *
-     * @param errorMessage The error message to display
+     * Render the login
      */
-    void showInvalidConfirmPassword(String errorMessage);
+    void loginSuccessful(UserModel userModel);
 
     /**
-     * Render the user registration
-     */
-    void showRegisterSuccessful();
-
-    /**
-     * Get a {@link Context}.
+     * Get a {@link android.content.Context}.
      */
     Context getContext();
 

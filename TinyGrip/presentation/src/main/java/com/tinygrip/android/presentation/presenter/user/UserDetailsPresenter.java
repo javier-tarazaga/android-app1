@@ -12,7 +12,7 @@ import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 import com.tinygrip.android.presentation.model.UserModel;
-import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
+import com.tinygrip.android.presentation.view.user.profile.UserDetailsView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

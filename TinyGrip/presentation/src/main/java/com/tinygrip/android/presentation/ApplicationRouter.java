@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import com.tinygrip.android.presentation.view.area.AreaActivity;
 import com.tinygrip.android.presentation.view.area.newArea.NewAreaActivity;
-import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
-import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
-import com.tinygrip.android.presentation.view.user.activity.UserRegisterActivity;
+import com.tinygrip.android.presentation.view.user.login.UserLoginActivity;
+import com.tinygrip.android.presentation.view.user.profile.UserProfileActivity;
+import com.tinygrip.android.presentation.view.user.register.UserRegisterActivity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

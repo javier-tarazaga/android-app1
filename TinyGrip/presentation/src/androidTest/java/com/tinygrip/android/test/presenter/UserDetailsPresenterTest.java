@@ -19,7 +19,7 @@
 //import android.test.AndroidTestCase;
 //import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
 //import com.tinygrip.android.presentation.presenter.user.UserDetailsPresenter;
-//import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
+//import com.tinygrip.android.presentation.view.user.profile.UserDetailsView;
 //import org.mockito.Mock;
 //import org.mockito.MockitoAnnotations;
 //import rx.Subscriber;

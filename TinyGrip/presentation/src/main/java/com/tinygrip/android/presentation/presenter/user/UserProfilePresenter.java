@@ -6,7 +6,7 @@ import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
-import com.tinygrip.android.presentation.view.user.view.UserProfileView;
+import com.tinygrip.android.presentation.view.user.profile.UserProfileView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

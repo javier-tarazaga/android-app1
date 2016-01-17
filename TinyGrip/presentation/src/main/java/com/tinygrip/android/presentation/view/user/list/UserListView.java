@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.user.view;
+package com.tinygrip.android.presentation.view.user.list;
 
 import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.view.LoadDataView;

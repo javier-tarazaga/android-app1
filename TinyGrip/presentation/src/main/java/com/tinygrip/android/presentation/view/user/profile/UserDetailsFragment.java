@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.user.fragment;
+package com.tinygrip.android.presentation.view.user.profile;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,6 @@ import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.user.UserDetailsPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.view.UserDetailsView;
 import javax.inject.Inject;
 
 /**

@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.user.fragment;
+package com.tinygrip.android.presentation.view.user.register;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,8 +18,6 @@ import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.presenter.user.UserRegisterPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.activity.UserRegisterActivity;
-import com.tinygrip.android.presentation.view.user.view.UserRegisterView;
 import javax.inject.Inject;
 
 /**

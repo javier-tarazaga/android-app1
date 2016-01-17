@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.user.fragment;
+package com.tinygrip.android.presentation.view.user.login;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,10 +17,8 @@ import butterknife.OnClick;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.EnvConfig;
 import com.tinygrip.android.presentation.model.UserModel;
-import com.tinygrip.android.presentation.presenter.user.UserLoginPresenter;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import com.tinygrip.android.presentation.view.user.UserComponent;
-import com.tinygrip.android.presentation.view.user.view.UserLoginView;
 import javax.inject.Inject;
 
 /**

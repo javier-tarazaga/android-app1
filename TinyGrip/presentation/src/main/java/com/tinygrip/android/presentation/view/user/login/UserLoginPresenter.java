@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.presenter.user;
+package com.tinygrip.android.presentation.view.user.login;
 
 import android.support.annotation.NonNull;
 import com.tinygrip.android.domain.model.User;
@@ -14,7 +14,6 @@ import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.model.UserModel;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.user.mapper.UserModelDataMapper;
-import com.tinygrip.android.presentation.view.user.view.UserLoginView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

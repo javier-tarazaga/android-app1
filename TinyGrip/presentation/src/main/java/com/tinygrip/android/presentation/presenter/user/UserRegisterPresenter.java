@@ -13,7 +13,7 @@ import com.tinygrip.android.domain.interactor.user.UserRegister;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
-import com.tinygrip.android.presentation.view.user.view.UserRegisterView;
+import com.tinygrip.android.presentation.view.user.register.UserRegisterView;
 import javax.inject.Inject;
 import javax.inject.Named;
 

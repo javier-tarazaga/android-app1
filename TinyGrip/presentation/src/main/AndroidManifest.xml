@@ -62,17 +62,17 @@
         </activity>
 
         <activity
-            android:name=".presentation.view.user.activity.UserProfileActivity"
+            android:name=".presentation.view.user.profile.UserProfileActivity"
             android:label="@string/activity_title_user_profile">
         </activity>
 
         <activity
-            android:name=".presentation.view.user.activity.UserLoginActivity"
+            android:name=".presentation.view.user.login.UserLoginActivity"
             android:label="@string/activity_title_user_login">
         </activity>
 
         <activity
-            android:name=".presentation.view.user.activity.UserRegisterActivity"
+            android:name=".presentation.view.user.register.UserRegisterActivity"
             android:label="@string/activity_title_user_register">
         </activity>
 
