@@ -3,6 +3,7 @@ package com.tinygrip.android.data.repository.datasource.area;
 
 import com.tinygrip.android.data.api.area.AreaRestApi;
 import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.area.AreaEntity;
 import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import rx.Observable;
 
@@ -25,5 +26,10 @@ public class CloudAreaDataStore implements AreaDataStore {
     @Override
     public Observable<DataPageEntity<PreviewAreaEntity>> previewAreas() {
         return this.areaRestApi.previewAreasEntity();
+    }
+
+    @Override
+    public Observable<AreaEntity> area(String areaHref) {
+        return this.areaRestApi.area(areaHref);
     }
 }

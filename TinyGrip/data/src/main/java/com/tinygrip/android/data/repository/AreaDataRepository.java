@@ -2,11 +2,13 @@
 package com.tinygrip.android.data.repository;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.area.AreaEntity;
 import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.data.entity.mapper.AreaEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStore;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStoreFactory;
 import com.tinygrip.android.domain.model.DataPage;
+import com.tinygrip.android.domain.model.area.Area;
 import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.domain.repository.AreaRepository;
 import com.tinygrip.android.domain.repository.RootRepository;
@@ -45,6 +47,19 @@ public class AreaDataRepository implements AreaRepository {
                                 @Override
                                 public DataPage<PreviewArea> call(DataPageEntity<PreviewAreaEntity> previewAreas) {
                                     return AreaDataRepository.this.entityDataMapper.transform(previewAreas);
+                                }
+                            });
+    }
+
+    @Override
+    public Observable<Area> area(String areaHref) {
+        final AreaDataStore areaDataStore = this.dataStoreFactory.create();
+        return areaDataStore.area(areaHref)
+                            .map(new Func1<AreaEntity, Area>() {
+                                @Override
+                                public Area call(AreaEntity areaEntity) {
+                                    return null;
+                                    //return AreaDataRepository.this.entityDataMapper.transform(previewAreas);
                                 }
                             });
     }

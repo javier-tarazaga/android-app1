@@ -5,6 +5,7 @@ import android.content.Context;
 import com.tinygrip.android.data.SessionData;
 import com.tinygrip.android.data.api.util.NetworkConnectionHelper;
 import com.tinygrip.android.data.entity.DataPageEntity;
+import com.tinygrip.android.data.entity.area.AreaEntity;
 import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.data.exception.NetworkConnectionException;
 import com.tinygrip.android.data.exception.NoNetworkConnectionException;
@@ -35,12 +36,19 @@ public class AreaRestApiImpl implements AreaRestApi {
         this.sessionData = sessionData;
         this.areaService = areaService;
     }
+
     private DataPageEntity<PreviewAreaEntity> getPreviewAreasFromApi() throws MalformedURLException {
         String apiUrl = this.sessionData.getRoot().getPreviewAreas().getHref();
 
         apiUrl = apiUrl.replace("http://", "");
 
         return this.areaService.previewAreasPageEntitySync(apiUrl);
+    }
+
+    private Observable<AreaEntity> getAreaFromApi(String areaHref) {
+        String apiUrl = areaHref.replace("http://", "");
+
+        return this.areaService.area(apiUrl);
     }
 
     @Override
@@ -66,6 +74,11 @@ public class AreaRestApiImpl implements AreaRestApi {
                 }
             }
         });
+    }
+
+    @Override
+    public Observable<AreaEntity> area(String areaHref) {
+        return this.getAreaFromApi(areaHref);
     }
 }
 
