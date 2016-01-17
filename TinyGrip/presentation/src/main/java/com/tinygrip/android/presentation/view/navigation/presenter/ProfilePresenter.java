@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class ProfilePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter {
+public class ProfilePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<ProfileView> {
 
   private ProfileView viewProfileView;
 

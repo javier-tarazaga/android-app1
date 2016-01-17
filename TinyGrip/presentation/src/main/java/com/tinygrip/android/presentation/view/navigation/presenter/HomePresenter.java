@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tinygrip.android.domain.exception.DefaultErrorBundle;
 import com.tinygrip.android.domain.exception.ErrorBundle;
@@ -18,6 +19,7 @@ import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
 import com.tinygrip.android.presentation.view.navigation.view.HomeView;
+import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -26,12 +28,15 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter, OnMapReadyCallback {
+public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<HomeView>, OnMapReadyCallback {
+
+    private final UseCase getPreviewAreasUseCase;
 
     private GoogleMap map;
     private HomeView viewHomeView;
 
-    private final UseCase getPreviewAreasUseCase;
+    private HashMap<String, PreviewArea> markers = new HashMap<>();
+
     //private final UserModelDataMapper userModelDataMapper;
 
     @Inject
@@ -107,10 +112,20 @@ public class HomePresenter extends DefaultSubscriber<List<PreviewArea>> implemen
 
     private void showPreviewAreasInMap(DataPage<PreviewArea> previewAreaDataPage) {
         for (PreviewArea area : previewAreaDataPage.getItems()) {
-            this.map.addMarker(new MarkerOptions()
-                                   .position(
-                                       new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
-                                   .title(area.getName()));
+
+            MarkerOptions markerOptions = new MarkerOptions()
+                .position(new LatLng(area.getLocation().getLatitude(), area.getLocation().getLongitude()))
+                .title(area.getName());
+
+            this.markers.put(this.map.addMarker(markerOptions).getId(), area);
+            this.map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    PreviewArea previewArea = (PreviewArea) markers.get(marker.getId());
+
+                    return true;
+                }
+            });
         }
     }
 

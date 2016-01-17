@@ -3,8 +3,8 @@ package com.tinygrip.android.presentation;
 
 import android.content.Context;
 import android.content.Intent;
-import com.tinygrip.android.presentation.view.area.activity.AreaActivity;
-import com.tinygrip.android.presentation.view.area.activity.NewAreaActivity;
+import com.tinygrip.android.presentation.view.area.AreaActivity;
+import com.tinygrip.android.presentation.view.area.newArea.NewAreaActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserLoginActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserProfileActivity;
 import com.tinygrip.android.presentation.view.user.activity.UserRegisterActivity;

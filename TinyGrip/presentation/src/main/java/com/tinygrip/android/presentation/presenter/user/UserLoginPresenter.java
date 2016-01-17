@@ -23,7 +23,7 @@ import javax.inject.Named;
  * layer.
  */
 @ActivityScope
-public class UserLoginPresenter implements Presenter {
+public class UserLoginPresenter implements Presenter<UserLoginView> {
 
     private UserLoginView userLoginView;
 

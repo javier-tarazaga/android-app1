@@ -27,7 +27,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
      * Interface for listening user events.
      */
     public interface HomeListener {
-
         void onNewAreaClicked();
     }
 

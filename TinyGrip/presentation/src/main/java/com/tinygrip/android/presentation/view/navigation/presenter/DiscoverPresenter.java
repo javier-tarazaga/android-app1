@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class DiscoverPresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter {
+public class DiscoverPresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<DiscoverView> {
 
   private DiscoverView viewDiscoveryView;
 

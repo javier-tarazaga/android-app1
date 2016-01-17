@@ -1,4 +1,4 @@
-package com.tinygrip.android.presentation.view.area.activity;
+package com.tinygrip.android.presentation.view.area.newArea;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import com.tinygrip.android.presentation.internal.di.HasComponent;
 import com.tinygrip.android.presentation.model.AreaModel;
 import com.tinygrip.android.presentation.view.area.AreaComponent;
 import com.tinygrip.android.presentation.view.area.DaggerAreaComponent;
-import com.tinygrip.android.presentation.view.area.fragment.NewAreaStep1Fragment;
-import com.tinygrip.android.presentation.view.area.fragment.NewAreaStep2Fragment;
+import com.tinygrip.android.presentation.view.area.newArea.step1.NewAreaStep1Fragment;
+import com.tinygrip.android.presentation.view.area.newArea.step2.NewAreaStep2Fragment;
 import com.tinygrip.android.presentation.view.base.BaseActivity;
 
 /**

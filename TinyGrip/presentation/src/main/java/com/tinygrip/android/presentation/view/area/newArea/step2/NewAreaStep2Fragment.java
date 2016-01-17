@@ -1,4 +1,4 @@
-package com.tinygrip.android.presentation.view.area.fragment;
+package com.tinygrip.android.presentation.view.area.newArea.step2;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,9 +12,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.view.area.AreaComponent;
-import com.tinygrip.android.presentation.view.area.activity.NewAreaActivity;
-import com.tinygrip.android.presentation.view.area.presenter.NewAreaStep2Presenter;
-import com.tinygrip.android.presentation.view.area.view.NewAreaStep2View;
+import com.tinygrip.android.presentation.view.area.newArea.NewAreaActivity;
 import com.tinygrip.android.presentation.view.base.BaseFragment;
 import javax.inject.Inject;
 

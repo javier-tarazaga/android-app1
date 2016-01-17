@@ -1,6 +1,4 @@
-package com.tinygrip.android.presentation.view.area.view;
-
-import com.tinygrip.android.presentation.view.LoadDataView;
+package com.tinygrip.android.presentation.view.area.newArea.step2;
 
 /**
  * Interface representing a View in a model view presenter (MVP) pattern.

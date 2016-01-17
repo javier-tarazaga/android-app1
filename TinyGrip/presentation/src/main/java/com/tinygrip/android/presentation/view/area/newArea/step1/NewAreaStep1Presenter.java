@@ -1,10 +1,9 @@
 
-package com.tinygrip.android.presentation.view.area.presenter;
+package com.tinygrip.android.presentation.view.area.newArea.step1;
 
 import android.support.annotation.NonNull;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
-import com.tinygrip.android.presentation.view.area.view.NewAreaStep1View;
 import javax.inject.Inject;
 
 /**
@@ -12,7 +11,7 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class NewAreaStep1Presenter implements Presenter {
+public class NewAreaStep1Presenter implements Presenter<NewAreaStep1View> {
 
   private NewAreaStep1View newNewAreaStep1View;
 

@@ -1,4 +1,4 @@
-package com.tinygrip.android.presentation.view.area.view;
+package com.tinygrip.android.presentation.view.area;
 
 /**
  * Interface representing a View in a model view presenter (MVP) pattern.

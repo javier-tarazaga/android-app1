@@ -23,7 +23,7 @@ import javax.inject.Named;
  * layer.
  */
 @ActivityScope
-public class UserListPresenter extends DefaultSubscriber<List<User>> implements Presenter {
+public class UserListPresenter extends DefaultSubscriber<List<User>> implements Presenter<UserListView> {
 
   private UserListView viewListView;
 

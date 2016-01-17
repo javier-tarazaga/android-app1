@@ -18,7 +18,7 @@ import javax.inject.Named;
  * layer.
  */
 @ActivityScope
-public class MainNavigationPresenter extends DefaultSubscriber<Root> implements Presenter {
+public class MainNavigationPresenter extends DefaultSubscriber<Root> implements Presenter<MainNavigationView> {
 
   private MainNavigationView viewMainNavigationView;
 

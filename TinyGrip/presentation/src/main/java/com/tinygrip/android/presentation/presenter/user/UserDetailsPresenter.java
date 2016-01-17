@@ -21,7 +21,7 @@ import javax.inject.Named;
  * layer.
  */
 @ActivityScope
-public class UserDetailsPresenter implements Presenter {
+public class UserDetailsPresenter implements Presenter<UserDetailsView> {
 
     private UserDetailsView viewDetailsView;
 

@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class SettingsPresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter {
+public class SettingsPresenter extends DefaultSubscriber<List<PreviewArea>> implements Presenter<SettingsView> {
 
   private SettingsView viewSettingsView;
 

@@ -5,9 +5,8 @@ import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.internal.di.components.ActivityComponent;
 import com.tinygrip.android.presentation.internal.di.components.ApplicationComponent;
 import com.tinygrip.android.presentation.internal.di.modules.ActivityModule;
-import com.tinygrip.android.presentation.view.area.fragment.AreaFragment;
-import com.tinygrip.android.presentation.view.area.fragment.NewAreaStep1Fragment;
-import com.tinygrip.android.presentation.view.area.fragment.NewAreaStep2Fragment;
+import com.tinygrip.android.presentation.view.area.newArea.step1.NewAreaStep1Fragment;
+import com.tinygrip.android.presentation.view.area.newArea.step2.NewAreaStep2Fragment;
 import dagger.Component;
 
 /**

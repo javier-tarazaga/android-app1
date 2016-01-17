@@ -1,11 +1,9 @@
 
-package com.tinygrip.android.presentation.view.area.presenter;
+package com.tinygrip.android.presentation.view.area;
 
 import android.support.annotation.NonNull;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;
-import com.tinygrip.android.presentation.view.area.view.NewAreaStep1View;
-import com.tinygrip.android.presentation.view.area.view.NewAreaStep2View;
 import javax.inject.Inject;
 
 /**
@@ -13,9 +11,9 @@ import javax.inject.Inject;
  * layer.
  */
 @ActivityScope
-public class NewAreaStep2Presenter implements Presenter {
+public class AreaPresenter implements Presenter<AreaView> {
 
-  private NewAreaStep2View newNewAreaStep2View;
+  private AreaView areaView;
 
   //private final UseCase getUserDetailsUseCase;
   //private final UserModelDataMapper userModelDataMapper;
@@ -28,12 +26,12 @@ public class NewAreaStep2Presenter implements Presenter {
   //}
 
   @Inject
-  public NewAreaStep2Presenter() {
+  public AreaPresenter() {
     // Empty
   }
 
-  public void setView(@NonNull NewAreaStep2View view) {
-    this.newNewAreaStep2View = view;
+  public void setView(@NonNull AreaView view) {
+    this.areaView = view;
   }
 
   @Override public void resume() {}
@@ -52,10 +50,6 @@ public class NewAreaStep2Presenter implements Presenter {
   }
 
   public void onBackClicked() {
-    this.newNewAreaStep2View.goBack();
-  }
-
-  public void onSaveClicked() {
-    this.newNewAreaStep2View.saveNewArea();
+    this.areaView.goBack();
   }
 }

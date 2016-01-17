@@ -52,12 +52,12 @@
         </activity>
 
         <activity
-            android:name=".presentation.view.area.activity.NewAreaActivity"
+            android:name=".presentation.view.area.newArea.NewAreaActivity"
             android:label="@string/activity_title_new_area">
         </activity>
 
         <activity
-            android:name=".presentation.view.area.activity.AreaActivity"
+            android:name=".presentation.view.area.AreaActivity"
             android:label="@string/activity_title_area">
         </activity>
 

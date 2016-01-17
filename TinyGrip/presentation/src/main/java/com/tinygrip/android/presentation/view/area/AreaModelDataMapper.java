@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.presentation.view.area.mapper;
+package com.tinygrip.android.presentation.view.area;
 
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.model.UserModel;
