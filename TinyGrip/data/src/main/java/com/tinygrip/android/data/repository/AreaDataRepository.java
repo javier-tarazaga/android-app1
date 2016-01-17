@@ -7,7 +7,7 @@ import com.tinygrip.android.data.entity.mapper.AreaEntityDataMapper;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStore;
 import com.tinygrip.android.data.repository.datasource.area.AreaDataStoreFactory;
 import com.tinygrip.android.domain.model.DataPage;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.domain.repository.AreaRepository;
 import com.tinygrip.android.domain.repository.RootRepository;
 import javax.inject.Inject;

@@ -1,8 +1,11 @@
 
-package com.tinygrip.android.domain.model;
+package com.tinygrip.android.domain.model.area;
+
+import com.tinygrip.android.domain.model.Link;
+import com.tinygrip.android.domain.model.Location;
 
 /**
- * Class that represents a User in the domain layer.
+ * Class that represents a Preview Area in the domain layer.
  */
 public class PreviewArea {
 
@@ -42,7 +45,7 @@ public class PreviewArea {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("***** Preview Area Entity Details *****\n");
+        stringBuilder.append("***** Preview Area Details *****\n");
         stringBuilder.append("name=" + this.getName() + "\n");
         stringBuilder.append("rating=" + this.getRating() + "\n");
         stringBuilder.append("location=" + this.getLocation() + "\n");

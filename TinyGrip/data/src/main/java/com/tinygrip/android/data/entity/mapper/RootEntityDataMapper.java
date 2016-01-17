@@ -3,7 +3,7 @@ package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.entity.RootEntity;
 import com.tinygrip.android.domain.model.Root;
-import com.tinygrip.android.domain.model.User;
+import com.tinygrip.android.domain.model.user.User;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

@@ -2,7 +2,7 @@
 package com.tinygrip.android.data.entity.mapper;
 
 import com.tinygrip.android.data.entity.user.UserEntity;
-import com.tinygrip.android.domain.model.User;
+import com.tinygrip.android.domain.model.user.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

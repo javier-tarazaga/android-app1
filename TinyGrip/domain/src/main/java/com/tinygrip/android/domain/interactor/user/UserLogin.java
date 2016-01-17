@@ -6,7 +6,7 @@ import com.tinygrip.android.domain.exception.user.InvalidLoginPasswordException;
 import com.tinygrip.android.domain.executor.PostExecutionThread;
 import com.tinygrip.android.domain.executor.ThreadExecutor;
 import com.tinygrip.android.domain.interactor.UseCase;
-import com.tinygrip.android.domain.model.User;
+import com.tinygrip.android.domain.model.user.User;
 import com.tinygrip.android.domain.repository.UserRepository;
 import javax.inject.Inject;
 import rx.Observable;

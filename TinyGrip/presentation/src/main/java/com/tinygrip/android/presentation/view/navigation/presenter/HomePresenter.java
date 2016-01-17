@@ -14,7 +14,7 @@ import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.domain.interactor.UseCase;
 import com.tinygrip.android.domain.interactor.area.GetPreviewAreas;
 import com.tinygrip.android.domain.model.DataPage;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.presentation.exception.ErrorMessageFactory;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;

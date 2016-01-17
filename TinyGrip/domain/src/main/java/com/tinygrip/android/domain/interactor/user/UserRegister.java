@@ -1,7 +1,7 @@
 
 package com.tinygrip.android.domain.interactor.user;
 
-import com.tinygrip.android.domain.model.User;
+import com.tinygrip.android.domain.model.user.User;
 import com.tinygrip.android.domain.exception.user.InvalidEmailException;
 import com.tinygrip.android.domain.exception.user.InvalidRegisterConfirmPasswordException;
 import com.tinygrip.android.domain.exception.user.InvalidRegisterPasswordException;

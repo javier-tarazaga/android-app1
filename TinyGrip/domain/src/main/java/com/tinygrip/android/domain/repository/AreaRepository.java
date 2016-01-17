@@ -2,7 +2,7 @@
 package com.tinygrip.android.domain.repository;
 
 import com.tinygrip.android.domain.model.DataPage;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import rx.Observable;
 
 /**

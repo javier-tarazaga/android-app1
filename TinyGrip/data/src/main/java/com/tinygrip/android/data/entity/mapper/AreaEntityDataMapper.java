@@ -6,7 +6,7 @@ import com.tinygrip.android.data.entity.LocationEntity;
 import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.domain.model.DataPage;
 import com.tinygrip.android.domain.model.Location;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.inject.Inject;

@@ -3,7 +3,7 @@ package com.tinygrip.android.data.api.area;
 
 import com.tinygrip.android.data.entity.DataPageEntity;
 import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import rx.Observable;
 
 /**

@@ -1,7 +1,7 @@
 
 package com.tinygrip.android.domain.repository;
 
-import com.tinygrip.android.domain.model.User;
+import com.tinygrip.android.domain.model.user.User;
 import rx.Observable;
 
 /**

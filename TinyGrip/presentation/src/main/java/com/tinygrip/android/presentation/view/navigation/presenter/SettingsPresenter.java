@@ -2,7 +2,7 @@
 package com.tinygrip.android.presentation.view.navigation.presenter;
 
 import android.support.annotation.NonNull;
-import com.tinygrip.android.domain.model.PreviewArea;
+import com.tinygrip.android.domain.model.area.PreviewArea;
 import com.tinygrip.android.domain.interactor.DefaultSubscriber;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.presenter.Presenter;

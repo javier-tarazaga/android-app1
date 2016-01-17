@@ -1,5 +1,5 @@
 
-package com.tinygrip.android.domain.model;
+package com.tinygrip.android.domain.model.user;
 
 /**
  * Class that represents a User in the domain layer.

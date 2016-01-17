@@ -1,7 +1,7 @@
 
 package com.tinygrip.android.presentation.view.user.mapper;
 
-import com.tinygrip.android.domain.model.User;
+import com.tinygrip.android.domain.model.user.User;
 import com.tinygrip.android.presentation.internal.di.ActivityScope;
 import com.tinygrip.android.presentation.model.UserModel;
 import java.util.ArrayList;
