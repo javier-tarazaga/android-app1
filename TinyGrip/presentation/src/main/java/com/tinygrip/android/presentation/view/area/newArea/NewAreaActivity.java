@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.tinygrip.android.R;
 import com.tinygrip.android.presentation.internal.di.HasComponent;
-import com.tinygrip.android.presentation.model.AreaModel;
+import com.tinygrip.android.presentation.model.area.AreaModel;
 import com.tinygrip.android.presentation.view.area.AreaComponent;
 import com.tinygrip.android.presentation.view.area.DaggerAreaComponent;
 import com.tinygrip.android.presentation.view.area.newArea.step1.NewAreaStep1Fragment;
