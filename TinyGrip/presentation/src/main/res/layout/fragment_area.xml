@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.AppBarLayout android:id="@+id/abl_area"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/abl_area">
+        android:layout_height="wrap_content">
 
-        <include android:id="@+id/tb_area"
-            layout="@layout/view_app_bar"/>
+        <include
+            android:id="@+id/tb_area"
+            layout="@layout/view_app_bar" />
 
     </android.support.design.widget.AppBarLayout>
 
-  <TextView
-      android:layout_below="@+id/abl_area"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Area"/>
+    <ScrollView
+        android:layout_below="@+id/abl_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <include layout="@layout/view_progress"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-  <include layout="@layout/view_retry"/>
+            <ImageView
+                android:id="@+id/tv_areaImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/tv_areaName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Area Name"/>
+
+            <TextView
+                android:id="@+id/tv_areaDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Area Desc"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/view_progress" />
+
+    <include layout="@layout/view_retry" />
 
 </RelativeLayout>

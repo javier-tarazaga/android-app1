@@ -6,10 +6,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.bumptech.glide.Glide;
 import com.tinygrip.android.R;
 import com.tinygrip.android.domain.model.area.Area;
 import com.tinygrip.android.presentation.model.area.PreviewAreaModel;
@@ -30,20 +33,18 @@ public class AreaFragment extends BaseFragment implements AreaView {
         void onBackClicked();
     }
 
-    @Bind(R.id.tb_area)
-    Toolbar toolbar;
-
-    @Bind(R.id.rl_progress)
-    RelativeLayout rlProgress;
-
-    @Bind(R.id.rl_retry)
-    RelativeLayout rlRetry;
+    @Bind(R.id.tb_area) Toolbar toolbar;
+    @Bind(R.id.rl_progress) RelativeLayout rlProgress;
+    @Bind(R.id.tv_areaName) TextView tvAreaName;
+    @Bind(R.id.tv_areaDesc) TextView tvAreaDesc;
+    @Bind(R.id.tv_areaImage) ImageView ivAreaImage;
+    @Bind(R.id.rl_retry) RelativeLayout rlRetry;
 
     @Inject
     AreaPresenter areaPresenter;
 
     private AreaListener areaListener;
-    private PreviewAreaModel previewArea;
+    private PreviewAreaModel previewAreaModel;
 
     public static AreaFragment newInstance(PreviewAreaModel previewArea) {
         AreaFragment areaFragment = new AreaFragment();
@@ -51,7 +52,7 @@ public class AreaFragment extends BaseFragment implements AreaView {
         Bundle bundle = new Bundle();
         bundle.putSerializable(ARGUMENT_KEY_PREVIEW_AREA, previewArea);
         areaFragment.setArguments(bundle);
-        
+
         return areaFragment;
     }
 
@@ -107,7 +108,12 @@ public class AreaFragment extends BaseFragment implements AreaView {
 
     @Override
     public void renderArea(Area area) {
+        if (area != null) {
+            this.tvAreaName.setText(area.getName());
+            this.tvAreaDesc.setText(area.getDescription());
 
+            Glide.with(AreaFragment.this).load(area.getImages().iterator().next().getLink().getHref()).into(this.ivAreaImage);
+        }
     }
 
     @Override
@@ -145,8 +151,8 @@ public class AreaFragment extends BaseFragment implements AreaView {
     private void initialize() {
         this.getComponent(AreaComponent.class).inject(this);
         this.areaPresenter.setView(this);
-        this.previewArea = (PreviewAreaModel) getArguments().get(ARGUMENT_KEY_PREVIEW_AREA);
-        this.areaPresenter.initialize(this.previewArea);
+        this.previewAreaModel = (PreviewAreaModel) getArguments().get(ARGUMENT_KEY_PREVIEW_AREA);
+        this.areaPresenter.initialize(this.previewAreaModel);
     }
 
     private void setupUI() {

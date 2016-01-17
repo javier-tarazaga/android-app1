@@ -58,8 +58,7 @@ public class AreaDataRepository implements AreaRepository {
                             .map(new Func1<AreaEntity, Area>() {
                                 @Override
                                 public Area call(AreaEntity areaEntity) {
-                                    return null;
-                                    //return AreaDataRepository.this.entityDataMapper.transform(previewAreas);
+                                    return AreaDataRepository.this.entityDataMapper.transform(areaEntity);
                                 }
                             });
     }

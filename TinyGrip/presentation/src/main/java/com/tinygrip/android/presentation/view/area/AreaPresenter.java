@@ -74,6 +74,8 @@ public class AreaPresenter implements Presenter<AreaView> {
     }
 
     private void showAreaDetailsInView(Area area) {
+        this.hideViewLoading();
+        this.hideViewRetry();
         this.areaView.renderArea(area);
     }
 
@@ -82,7 +84,7 @@ public class AreaPresenter implements Presenter<AreaView> {
     }
 
     private void hideViewRetry() {
-        this.areaView.showRetry();
+        this.areaView.hideRetry();
     }
 
     private void showErrorMessage(DefaultErrorBundle defaultErrorBundle) {
@@ -121,6 +123,7 @@ public class AreaPresenter implements Presenter<AreaView> {
         public void onNext(Area area) {
             super.onNext(area);
 
+            AreaPresenter.this.hideViewLoading();
             AreaPresenter.this.showAreaDetailsInView(area);
         }
     }

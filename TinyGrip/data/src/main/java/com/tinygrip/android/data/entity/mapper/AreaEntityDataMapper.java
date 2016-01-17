@@ -3,9 +3,11 @@ package com.tinygrip.android.data.entity.mapper;
 import android.support.annotation.Nullable;
 import com.tinygrip.android.data.entity.DataPageEntity;
 import com.tinygrip.android.data.entity.LocationEntity;
+import com.tinygrip.android.data.entity.area.AreaEntity;
 import com.tinygrip.android.data.entity.area.PreviewAreaEntity;
 import com.tinygrip.android.domain.model.DataPage;
 import com.tinygrip.android.domain.model.Location;
+import com.tinygrip.android.domain.model.area.Area;
 import com.tinygrip.android.domain.model.area.PreviewArea;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +25,42 @@ public class AreaEntityDataMapper {
     @Inject
     public AreaEntityDataMapper(LinkEntityDataMapper linkEntityDataMapper) {
         this.linkEntityDataMapper = linkEntityDataMapper;
+    }
+
+    @Nullable
+    public Area transform(AreaEntity entity) {
+        Area area = null;
+        if (entity != null) {
+            area = new Area(entity.getName(),
+                            this.transform(entity.getLocation()),
+                            this.linkEntityDataMapper.transform(entity.getSelf()));
+            area.setDescription(entity.getDescription());
+            area.setRating(entity.getRating());
+            area.setImages(this.transformImages(entity.getImages()));
+        }
+
+        return area;
+    }
+
+    public Collection<Area.AreaImage> transformImages(Collection<AreaEntity.AreaImageEntity> entityCollection) {
+        Collection<Area.AreaImage> areaImageCollection = new ArrayList<>();
+        if (entityCollection != null) {
+            for (AreaEntity.AreaImageEntity entity : entityCollection) {
+                areaImageCollection.add(this.transform(entity));
+            }
+        }
+
+        return areaImageCollection;
+    }
+
+    @Nullable
+    public Area.AreaImage transform(AreaEntity.AreaImageEntity entity) {
+        Area.AreaImage image = null;
+        if (entity != null) {
+            image = new Area.AreaImage(entity.getName(), this.linkEntityDataMapper.transform(entity.getLink()));
+        }
+
+        return image;
     }
 
     /**
